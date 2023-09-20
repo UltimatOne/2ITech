@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    color: blue;
+    text-align: center;
+}
+header, footer{
+    background-color: orange;
+    height: 12.5vh;
+}
+
+header h3 cite{
+    display: inline-block;
+    margin-top: 2vh;
+}
+nav{
+    text-align: center;
+    background-color: aqua;
+    height: 3vh;
+}
+nav ul li{
+    display: inline;
+}
+nav ul li a{
+    width: 75px;
+    margin: 25px;
+    color: white;
+    text-decoration: none;
+}
+section{
+    height: 70vh;
+    background-color: yellow;
+}
+table{
+    background-color: white;
+    border-collapse: collapse;
+    text-align: center;
+    width: 700px;
+    height: 300px;
+}
+table tr th{
+    background-color: palevioletred;
+}
+table, table tr th, table tr td{
+    border: 1px solid black;
+}
