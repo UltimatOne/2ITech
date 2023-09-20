@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    color: blue;
+    text-align: center;
+}
+header, footer{
+    background-color: orange;
+    height: 16vh;
+}
+header h3 cite{
+    display: inline-block;
+    margin-top: 2vh;
+}
+nav{
+    display: flex;
+    align-items: center;
+    background-color: aqua;
+    height: 3vh;
+}
+nav ul{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    list-style-type: none;
+}
+nav ul li a{
+    width: 75px;
+    margin: 25px;
+    color: white;
+    text-decoration: none;
+}
+nav ul li i{
+    color: white;
+    margin-right: -15px;
+}
+section{
+    height: 63vh;
+    background-color: yellow;
+}
+section article{
+    display: flex;
+    align-items: center;
+    height: 33.3%;
+}
+
+section article p{
+    padding: 0 10px;
+}
+section article p::first-letter{
+    color: red;
+    font-size: 3rem;
+}
+section article img{
+    margin: 1%;
+}
+section article:first-child{
+    background-color: antiquewhite;
+}
+section article:last-child{
+    background-color: rgb(177, 102, 5);
+}
+/* section article:nth-child(0n+3) img{
+    order: 2;
+} */
+section article:nth-of-type(2n){
+    background-color: aquamarine;
+    flex-direction: row-reverse;
+}
+section article:hover{
+    background-color: burlywood;
+}
+footer{
+    text-align: center;
+}
+footer i{
+    background-color: white;
+    padding: 1%;
+    border-radius: 50%;
+}
