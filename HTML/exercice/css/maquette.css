@@ -180,12 +180,19 @@ main section div article div:last-child p {
 }
 main section div article div:last-child span {
   display: inline-block;
+  position: relative;
   width: 6vw;
   color: black;
-  font-size: 1rem;
-  text-decoration: line-through;
-  text-decoration-line: calc(-25deg);
-  /* transform: rotate(-25deg); */
+  font-size: 1.2vw;
+  /* text-decoration: line-through; */
+}
+main section div article div:last-child span:before{
+  position: absolute;
+  content: "|";
+  font-size: 2vw;
+  top: -1.3vh;
+  right: 47%;
+  transform: rotate(45deg);
 }
 footer {
   display: flex;
