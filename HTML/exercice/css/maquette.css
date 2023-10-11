@@ -33,8 +33,12 @@ header div div {
 }
 header div div p {
   font-size: 1.5rem;
+  
 }
 header div nav div p {
+  position: absolute;
+  top: 6.5vh;
+  right: 0.5vw;
   text-align: right;
   font-weight: bolder;
   font-size: 2rem;
@@ -127,6 +131,7 @@ main section div article {
   width: 40%;
   margin: 2%;
   margin-bottom: 15vh;
+  
 }
 main section div article div:first-child {
   border: 1px solid black;
@@ -135,11 +140,11 @@ main section div article div:first-child {
 }
 main section div article div:first-child p {
   text-align: center;
-  font-size: 1.3rem;
   font-weight: 600;
   width: 100%;
   position: absolute;
   bottom: 20px;
+  font-size: 1vw;
 }
 main section div article div:first-child span {
   position: absolute;
@@ -153,8 +158,9 @@ main section div article div:first-child span {
   top: 5px;
   right: -20px;
 }
-main section div article div p {
-  width: 50%;
+
+main section div article div img{
+  box-shadow: 1px 5px 10px 1px gray;
 }
 main section div article div button {
   width: 40%;
@@ -178,20 +184,31 @@ main section div article div:last-child span {
   color: black;
   font-size: 1rem;
   text-decoration: line-through;
+  text-decoration-line: calc(-25deg);
+  /* transform: rotate(-25deg); */
 }
 footer {
   display: flex;
+  position: relative;
   flex-direction: column;
   position: relative;
   background-color: rgb(71, 71, 71);
 }
-footer p:first-child {
+footer::before{
+  background-color: rgb(71, 71, 71);
+  height: 3vh;
+  width: 100%;
+  content: "";
+  position:absolute;
+  top: -5.5vh;
+}
+/* footer p:first-child {
   position: absolute;
   top: -5.5vh;
   width: 100%;
   height: 3vh;
   background-color: rgb(71, 71, 71);
-}
+} */
 footer div {
   display: flex;
   width: 40%;
@@ -236,11 +253,14 @@ footer nav ul li {
   list-style-type: none;
   margin: auto 0;
 }
+/* footer nav ul li:not(:first-child):before{
+  content: "\0025A0";
+  color: darkgrey;
+  margin-right: 25%;
+} */
 footer nav ul span {
-  width: 10px;
-  height: 10px;
-  background-color: darkgray;
   margin: auto 0;
+  color: darkgray;
 }
 footer aside ul li {
   list-style-type: none;

@@ -1,0 +1,31 @@
+.grid{
+    border: 1px solid;
+    display: grid;
+
+    grid-template-columns: 100px 10fr 1fr;
+    /* grid-template-columns: repeat(3, 1fr); */
+
+    grid-template-rows: 100px 200px 100px;
+
+    grid-template-areas: "header header header"
+    "main main event"
+    "footer footer footer";
+
+    /* justify-content: center; */
+}
+
+.item{
+    border: 1px solid red;
+}
+.item-1{
+    background-color: blue;
+    grid-area: header;
+}
+.item-2{
+    background-color: aquamarine;
+    grid-area: main;
+}
+.item-3{
+    background-color: red;
+    grid-area: footer;
+}
