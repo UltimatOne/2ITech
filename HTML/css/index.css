@@ -1,10 +1,30 @@
-h1{
-color: chocolate;
+header p{
+color: white;
 text-align: center;
 }
 h2{
     color: blueviolet;
 }
-p:first-of-type{
-    background-color: antiquewhite;
+
+header{
+    background-color: rgb(36, 4, 177);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header a{
+    display: inline-block;
+    text-align: center;
+    width: 15%;
+}
+header a img{
+    width: 40%;
+}
+.ypareo{
+    width: 55%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
 }

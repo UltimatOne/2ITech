@@ -1,4 +1,31 @@
 form{
+    background-color: bisque;
+    width: 100%;
+}
+form, form div{
     display: flex;
     flex-direction: column;
+}    
+form div{
+    width: 35%;
+    margin: 1% auto 0;
+}
+form div button{
+    margin: 1%;
+}
+form div:last-child{
+    flex-direction: row;
+    justify-content: center;
+}
+@media screen and (min-width: 200px) and (max-width: 414px) {
+    body{
+        background-color: blueviolet;
+    }
+    body::before {
+        background-color: rgb(255, 0, 34);
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "Affichage Mobile"
+    }
 }

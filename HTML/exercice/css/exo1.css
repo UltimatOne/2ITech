@@ -1,82 +1,115 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-header{
-    color: blue;
-    text-align: center;
+header {
+  color: blue;
+  text-align: center;
 }
-header, footer{
-    background-color: orange;
-    height: 16vh;
+header,
+footer {
+  background-color: orange;
+  height: 16vh;
 }
-header h3 cite{
-    display: inline-block;
-    margin-top: 2vh;
+header h3 cite {
+  display: inline-block;
+  margin-top: 2vh;
 }
-nav{
-    display: flex;
-    align-items: center;
-    background-color: aqua;
-    height: 3vh;
+nav {
+  display: flex;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  height: 3vh;
+  padding: 1%;
 }
-nav ul{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    list-style-type: none;
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  list-style-type: none;
 }
-nav ul li a{
-    width: 75px;
-    margin: 25px;
-    color: white;
-    text-decoration: none;
+nav ul li a {
+  width: 75px;
+  margin: 25px;
+  color: white;
+  text-decoration: none;
 }
-nav ul li i{
-    color: white;
-    margin-right: -15px;
+nav ul li i {
+  color: white;
+  margin-right: -15px;
 }
-section{
-    height: 63vh;
-    background-color: yellow;
+section {
+  height: 59vh;
+  background-color: yellow;
 }
-section article{
-    display: flex;
-    align-items: center;
-    height: 33.3%;
+section article {
+  display: flex;
+  align-items: center;
+  height: 33.3%;
 }
 
-section article p{
-    padding: 0 10px;
+section article p {
+  padding: 0 10px;
 }
-section article p::first-letter{
-    color: red;
-    font-size: 3rem;
+section article p::first-letter {
+  color: red;
+  font-size: 3rem;
 }
-section article img{
-    margin: 1%;
+section article img {
+  margin: 1%;
 }
-section article:first-child{
-    background-color: antiquewhite;
+section article:first-child {
+  background-color: antiquewhite;
 }
-section article:last-child{
-    background-color: rgb(177, 102, 5);
+section article:last-child {
+  background-color: rgb(177, 102, 5);
 }
 /* section article:nth-child(0n+3) img{
     order: 2;
 } */
-section article:nth-of-type(2n){
-    background-color: aquamarine;
-    flex-direction: row-reverse;
+section article:nth-of-type(2n) {
+  background-color: aquamarine;
+  flex-direction: row-reverse;
 }
-section article:hover{
-    background-color: burlywood;
+section article:hover {
+  background-color: burlywood;
 }
-footer{
-    text-align: center;
+footer {
+  text-align: center;
 }
-footer i{
-    background-color: white;
-    padding: 1%;
-    border-radius: 50%;
+footer i {
+  background-color: white;
+  padding: 1%;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 488px) {
+  header, nav, section, section article,
+  footer {
+    height: 100%;
+  }
+  nav ul li{
+    margin: 2%;
+  }
+  nav ul,
+  section article {
+    flex-direction: column;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+  }
+  section article:nth-of-type(2n) {
+    flex-direction: column;
+  }
+  section article img {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 489px) and (max-width: 961px) {
+    header, nav, section, section article,
+  footer {
+    height: 100%;
+  }
 }

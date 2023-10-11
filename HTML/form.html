@@ -12,18 +12,29 @@
 
 <body>
     <form action="">
-        <label for="nom">Votre Nom de famille</label>
-        <input type="text" name="nom" placeholder="Nom de Famille">
-        <label for="prenom">Votre Prénom</label>
-        <input type="text" name="prenom" placeholder="Prénom">
-        <label for="mail">Votre Email</label>
-        <input type="email" name="mail" placeholder="Email">
-        <label for="passe">Votre Email</label>
-        <input type="password" name="passe" placeholder="Mot de Passe">
-        <label for="telephone">Votre telephone</label>
-        <input type="number" name="telephone" placeholder="telephone">
         <div>
-            <button type="submit">Valider</button>
+            <label for="nom">Votre Nom de famille</label>
+            <input type="text" name="nom" placeholder="Nom de Famille" required>
+        </div>
+        <div>
+            <label for="prenom">Votre Prénom</label>
+            <input type="text" name="prenom" placeholder="Prénom">
+        </div>
+        <div>
+            <label for="mail">Votre Email</label>
+            <input type="email" name="mail" placeholder="Email">
+        </div>
+        <div>
+            <label for="passe">Votre mot de passe</label>
+            <input type="password" name="passe" placeholder="Mot de Passe">
+        </div>
+        <div>
+            <label for="telephone">Votre telephone</label>
+            <input type="tel" name="telephone" placeholder="telephone" pattern="^[0-9]{10}$" minlength="10"
+                maxlength="10">
+        </div>
+        <div>
+            <button type="submit" disabled>Valider</button>
             <button type="reset">Annuler</button>
         </div>
     </form>
