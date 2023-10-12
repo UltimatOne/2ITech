@@ -1,0 +1,25 @@
+.carte{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.carte .menu{
+    padding: 0;
+}
+.carte .menu li{
+    list-style: none;
+    padding: 2%;
+}
+.carte img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.8s ease-in-out ;
+}
+.carte:hover img{
+    left: 150px
+}
