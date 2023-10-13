@@ -44,9 +44,16 @@
   justify-content: space-between;
   margin-top: 2vh;
 }
+.question .formulaire .themes{
+  display: flex;
+  justify-content: space-between;
+}
+.question .formulaire .bouton{
+  justify-content: space-around;
+}
 .question .formulaire .bouton,.question .formulaire .themes{
   display: flex;
-  justify-content: space-around;
+  align-items: center;
   margin-top: 2vh;
   height: 6vh;
 }
@@ -66,4 +73,7 @@
   background-color: blue;
   color: white;
   text-decoration: underline;
+}
+.question .formulaire .bouton .inscrire:hover{
+  background-color: rgb(58, 58, 255);
 }
