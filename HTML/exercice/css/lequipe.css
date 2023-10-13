@@ -30,6 +30,7 @@ header .menu img{
   position: absolute;
   left: 2%;
   width: 6%;
+  box-shadow: 5px 5px 10px 0px purple;
 }
 header .menu > li {
   float: left;
@@ -41,8 +42,8 @@ header .menu > li {
   list-style: none;
   text-align: center;
   border-radius: 15px;
-  border-top: 2px solid purple;
-  border-left: 2px solid purple;
+  border-top: 1px solid purple;
+  border-left: 1px solid purple;
   box-shadow: 5px 5px 10px 0px purple;
 }
 header .menu > li:hover {

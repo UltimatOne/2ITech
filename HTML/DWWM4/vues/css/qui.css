@@ -1,0 +1,98 @@
+.promo .titre{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: center;
+}
+main .titre h1, main .titre h3{
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.promo .titre h3{
+    font-weight: 100;
+}
+.promo .titre ul{
+    margin-top: 2vh;
+}
+.promo .titre ul li{
+    margin-bottom: -10px;
+    /* margin-left: 2%; */
+}
+.promo .titre ul li::before{
+    text-align: center;
+    display: inline-block;
+    width: 30px;
+    content: "\27BA";
+    font-size: 1.5vw;
+    color: green;
+    background-color: rgba(127, 255, 212, 0.425);
+    border-radius: 15px;
+    margin-right: 1%;
+}
+.equipe{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1r;
+    grid-template-areas: "membre membre membre membre";
+    justify-content: center;
+    gap: 20px 180px;
+    margin: 5vh 0;
+    text-align: center;
+}
+.equipe .membre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(211, 211, 211, 0.473);
+    position: relative;
+    width: 150%;
+
+    padding: 20% 0;
+}
+.equipe .membre .titre, .equipe .membre .nom{
+    position: absolute;
+    /* width: 100%; */
+}
+.equipe .membre .titre{
+    display: none;
+    top: -20px;
+    background-color: rgba(65, 134, 236, 0.897);
+    height: 3vh;
+    align-content: center;
+    transition: all 0.8s ease-in-out 0.8s;
+    z-index: 1;
+    width: 100%;
+}
+.equipe .membre .avatar{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.equipe .membre .avatar img{
+    width: 80%;
+}
+.equipe .membre .nom{
+    display: none;
+    font-size: 0.7vw;
+    background-color: gray;
+    color: white;
+    bottom: -30px;
+    transition: all 0.8s ease-in-out;
+    width: 80%;
+}
+.equipe .membre:hover .titre{
+    display: flex;
+    align-content: center;
+    top: 0;
+}
+.equipe .membre .avatar:hover .nom{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    bottom: 0;
+}
+/*/27BA*/

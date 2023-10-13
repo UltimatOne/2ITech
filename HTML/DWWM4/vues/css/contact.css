@@ -1,0 +1,69 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200%;
+}
+.contact .accroche {
+  font-size: 1vw;
+  width: 65%;
+  margin: 2vh auto;
+}
+.contact .flag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+  margin: 4vh auto;
+}
+.contact .flag div {
+  padding: 5%;
+}
+.contact .flag:not(:first-child) img {
+  width: 50%;
+}
+.contact .flag h1 {
+  margin-bottom: 3vh;
+}
+.contact .question {
+  text-align: center;
+}
+.contact .question p {
+  text-align: left;
+  padding: 1% 17.5%;
+}
+.question .formulaire {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin: 2% auto;
+  justify-content: left;
+}
+.question .formulaire .input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2vh;
+}
+.question .formulaire .bouton,.question .formulaire .themes{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2vh;
+  height: 6vh;
+}
+.question .formulaire .bouton input {
+  width: 6vw;
+}
+.question .formulaire .input:hover span, .question .formulaire .themes:hover span{
+    display: inline;
+}
+.question .formulaire .input:hover, .question .formulaire .themes:hover{
+    color: blue;
+}
+.question .formulaire .input span, .question .formulaire .themes span{
+    display: none;
+}
+.question .formulaire .bouton .inscrire {
+  background-color: blue;
+  color: white;
+  text-decoration: underline;
+}
