@@ -1,39 +1,39 @@
 * {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
 }
 /**************************** header ************************/
 .flag {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 1fr;
-  grid-template-areas:
-    "titre titre"
-    "nav nav";
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas:
+        "titre titre"
+        "nav nav";
 }
 .flag .titre {
-  display: flex;
-  grid-area: titre;
-  justify-content: center;
-  align-items: center;
-  gap: 200px;
+    display: flex;
+    grid-area: titre;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
 }
 .flag .nav {
-  grid-area: nav;
+    grid-area: nav;
 }
 .flag .nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 6vh;
-  background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6vh;
+    background-color: gray;
 }
-.flag .nav ul li:hover{
+.flag .nav ul li:hover {
     background-color: rgba(12, 56, 107, 0.788);
 }
-.flag .nav ul li{
+.flag .nav ul li {
     display: flex;
     font-size: 1vw;
     height: 100%;
@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
 }
-.flag .nav ul li a{
+.flag .nav ul li a {
     text-decoration: none;
     color: white;
 }
@@ -49,89 +49,91 @@
 
 /**************************** main ************************/
 .heroes {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "description photo";
-  padding: 3% 6%;
-  gap: 90px;
-  background-color: aqua;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "description photo";
+    padding: 3% 6%;
+    gap: 90px;
+    background-color: aqua;
+    align-items: center;
 }
 .heroes article {
-  grid-area: description;
+    grid-area: description;
 }
 .heroes article h3 {
-  margin-bottom: 3vh;
+    margin-bottom: 3vh;
 }
 .heroes article h3 span {
-  border-bottom: 2px solid gold;
+    border-bottom: 2px solid gold;
 }
 .heroes img {
-  width: 100%;
-  grid-area: photo;
+    width: 100%;
+    grid-area: photo;
 }
 .coursEtAside {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "cours aside";
-  justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "cours aside";
+    justify-content: flex-end;
 }
 .coursEtAside .cours {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20%;
 }
 .coursEtAside .cours div {
-  display: flex;
-  position: relative;
-  grid-area: boxCour;
-  gap: 10px;
-  width: 46%;
-  justify-content: center;
-  align-items: center;
-  margin: 1% 1%;
-  height: 50vh;
-  background-color: white;
-  box-shadow: 5px 5px 10px 0 grey;
-  border-radius: 25px;
+    display: flex;
+    position: relative;
+    grid-area: boxCour;
+    gap: 10px;
+    width: 46%;
+    justify-content: center;
+    align-items: center;
+    margin: 1% 1%;
+    height: 50vh;
+    background-color: white;
+    box-shadow: 5px 5px 10px 0 grey;
+    border-radius: 25px;
 }
 .coursEtAside .cours div span {
-  position: absolute;
-  top: auto;
-  color: white;
-  padding: 3%;
-  background-color: rgba(12, 56, 107, 0.788);
-  border-radius: 25%;
-  font-size: 1vw;
+    position: absolute;
+    top: auto;
+    color: white;
+    padding: 3%;
+    background-color: rgba(12, 56, 107, 0.788);
+    border-radius: 25%;
+    font-size: 1vw;
 }
 .coursEtAside .cours div img {
-  width: 80%;
+    width: 80%;
 }
 .coursEtAside aside {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-  grid-area: aside;
-  grid-template-columns: 1fr 1r;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "aimer aimer"
-  "bouton bouton";
-  font-size: 1vw;
+    grid-area: aside;
+    grid-template-columns: 1fr 1r;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "aimer aimer"
+        "bouton bouton";
+    font-size: 1vw;
 }
-.coursEtAside aside .aimer{
+.coursEtAside aside .aimer {
     grid-area: aimer;
     width: 70%;
     border-bottom: 3px solid gold;
     margin-top: 12vh;
     margin-bottom: 2vh;
 }
-.coursEtAside aside .boutons{
+.coursEtAside aside .boutons {
     display: flex;
     flex-wrap: wrap;
     width: 70%;
     text-align: center;
 }
-.coursEtAside aside .bouton1, .coursEtAside aside .bouton2{
+.coursEtAside aside .bouton1,
+.coursEtAside aside .bouton2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,10 +146,11 @@
     box-shadow: 5px 5px 10px 0 grey;
     border: 1px solid black;
 }
-.coursEtAside aside .bouton1:hover, .coursEtAside aside .bouton2:hover{
+.coursEtAside aside .bouton1:hover,
+.coursEtAside aside .bouton2:hover {
     background-color: lightpink;
 }
-.coursEtAside aside .bouton2{
+.coursEtAside aside .bouton2 {
     margin-left: 1.1vh;
 }
 
@@ -155,16 +158,16 @@
 
 /**************************** footer ************************/
 footer {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas: "copyright vide";
-  background-color: gray;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "copyright vide";
+    background-color: gray;
 }
 footer span {
-  display: flex;
-  justify-content: flex-end;
-  color: white;
-  grid-area: copyright;
-  padding: 2%;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    grid-area: copyright;
+    padding: 2%;
 }
 /**************************** fin footer ************************/
