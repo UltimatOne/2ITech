@@ -31,7 +31,7 @@ include 'header.php';
         </div>
         <div class="form-group">
             <label for="birth">Date de Naissance</label>
-            <input type="date" class="form-control" id="birth" placeholder="Password" name="birth">
+            <input type="date" class="form-control" id="birth" name="birth">
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>

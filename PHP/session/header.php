@@ -3,6 +3,9 @@ session_start();
 
 $_SESSION["nom"] = "Doe";
 
+$msgSuccess = "";
+$msgAlert = "";
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +38,6 @@ $_SESSION["nom"] = "Doe";
                             <a class="nav-link" href="add.php">Ajouter un élève</a>
                         </li>
                     </ul>
-                    
                 </div>
             </div>
         </nav>

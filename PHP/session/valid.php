@@ -1,6 +1,5 @@
 <?php
 include 'header.php';
-$msg = "";
 if (
     isset($_POST["mail"]) &&
     !empty($_POST["mail"]) &&
@@ -10,18 +9,23 @@ if (
     !empty($_POST["telephone"]) &&
     !empty($_POST["adresse"]) &&
     !empty($_POST["birth"])
-
-
 ) {
-    include('boxsuccess.php');
+    $msgSuccess = "<p>Bonjour {$_POST["prenom"]} {$_POST["nom"]} votre formulaire a bien été validé</p>
+  <p>Votre mail est {$_POST["mail"]} et vous etes né le {$_POST["birth"]}</p>";
 } else {
-    include('boxalert.php');
+    $msgError = "<p>Merci de compléter les champs suivants:";
+    foreach ($_POST as $key => $value) {
+        if (empty($value)) {
+            $msgError .= "<br> - $key";
+        }
+        $msgError = $msgError . "</p>";
+    };
 }
 ?>
 
 <main>
     <h1 class="text-center">Validation</h1>
-    <p><?= $msg ?></p>
+    <?= include("box.php") ?>
 </main>
 
 <?php
