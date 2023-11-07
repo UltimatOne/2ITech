@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_GET)
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <p><?= $_GET["prenom"] ?></p>
+    <p>Bonjour <?= $_GET["prenom"] ?> <?= $_GET["nom"] ?> votre formulaire a bien été validé</p>
+    <p>Votre mail est <?= $_GET["email"] ?> et vous avez <?= $_GET["age"] ?> ans</p>
     <a href="index.php">Accueil</a>
-    <p><?= $_GET["age"] ?></p>
 </body>
 
 </html>

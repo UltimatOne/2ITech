@@ -1,9 +1,9 @@
 <?php
 
-$me = [
-    "prenom" => 'Jean-Jacques',
-    "age" => 45,
-];
+// $me = [
+//     "prenom" => 'Jean-Jacques',
+//     "age" => 45,
+// ];
 
 var_dump($_GET);
 
@@ -21,8 +21,8 @@ var_dump($_GET);
 </head>
 
 <body>
-    <a href="page2.php?prenom=<?= $me["prenom"] ?>&age=<?= $me["age"] ?>">Page 2</a>
-    <form action="" class="formulaire">
+    <!-- <a href="page2.php?prenom=<?= $me["prenom"] ?>&age=<?= $me["age"] ?>">Page 2</a> -->
+    <form action="page2.php" method="get" class="formulaire">
         <h3>Formulaire de contact</h3>
         <div class="mainForm">
             <div class="containerInput">
@@ -35,7 +35,11 @@ var_dump($_GET);
             </div>
             <div class="containerInput">
                 <label for="nom">Mail</label>
-                <input type="email" id="email" name="mail">
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="containerInput">
+                <label for="age">Votre age</label>
+                <input type="number" id="age" name="age">
             </div>
         </div>
         <input type="submit" class="envoyer">
