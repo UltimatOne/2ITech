@@ -1,10 +1,10 @@
-<?php 
-$class ="success";
+<?php
+$class = "success";
 $msg = $msgSuccess;
 
-if (!empty($msgError)){
-    $class = "danger";
-    $msg = $msgError;
+if (!empty($msgError)) {
+  $class = "danger";
+  $msg = $msgError;
 }
 ?>
 

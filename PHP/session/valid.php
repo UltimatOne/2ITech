@@ -16,16 +16,16 @@ if (
     $msgError = "<p>Merci de compléter les champs suivants:</p>";
     foreach ($_POST as $key => $value) {
         if (empty($value)) {
-            $msgError .= "<p> - $key";
+            $msgError .= "<span> -> $key";
         }
-        $msgError .= "</p>";
+        $msgError .= "</span>";
     };
-}
+};
 ?>
 
 <main>
     <h1 class="text-center">Validation</h1>
-    <?= include("box.php") ?>
+    <?php include('box.php') ?>
 </main>
 
 <?php
