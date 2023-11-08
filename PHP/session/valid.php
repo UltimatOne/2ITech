@@ -13,13 +13,13 @@ if (
     $msgSuccess = "<p>Bonjour {$_POST["prenom"]} {$_POST["nom"]} votre formulaire a bien été validé</p>
   <p>Votre mail est {$_POST["mail"]} et vous etes né le {$_POST["birth"]}</p>";
 } else {
-    $msgError = "<p>Merci de compléter les champs suivants:</p>";
+    $msgError = "<p>Merci de compléter les champs suivants:";
     foreach ($_POST as $key => $value) {
         if (empty($value)) {
-            $msgError .= "<span> -> $key";
+            $msgError .= "<br> -> $key";
         }
-        $msgError .= "</span>";
     };
+    $msgError .= "</p>";
 };
 ?>
 
