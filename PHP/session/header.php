@@ -1,10 +1,15 @@
 <?php
 session_start();
 
-$_SESSION["nom"] = "Doe";
+// session_destroy();
+if (!isset($_SESSION['user'])){
+    $_SESSION["user"] = [];
+}
+// var_dump($_SESSION);
 
 $msgSuccess = "";
 $msgAlert = "";
+$eleves = [];
 
 ?>
 
@@ -36,6 +41,9 @@ $msgAlert = "";
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="add.php">Ajouter un élève</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?logout=true">Log out</a>
                         </li>
                     </ul>
                 </div>
