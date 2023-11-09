@@ -10,6 +10,7 @@ if (!isset($_SESSION['user'])){
 $msgSuccess = "";
 $msgAlert = "";
 $eleves = [];
+$msgCard = "";
 
 ?>
 

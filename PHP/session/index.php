@@ -5,7 +5,7 @@ if (isset($_GET["logout"]) &&
     $_GET["logout"] == "true") {
         $_SESSION = [];
         session_destroy();
-        header('index.php');
+        header('location: index.php');
         exit();
     };
 

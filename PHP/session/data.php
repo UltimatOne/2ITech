@@ -9,16 +9,26 @@ include 'header.php';
 // ici on supprime la derniere entree du tableau correspondant a l'id dans user
 // array_pop( $_SESSION["user"][$id]);
 
+//unset(' ici l'élément ') permet de supprimer un élément indiqué dans un tableau
+if (isset($_GET["suppr"])) {
+    $cle = $_GET["suppr"];
+    //var_dump("id: " . $cle);
+    unset($_SESSION["user"][$cle]["commentaire"]);
+    $msgSuccess = "le commentaire a bien été supprimé";
+};
+
 //Verifie qu'un id existe dans $_GET et si oui affiche l'élève correspondant dans $user sinon message d'erreur
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $user = $_SESSION["user"][$id];
     $eleve = "<h1 class='text-center'>Données de l'élève</h1>
-        <h3>" . $user["prenom"] . " " . $user["nom"] . "</h3>
-        <p>Mail : <a href='mailto:" . $user["mail"] . "'>" . $user["mail"] . "</a></p>
-        <p>Adresse : " . $user["adresse"] . "</p>
-        <p>Téléphone : " . $user["telephone"] . "</p>
-        <p>Date de naissance : " . $user["birth"] . "</p>";
+                <div class='container bg-dark text-white'>
+                    <h3>" . $user["prenom"] . " " . $user["nom"] . "</h3>
+                    <p>Mail : <a href='mailto:" . $user["mail"] . "'>" . $user["mail"] . "</a></p>
+                    <p>Adresse : " . $user["adresse"] . "</p>
+                    <p>Téléphone : " . $user["telephone"] . "</p>
+                    <p>Date de naissance : " . $user["birth"] . "</p>
+                </div>";
 } else {
     $msgError = "<p>L'élève n'a pas été trouvé.</p>";
 };
@@ -32,7 +42,7 @@ if (
 };
 ?>
 
-<main class="container bg-dark text-white">
+<main class="">
     <?php
     //Verifie qu'il y a bien un user dans eleve et l'affiche sinon affiche un message d'erreur
     if (!empty($eleve)) {
@@ -41,22 +51,28 @@ if (
         if (isset($_SESSION["user"][$id]["commentaire"]) && !empty($_SESSION["user"][$id]["commentaire"])) {
             //verifie qu'il y a un ccommentaire dans $_GET si oui affiche le message de succes d'ajout et le commentaire sinon juste le commentaire
             if (isset($_GET["commentaire"])) {
-                $msgSuccess = "<p>Votre commentaire a bien été ajouté";
-                echo "<p>Commentaire : " . $_SESSION["user"][$id]["commentaire"] . "</p>";
+                echo "<div class='container bg-dark text-white'><p>Commentaire : " . $_SESSION["user"][$id]["commentaire"] . "</p>
+                <a type='button' class='btn btn-danger' href='data.php?suppr=$id'>Supprimer le commentaire</a>
+                </div>";
                 include "box.php";
             } else {
-                echo "<p>Commentaire : " . $_SESSION["user"][$id]["commentaire"] . "</p>";
+                echo "<div class='container bg-dark text-white'><p>Commentaire : " . $_SESSION["user"][$id]["commentaire"] . "</p>
+                <a type='button' class='btn btn-danger' href='data.php?suppr=". $id . "&id=$id'>Supprimer le commentaire</a>
+                </div>";
             }
         } else {
-            echo "<form action='' method='get' class='container'>
-                    <div class='form-group'>
-                        <label for='commentaire' class='form-label'>Votre commentaire ici:</label>
-                        <!-- Renvoi l'id dans \$_GET au moment de l'ajout du commentaire -->
-                        <input type='hidden' name='id' value='" . $id . "'>
-                        <input type='area' class='form-control' id='commentaire' placeholder='Entrer Votre commentaire ici' name='commentaire'>
-                        <button type='submit' class='btn btn-primary'>Envoyer</button>
-                    </div>
-                  </form>";
+            echo "<div class='container bg-dark text-white'>
+                    <form action='' method='get' class='container'>
+                        <div class='form-group'>
+                            <label for='commentaire' class='form-label'>Votre commentaire ici:</label>
+                            <!-- Renvoi l'id dans \$_GET au moment de l'ajout du commentaire -->
+                            <input type='hidden' name='id' value='" . $id . "'>
+                            <input type='area' class='form-control' id='commentaire' placeholder='Entrer Votre commentaire ici' name='commentaire'>
+                            <button type='submit' class='btn btn-primary'>Envoyer</button>
+                        </div>
+                    </form>
+                  </div>";
+                  include "box.php";
         }
     } else {
         include("box.php");

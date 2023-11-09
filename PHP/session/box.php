@@ -7,7 +7,8 @@ if (!empty($msgError)) {
   $msg = $msgError;
 }
 ?>
-
+<?php if (!empty($msg)) { ?>
 <div class="alert alert-<?= $class ?>" role="alert">
   <?= $msg ?>
 </div>
+<?php } ?>
