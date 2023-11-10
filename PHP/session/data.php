@@ -43,6 +43,7 @@ if (
 ?>
 
 <main class="">
+    
     <?php
     //Verifie qu'il y a bien un user dans eleve et l'affiche sinon affiche un message d'erreur
     if (!empty($eleve)) {
