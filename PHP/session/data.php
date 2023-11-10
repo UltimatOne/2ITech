@@ -49,7 +49,7 @@ if (
         echo $eleve;
         //verifie qu'il y a un commentaire dans user et si oui l'affiche sinon affiche le formulaire pour creer le commentaire à la place
         if (isset($_SESSION["user"][$id]["commentaire"]) && !empty($_SESSION["user"][$id]["commentaire"])) {
-            //verifie qu'il y a un ccommentaire dans $_GET si oui affiche le message de succes d'ajout et le commentaire sinon juste le commentaire
+            //verifie qu'il y a un commentaire dans $_GET si oui affiche le message de succes d'ajout et le commentaire sinon juste le commentaire
             if (isset($_GET["commentaire"])) {
                 echo "<div class='container bg-dark text-white'><p>Commentaire : " . $_SESSION["user"][$id]["commentaire"] . "</p>
                 <a type='button' class='btn btn-danger' href='data.php?suppr=$id'>Supprimer le commentaire</a>
