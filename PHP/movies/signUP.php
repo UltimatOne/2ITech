@@ -16,8 +16,8 @@ include 'valid.php';
         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
-        <label for="pwd" class="form-label">Votre mot de passe</label>
-        <input type="password" class="form-control" name="pwd" id="pwd">
+        <label for="pswrd" class="form-label">Votre mot de passe</label>
+        <input type="password" class="form-control" name="pswrd" id="pswrd">
     </div>
     <button type="submit" class="btn btn-dark w-25 mx-auto">Envoyer</button>
 </form>

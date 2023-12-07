@@ -12,7 +12,7 @@ if (!isset($_SESSION['user'])) {
 
 try {
     //connection à la BDD
-    $db = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8", $userName, $pwd);
+    $db = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8", $userName, $pswrd);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     var_dump($e->getMessage());
@@ -39,21 +39,32 @@ $msgError = "";
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="list.php">Films</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="add.php">Administration</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="signIn.php">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="signUp.php">Inscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Déconnexion</a>
-                        </li>
+
+                        <?php if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="list.php">Films</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="add.php">Administration</a>
+                            </li>
+                            <li class="nav-item ms-auto">
+                                <span class="nav-link">Bienvenue <?= $_SESSION['user']['firstname'] ?>,</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?logout=true">Déconnexion</a>
+                            </li>
+                            
+                        <?php } else { ?>
+
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link" href="signIn.php">Connexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signUp.php">Inscription</a>
+                            </li>
+
+                        <?php }; ?>
+
                     </ul>
                 </div>
             </div>
