@@ -1,10 +1,11 @@
 <?php
 include 'header.php';
+include 'valid.php';
 ?>
 
-<h1>Ajouter un élève</h1>
+<h1 class="text-center">Ajouter un élève</h1>
 
-<form action="valid.php" method="post" style="width: 60%; margin: auto" >
+<form action="add.php" method="post" class="d-flex flex-column mx-auto" style="width: 60%;" >
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
@@ -29,10 +30,11 @@ include 'header.php';
         <label for="birth" class="form-label">Date de N.</label>
         <input type="date" class="form-control" name="date" id="birth">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-dark w-25 mx-auto">Envoyer</button>
 </form>
 
 <?php
+include 'box.php';
 include 'footer.php';
 ?>
 
