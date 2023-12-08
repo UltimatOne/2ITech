@@ -30,7 +30,7 @@ $msgError = "";
 </head>
 
 <body>
-    <header>
+    <header class=" position-sticky top-0 z-3 ">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">Accueil</a>
