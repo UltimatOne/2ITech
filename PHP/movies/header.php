@@ -30,7 +30,7 @@ $msgError = "";
 </head>
 
 <body>
-    <header class=" position-sticky top-0 z-3 ">
+    <header class="position-sticky top-0 z-3">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">Accueil</a>
@@ -48,7 +48,7 @@ $msgError = "";
                                 <a class="nav-link" href="add.php">Administration</a>
                             </li>
                             <li class="nav-item ms-auto">
-                                <span class="nav-link">Bienvenue <?= $_SESSION['user']['firstname'] ?>,</span>
+                                <span class="nav-link">Bienvenue <?= $_SESSION['user']['firstname'] ?>, </span>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?logout=true">Déconnexion</a>

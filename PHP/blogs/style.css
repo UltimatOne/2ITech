@@ -1,0 +1,36 @@
+.homeBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90vh;
+    align-items: center;
+}
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: darkgray;
+    height: 50%;
+    min-width: 50%;
+    padding: 0 2%;
+    border-radius: 15px;
+}
+.bouton {
+    padding: 2% 3%;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.bouton_white {
+    background-color: white;
+    color: black;
+}
+.bouton_dark {
+    background-color: black;
+    color: white;
+}
+.bouton_dark:hover, .bouton_white:hover {
+    background-color: gray;
+}
