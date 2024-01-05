@@ -1,3 +1,61 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+nav {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    position: sticky;
+    top: 0px;
+}
+nav input[type="checkbox"] {
+    display: none;
+}
+nav label {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px;
+    text-align: center;
+    background-color: darkgrey;
+}
+nav ul {
+    display: none;
+    list-style-type: none;
+    background-color: #555;
+}
+nav input[type="checkbox"]:checked + ul {
+    display: flex;
+    flex-flow: column wrap;
+}
+nav ul li {
+    flex: 1 1 0;
+    text-align: center;
+    position: relative;
+}
+nav a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+}
+
+.conteneur-nav {
+    position: absolute;
+    width: 100%;
+}
+.blog {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+.blog:hover {
+    background-color: darkgrey;
+}
+
 .homeBody {
     display: flex;
     flex-direction: column;
@@ -31,6 +89,233 @@
     background-color: black;
     color: white;
 }
-.bouton_dark:hover, .bouton_white:hover {
-    background-color: gray;
+.bouton_red {
+    background-color: red;
+    color: white;
+}
+.bouton_green {
+    background-color: green;
+    color: white;
+}
+
+.boutonsListe {
+    border: 2px solid white;
+    text-decoration: none;
+    padding: 1%;
+    margin-top: 1%;
+    border-radius: 10px;
+    text-align: center;
+}
+.width25{
+    width: 25%;
+}
+.width40{
+    width: 40%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+    width: 50%;
+    background-color: black;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    font-weight: 700;
+    color: white;
+    border-radius: 25px;
+}
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 0 auto;
+}
+form button,
+.boxAlert a {
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 7px;
+    width: 45%;
+    padding: 1%;
+    margin-top: 1vh;
+    margin-inline: auto;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+form a {
+    background-color: red;
+    border: 2px solid white;
+    border-radius: 7px;
+    width: 45%;
+    padding: 1%;
+    margin-top: 1vh;
+    margin-inline: auto;
+    color: white;
+    text-decoration: none;
+}
+.form-buttons-container {
+    flex-direction: row;
+}
+.formUser {
+    display: flex;
+    justify-content: center;
+    padding-top: 15vh;
+}
+.boxAlert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+.boxAlertBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    background-color: white;
+    padding: 8px;
+    border: 4px solid black;
+    border-radius: 10px;
+}
+.blogs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blogs div {
+    width: 95%;
+    margin: 2vh auto 0;
+}
+.blogContainer {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0px 20px;
+    text-align: center;
+}
+.blogContainerBody {
+    flex: 0 0 25%;
+    padding: 20px 0px;
+}
+.administration {
+  display: flex;
+  flex-direction: column;
+
+}
+.administrationListes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.listes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    height: 45vh;
+    width: 100%;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+}
+.listeBody {
+    width: 95%;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 1%;
+    padding: 1%;
+}
+.listeContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 7vh;
+}
+.listeBoutons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height: 20vh;
+}
+.details div{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+@media screen and (min-width: 980px) {
+    .conteneur-nav {
+        position: static;
+    }
+    nav label,
+    nav input {
+        display: none;
+    }
+    nav input[type="checkbox"]:checked + ul,
+    nav ul {
+        display: flex;
+        flex-flow: row wrap;
+        background-color: white;
+        border: 4px solid black;
+        padding: 0.5%;
+        border-radius: 10px;
+    }
+    nav ul li {
+        position: relative;
+    }
+    nav a {
+        color: black;
+        border-bottom: 2px solid transparent;
+    }
+    nav a:hover {
+        border-bottom: 2px solid black;
+    }
+    nav > div > ul > li > a {
+        color: black;
+    }
+    .bonjour {
+        margin: auto 0;
+    }
+    form a:hover,
+    .bouton_red:hover {
+        background-color: palevioletred;
+    }
+    form button:hover,
+    .boxAlert a:hover {
+        background-color: darkgrey;
+    }
+    .bouton_dark:hover,
+    .bouton_white:hover {
+        background-color: gray;
+    }
+    .bouton_green:hover {
+        background-color: rgb(107, 131, 70);
+    }
+    .administration {
+        flex-direction: row;
+        justify-content: space-around;
+        position: relative;
+    }
+    .administrationListes {
+        width: 45%;
+    }
 }

@@ -18,11 +18,12 @@
 
   <?php if (isset($_SESSION) && !empty($_SESSION['user'])) { ?>
     <div class="blogContainerBody">
-      <a class="bouton bouton_dark" href="blogDetails.php?id=<?= $key ?>">Voir</a>
+      <a class="bouton bouton_dark" href="myBlogDetails.php?id=<?= $key ?>">Voir</a>
     </div>
   <?php }; ?>
 
   <div class="blogContainerBody">
-    <p class="">Le <?= $blog['blog_create_date'] ?></p>
+    <span class="">Le <?= $blog['blog_create_date'] ?></span>
+    <span style="margin-left: 5%">Statut : <?= $blog['blog_state'] ?></span>
   </div>
 </div>

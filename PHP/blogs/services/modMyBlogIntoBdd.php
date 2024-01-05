@@ -31,12 +31,12 @@ if (isset($_POST['modifBlog']) && isset($_POST['blog_title']) && isset($_POST['b
             $request->execute([$title, $content, $userPseudo, $state, $id]);
 
             $msgSuccess = "Le blog {$title} a bien été modifiée";
-            $boxButtonParam = "blogDetails.php?id=" . $blogId . "";
+            $boxButtonParam = "myblogDetails.php?id=" . $blogId . "";
             $altBoxButtonParam = "retour au blog";
             $boxButtonDisplayValue = "Retour";
         } catch (Exception $e) {
             $msgError = "La modification du blog a échoué";
-            $boxButtonParam = "blogDetails.php?id=" . $blogId . "";
+            $boxButtonParam = "myblogDetails.php?id=" . $blogId . "";
             $altBoxButtonParam = "retour au blog";
             $boxButtonDisplayValue = "Retour";
         };

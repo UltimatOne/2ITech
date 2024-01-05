@@ -9,8 +9,8 @@ if (isset($_GET["id"])) {
 };
 
 include 'services/userDeleteBlogToBdd.php';
-include 'services/userModifBlogIntoBdd.php';
-include 'services/getBlogsFromBdd.php';
+include 'services/ModMyBlogIntoBdd.php';
+include 'services/getMyBlogsFromBdd.php';
 
 if (isset($blogId)) {
     $blog = $blogs[$blogId];
@@ -35,7 +35,7 @@ if (isset($blogId)) {
                             </select>
                         <div>
                         <div class='form-buttons-container'>
-                            <a href='blogDetails.php?id=" . $blogId . "' class=''>Annuler</a>
+                            <a href='myblogDetails.php?id=" . $blogId . "' class=''>Annuler</a>
                             <button type='submit' class=''>Modifier le blog</button>
                         </div>
                     </form>";
@@ -51,7 +51,8 @@ if (isset($blogId)) {
                             <p>Ecrit par " . $blog['blog_user_pseudo'] . "</p>
                         </div>
                         <div class=''>
-                            <p>Le " . $blog['blog_create_date'] . "</p>
+                          <span>Le " . $blog['blog_create_date'] . "</span>
+                          <span style='margin-left: 5%'>Statut : " . $blog['blog_state'] . "</span>
                         </div>
                     </div>";
     }
@@ -80,8 +81,8 @@ if (isset($blogId)) {
     };
     if (isset($_SESSION['user']) && isset($blog) && $_SESSION['user']['pseudo'] == $blog['blog_user_pseudo'] && !isset($_GET['modBlog'])) { ?>
         <div class="listeBoutons">
-            <a class='boutonsListe bouton_green width25' href="blogDetails.php?modBlog=<?= $blog['blog_id'] ?>&id=<?= $blogId ?>">Modifier</a>
-            <a class='boutonsListe bouton_red width25' href="blogDetails.php?suppBlog=<?= $blog['blog_id'] ?>&id=<?= $blogId ?>">Supprimer</a>
+            <a class='boutonsListe bouton_green width25' href="myBlogDetails.php?modBlog=<?= $blog['blog_id'] ?>&id=<?= $blogId ?>">Modifier</a>
+            <a class='boutonsListe bouton_red width25' href="myBlogDetails.php?suppBlog=<?= $blog['blog_id'] ?>&id=<?= $blogId ?>">Supprimer</a>
         </div>
     <?php }; ?>
 

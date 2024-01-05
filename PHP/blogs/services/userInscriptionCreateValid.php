@@ -11,9 +11,11 @@ if (
             if (empty($value)) {
                 $msgError .= "<br> -> $key";
             }
-        }
-        ;
+        };
         $msgError .= "</p>";
+        $boxButtonParam = "";
+        $altBoxButtonParam = "retour";
+        $boxButtonDisplayValue = "Retour";
     } else {
 
         //Préparation des valeurs à envoyer
@@ -37,19 +39,12 @@ if (
             $boxButtonParam = "signIn.php";
             $altBoxButtonParam = "connexion";
             $boxButtonDisplayValue = "connexion";
-
-
         } catch (Exception $e) {
             // var_dump($e->getMessage());
             $msgError = "L'inscription a échouée";
             $boxButtonParam = "signUp.php";
             $altBoxButtonParam = "retour";
             $boxButtonDisplayValue = "Retour";
-        }
-        ;
-    }
-    ;
-}
-;
-
-?>
+        };
+    };
+};

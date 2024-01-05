@@ -4,7 +4,6 @@ if (!isset($_POST['modifBlog']) && isset($_POST['blog_title']) && isset($_POST['
     if (
         empty($_POST['blog_title']) ||
         empty($_POST['blog_content']) ||
-        empty($_POST['blog_user_pseudo']) ||
         empty($_POST['blog_state']) 
     ) {
         $msgError = "<p>Merci de compléter les champs suivants:";
@@ -21,7 +20,7 @@ if (!isset($_POST['modifBlog']) && isset($_POST['blog_title']) && isset($_POST['
         //Préparation des valeurs à envoyer
         $title = $_POST["blog_title"];
         $content = $_POST["blog_content"];
-        $pseudo = $_POST['blog_user_pseudo'];
+        $pseudo = $_SESSION['user']['pseudo'];
         $state = $_POST['blog_state'];
 
         try {

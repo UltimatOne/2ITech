@@ -1,8 +1,8 @@
 <?php
 
 try {
-    $request = $db->prepare('SELECT * FROM blogs WHERE blog_state = ? ORDER BY blog_create_date DESC');
-    $request->execute(["Publié"]);
+    $request = $db->prepare('SELECT * FROM blogs');
+    $request->execute([]);
 
     $blogs = $request->fetchAll();
 } catch (Exception $e) {
