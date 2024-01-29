@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(169, 169, 169, 0.212);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    position: relative;
+}
+
+header nav {
+    display: none;
+    position: absolute;
+    bottom: -31vh;
+    left: 5px;
+    width: 97%;
+    background-color: white;
+    height: 30vh;
+}
+
+header nav ul {
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0 10px;
+}
+
+header div {
+    display: flex;
+    gap: 10px;
+}
+
+header button {
+    background-color: darkgrey;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+
+main {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+main section {
+    width: 75%;
+    border: 2px solid black;
+    background-color: darkgray;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    box-shadow: black 10px 10px 10px
+}
+
+main section div {
+    font-size: 4vw;
+    width: 90%;
+    display: grid;
+    grid-column: 1fr 1fr;
+    text-align: center;
+}
+
+main section div input {
+    display: flex;
+    width: 100%;
+    font-size: 3vh;
+    height: 5vh;
+    padding: 0 10px;
+    border-color: black;
+    border-radius: 5px;
+    box-shadow: inset -1px -1px 10px;
+    outline-color: darkgray;
+}
+
+main section button {
+    width: 30vw;
+    height: 5vh;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    box-shadow: black 5px 5px 10px;
+    outline-color: darkgray;
+}
