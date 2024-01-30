@@ -10,15 +10,16 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     padding: 5px 5px;
     position: relative;
+    transition: ease-in-out justify-content 1s;
 }
 
 header nav {
     display: none;
     position: absolute;
-    bottom: -31vh;
+    bottom: -30vh;
     left: 5px;
     width: 97%;
     background-color: white;
@@ -41,7 +42,7 @@ header div {
     gap: 10px;
 }
 
-header button {
+header nav ul button {
     background-color: darkgrey;
     padding: 2px 4px;
     border-radius: 5px;
@@ -94,9 +95,34 @@ main section div input {
 main section button {
     width: 30vw;
     height: 5vh;
-    background-color: black;
-    color: white;
     border-radius: 5px;
     box-shadow: black 5px 5px 10px;
     outline-color: darkgray;
+}
+
+main section button:active {
+    background-color: black;
+    color: white;
+}
+
+#profiles, #chats, #about {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 90vw;
+    height: 90vh;
+    color: black;
+}
+#profiles {
+    background-color: bisque;
+}
+#chats {
+    background-color: skyblue;
+}
+#about {
+    background-color: seashell;
+}
+
+.invisible {
+    display: none !important;
 }

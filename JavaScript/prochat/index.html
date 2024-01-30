@@ -7,17 +7,14 @@
         <title>Pro Chat</title>
     </head>
     <body>
-        <header>
-            <h1 id="proChat">ProChat</h1>
+        <header id="navBar">
+            <h1 id="welcomeBtn" class="navButton">ProChat</h1>
             <nav id="headerNavContainer">
-                <ul>
-                    <li id="linkPage1">page 1</li>
-                    <li id="linkPage2">page 2</li>
-                    <li id="linkPage3">page 3</li>
+                <ul id="nav">
+
                 </ul>
             </nav>
             <div>
-                <button id="logOut">Déconnexion</button>
                 <button id="boutonBurger">
                     <svg
                         height="32px"
@@ -75,18 +72,12 @@
                     <p id="phrase"></p>
                 </div>
             </section>
-            <section id="bonjourContainer">
+            <section id="welcome" class="tab">
                 <h1 id="bonjour"></h1>
             </section>
-            <section id="page1Container">
-                <h1 id="page1"></h1>
-            </section>
-            <section id="page2Container">
-                <h1 id="page2"></h1>
-            </section>
-            <section id="page3Container">
-                <h1 id="page3"></h1>
-            </section>
+            <section id="profiles" class="tab"></section>
+            <section id="chats" class="tab"></section>
+            <section id="about" class="tab"></section>
         </main>
         <footer></footer>
         <script src="scripts/index.js"></script>
