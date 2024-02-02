@@ -1,29 +1,30 @@
+import { users } from "./users.js"
+import { carousel, carouselDisplay, last, next } from "./carousel.js"
+
 //Elements
 let navBar = document.getElementById("navBar")
 let loginBox = document.getElementById("loginBox")
 
-// let bonjour = document.getElementById("bonjour")
-// let page1 = document.getElementById("page1")
-// let page2 = document.getElementById("page2")
-// let page3 = document.getElementById("page3")
-
 const headerNavContainer = document.getElementById("headerNavContainer")
 const nav = document.getElementById("nav")
-// const linksName = ["Profiles", "Chats", "A propos"]
-// const linksIds = ["profilesBtn", "chatsBtn", "aboutBtn"]
-
-// for (let i = 0; i < linksName.length; i++) {
-//     const link = document.createElement('li')
-//     link.classList.add("navButton")
-//     link.id = linksIds[i]
-//     link.innerText = linksName[i]
-//     nav.appendChild(link)
-// }
-
-nav.innerHTML = "<li id='profilesBtn' class='navButton'>Profiles</li><li id='chatsBtn' class='navButton'>Chats</li><li id='aboutBtn' class='navButton'>A propos</li><button id='logOut'>Déconnexion</button>"
-
 const loginButton = document.getElementById("connexion")
-const mailInput = document.getElementById("mail")
+const linksName = ["Profiles", "Chats", "A propos"]
+const linksIds = ["profilesBtn", "chatsBtn", "aboutBtn"]
+
+for (let i = 0; i < linksName.length; i++) {
+    const link = document.createElement("li")
+    link.classList.add("navButton")
+    link.id = linksIds[i]
+    link.innerText = linksName[i]
+    nav.appendChild(link)
+}
+
+const buttonLogOut = document.createElement("button")
+buttonLogOut.id = "logOut"
+buttonLogOut.innerText = "Déconnexion"
+nav.appendChild(buttonLogOut)
+
+const mailInput = document.getElementById("email")
 const pswrdInput = document.getElementById("pswrd")
 const phraseContainer = document.getElementById("phraseContainer")
 const phrasePrompt = document.getElementById("phrase")
@@ -31,6 +32,16 @@ const logOutButton = document.getElementById("logOut")
 const boutonBurger = document.getElementById("boutonBurger")
 const burger = document.getElementById("burger")
 const closeCross = document.getElementById("closeCross")
+const cards = document.getElementsByClassName("card")
+const popupCvList = document.getElementsByClassName("popupCv")
+const cover = document.createElement("div")
+cover.classList.add("cover")
+cover.id = "cover"
+
+const popupCv = document.createElement("div")
+popupCv.classList.add("popupCv")
+popupCv.id = "popupCv"
+
 
 const navButtons = document.getElementsByClassName("navButton")
 const tabs = document.getElementsByClassName("tab")
@@ -50,6 +61,11 @@ const dicoButtonToTab = {
     profilesBtn: "profiles",
     chatsBtn: "chats",
     aboutBtn: "about",
+}
+const dicoCardToCV = {
+    user1: "user1Cv",
+    user2: "user2Cv",
+    user3: "user3Cv",
 }
 
 for (let j = 0; j < tabs.length; j++) {
@@ -75,17 +91,90 @@ for (let i = 0; i < navButtons.length; i++) {
         if (loginBox.style.display == "none") {
             correspondingTab.classList.remove("invisible")
             if (correspondingTab.id == "profiles") {
-                correspondingTab.innerHTML = "<h1>Profiles</h1>"
+                const profiles = "<h1>Super Heros</h1>"
+                const profilesTabAdd = "<div id='profilesTab' class='profilesTab'></div>"
+                correspondingTab.innerHTML = profiles + profilesTabAdd
+                const profilesTab = document.getElementById("profilesTab")
+                profilesTab.appendChild(carousel)
+                let lastCard = users.length;
+                let nextCard = 2;
+                last.addEventListener("click", () => {
+                    if (lastCard > 1) {
+                        window.location = "#" + lastCard
+                        lastCard = lastCard - 1
+                        nextCard == 1 ? (nextCard = users.length) : (nextCard = nextCard -1)
+
+                        console.log("lastcard", lastCard, "nextcard", nextCard )
+                    } else {
+                        window.location = "#" + lastCard
+                        lastCard = users.length
+                        nextCard = 2
+
+                        console.log("lastcard", lastCard, "nextcard", nextCard )
+                    }
+                })
+                next.addEventListener("click", () => {
+                    if (nextCard < users.length) {
+                        window.location = "#" + nextCard
+                        nextCard = nextCard + 1
+                        nextCard == 3 ? (lastCard = 1) : (lastCard = lastCard + 1)
+
+                        console.log("lastcard", lastCard, "nextcard", nextCard )
+                    } else {
+                        window.location = "#" + nextCard
+                        lastCard = users.length - 1
+                        nextCard = 1
+
+                        console.log("lastcard", lastCard, "nextcard", nextCard )
+                    }
+                })
+                for (let k = 0; k < users.length; k++) {
+                    //ancres
+                    const ancre = document.createElement("span")
+                    ancre.id = k + 1
+
+                    //cards
+                    const card = document.createElement("div")
+                    card.classList.add("card")
+                    card.id = users[k].id
+
+                    //image
+                    const image = document.createElement("img")
+                    image.classList.add("profilePicture")
+                    image.src = users[k].pctr
+                    image.alt = users[k].heroName
+
+                    //Hero name
+                    const nameContainer = document.createElement("p")
+                    nameContainer.classList.add("nameContainer")
+                    nameContainer.innerText = users[k].heroName
+                    carouselDisplay.append(ancre, card)
+                    
+                    card.append(image, nameContainer)
+                    
+                    card.addEventListener("click", () => {
+                        profilesTab.appendChild(cover)
+                        cover.appendChild(popupCv)
+                        popupCv.innerHTML = 
+                            "<h1>" + users[k].heroName + "</h1><article><img src='" + users[k].pctr + "'/><div><h4>Véritable Nom</h4><p>" + users[k].firstname + " " + users[k].name + "</p><h4>Ville</h4><p>" + users[k].city + "</p></div></article><h3>Son histoire</h3><div><p>" + users[k].resume + "</p></div>"
+                    })
+                    cover.addEventListener("click", () => {
+                        cover.parentNode.removeChild(cover)
+                    })
+                }
             }
             if (correspondingTab.id == "chats") {
-                correspondingTab.innerHTML = "<h1>Chats</h1>"
+                const chats = "<h1>Chats</h1>"
+                correspondingTab.innerHTML = chats
             }
             if (correspondingTab.id == "about") {
-                correspondingTab.innerHTML = "<h1>A propos</h1>"
+                const about = "<h1 class='test' id='test'>A propos</h1>"
+                correspondingTab.innerHTML = about
             }
         }
     })
 }
+
 
 const logIn = () => {
     mail = mailInput.value

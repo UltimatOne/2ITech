@@ -9,11 +9,11 @@ body {
 }
 
 header {
+    background-color: white;
     display: flex;
     gap: 10px;
     padding: 5px 5px;
     position: relative;
-    transition: ease-in-out justify-content 1s;
 }
 
 header nav {
@@ -24,6 +24,7 @@ header nav {
     width: 97%;
     background-color: white;
     height: 30vh;
+    z-index: 10;
 }
 
 header nav ul {
@@ -55,7 +56,6 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
 }
 
 main section {
@@ -123,6 +123,165 @@ main section button:active {
     background-color: seashell;
 }
 
+.profilesTab {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carouselDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carouselDisplay::-webkit-scrollbar {
+    display: none;
+}
+
+.last, .next {
+    position: absolute;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    background-color: #a9a9a91c;
+    border-radius: 0px;
+    color: black;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.last {
+    top: 0px;
+}
+
+.next {
+    bottom: 0px;
+}
+
+.lastArrow, .nextArrow {
+    transform: rotate(90deg);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid gold;
+    border-radius: 15px;
+    background-color: white;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 12vh 0;
+}
+.card img {
+    display: flex;
+    width: 100%;
+}
+
+.cover {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    background-color: rgba(169, 169, 169, 0.24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupCv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 95%;
+    height: 80%;
+    background-color: white;
+}
+
+.popupCv article {
+    display: flex;
+    padding: 0 10px;
+}
+
+.popupCv article div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+    font-size: 3vw;
+}
+
+.popupCv div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupCv article img {
+    display: flex;
+    width: 55%;
+}
+
 .invisible {
     display: none !important;
+}
+
+@media screen and (min-width: 650px) {
+    #boutonBurger{
+        display: none !important;
+    }
+    header nav {
+        display: flex !important;
+        position: initial;
+        background-color: transparent;
+        height: 5vh;
+    }
+    header nav ul {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        list-style: none;
+    }
+    header nav ul button {
+        margin-right: -20%;
+    }
+    .profilesTab {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+    }
+    .popupCv {
+        width: 25%;
+    }
+    .popupCv h1 {
+        font-size: 3vw;
+    }
+    .popupCv article div {
+        gap: 10px;
+        padding: 0 10px;
+        font-size: 1vw;
+    }
+    .popupCv h3 {
+        font-size: 1vw;
+    }
+    .popupCv div {
+        font-size: 1vw;
+    }
 }
