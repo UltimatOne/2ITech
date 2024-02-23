@@ -59,3 +59,54 @@ function displayedPosts(posts){
         container.appendChild(div)
     });
 }
+
+
+console.log(new Object())
+
+function Book(title, author, price){
+    this.title = title
+    this.author = author
+    this.price = price
+
+    this.getTitle = function(){
+        return this.title
+    }
+}
+const book1 = new Book("la planète de singes", "oscar", 20)
+console.log(book1);
+
+class Human {
+    constructor(arm, leg){
+        this.arm = arm
+        this.leg = leg
+    }
+    walk() {
+        console.log("Walk");
+    }
+    think() {
+        console.log("Think");
+    }
+}
+ 
+ 
+const human1 = new Human(2,2)
+ 
+console.log(human1);
+ 
+class Italian extends Human {
+ 
+    constructor(arm, leg, name) {
+        super(arm,leg)
+        this.name = name
+    }
+ 
+    cookingPasta() {
+        console.log("🍝");
+    }
+    cookingPizza() {
+        console.log("🍕");
+    }
+}
+ 
+const italien1 = new Italian(2,2, "Thomas Boss")
+console.log(italien1);
