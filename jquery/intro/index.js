@@ -1,13 +1,13 @@
-$(document).ready(function () {
-    $("#titre").text("Bonjour de Jquery")
-    $("#div1").text("Hello les dwwm en Jquery")
-    $("#div2").text("Cour de Jquery")
-    $("#div3").append(" 10 personnes")
-})
+// $(document).ready(function () {
+//     $("#titre").text("Bonjour de Jquery")
+//     $("#div1").text("Hello les dwwm en Jquery")
+//     $("#div2").text("Cour de Jquery")
+//     $("#div3").append(" 10 personnes")
+// })
 
-$("#myButton").click(function () {
-    alert("Vous avez cliqué sur le bouton")
-})
+// $("#myButton").click(function () {
+//     alert("Vous avez cliqué sur le bouton")
+// })
 
 //AJAX
 
@@ -55,20 +55,20 @@ $("#myButton").click(function () {
 // });
 
 //Faire disparaître un élément
-$("#hideIt").hide()
+// $("#hideIt").hide()
 
-//Montrer un élément
-$("#hideIt").show()
+// //Montrer un élément
+// $("#hideIt").show()
 
-$("#listeTaches")
-    .children("li")
-    .click(function () {
-        if (!$(this).hasClass("completed")) {
-            $(this).addClass("completed")
-        } else {
-            $(this).removeClass("completed")
-        }
-    })
+// $("#listeTaches")
+//     .children("li")
+//     .click(function () {
+//         if (!$(this).hasClass("completed")) {
+//             $(this).addClass("completed")
+//         } else {
+//             $(this).removeClass("completed")
+//         }
+//     })
 
 // $("#task1").click(function () {
 //     if(!$("#task1").hasClass("completed")) {
@@ -164,29 +164,83 @@ $("#listeTaches")
 //Animer un élément
 // $("monElement").animate({width: "200px", height: "200px"})
 
+// $("monElement").fadeIn()
+// $("monElement").fadeOut()
+
+// $("monElement").slideUp()
+// $("monElement").slideDown()
+
+// Toggle() deprecated
+
 //soumettre un formulaire
+// $("form").submit(function (event) {
+//     event.preventDefault();
+//     const task = event.target.task.value;
+//     $("ul").append("<li>" + task + "<button>Terminé</button></li>");
 
-$("form").submit(function (event) {
-    event.preventDefault();
-    const task = event.target.task.value;
-    $("ul").append("<li>" + task + "<button>Terminé</button></li>");
+//     function reload() {
+//         $("ul li button:contains('Terminé')").click(function () {
+//             $(this).parent().addClass("completed");
+//             $(this).parent().append("<button>Annuler</button><button>Supprimer</button>");
+//             $(this).remove();
+//             $("ul li button:contains('Annuler')").click(function () {
+//                 $(this).parent().removeClass("completed");
+//                 $(this).parent().append("<button>Terminé</button>");
+//                 $(this).parent().children("button:contains('Supprimer')").remove();
+//                 $(this).remove();
+//                 reload();
+//             });
+//             $("ul li button:contains('Supprimer')").click(function () {
+//                 $(this).parent().remove();
+//             });
+//         });};
 
-    function reload() {
-        $("ul li button:contains('Terminé')").click(function () {
-            $(this).parent().addClass("completed");
-            $(this).parent().append("<button>Annuler</button><button>Supprimer</button>");
-            $(this).remove();
-            $("ul li button:contains('Annuler')").click(function () {
-                $(this).parent().removeClass("completed");
-                $(this).parent().append("<button>Terminé</button>");
-                $(this).parent().children("button:contains('Supprimer')").remove();
-                $(this).remove();
-                reload();
-            });
-            $("ul li button:contains('Supprimer')").click(function () {
-                $(this).parent().remove();
-            });
-        });};
+//     reload();
+// });
 
-    reload();
-});
+// $(document).ready(function () {
+//     let deplaced = false
+
+//     $("#moov-btn").on("click", function (e) {
+//         if (!deplaced) {
+//             e.stopPropagation()
+//             $("#myElement").animate({ left: "+=200px" }, "slow")
+//             deplaced = true
+//         } else {
+//             e.stopPropagation()
+//             $("#myElement").animate({ left: "-=200px" }, "slow")
+//             deplaced = false
+//         }
+//     })
+// })
+
+//GET
+/** $.get(url, [data], [success], [dataType]);
+ * url : vers la requete GET doit être envoyé
+ * data (optionel): les données à envoyer au serveur
+ * success (optionel): une fonction de rappel qui est executée si la requête à réussie
+ * dataType (optionel): Le type de données que l'on s'attend à recevoir par le serveur.
+ */
+
+//SET
+/** modification du texte d'un élément 
+ * $("#element").text("nouveau texte")
+ * 
+ * modification du contenu html
+ * $("#element").html("<p>Mon super contenu</p>")
+ * 
+ * définir la valeur d'un formulaire
+ * $(#input).val("nouvelle valeur")
+ * 
+ * modifier un attribut
+ * $("#element").attr("href", "nouvelle-url.html")
+ * 
+ * modifier des propriétés
+ * $("#maCaseACocher").prop("checked", true)
+ * 
+ * $("#maCaseACocher").width(300px)
+ * $("#maCaseACocher").eight(300px)
+ */
+$(document).ready(function () {
+  
+})

@@ -2,3 +2,10 @@
     text-decoration: line-through;
     color: darkgray;
 }
+
+#myElement {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
