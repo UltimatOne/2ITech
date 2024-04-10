@@ -1,0 +1,1 @@
+<h1>Détails des films</h1>
