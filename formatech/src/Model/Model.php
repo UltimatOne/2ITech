@@ -1,0 +1,207 @@
+<?php
+
+class Model
+{
+    //private permet une accessibilité à $db que depuis la classe Model
+    private \PDO $db;
+    public function __construct()
+    {
+        include './dbpass.php';
+
+        try {
+            $this->db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pswrd, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        };
+    }
+
+    public function manage()
+    {
+    }
+
+    public function addNewUser($name, $firstname, $email, $pswrd, $phone, $address, $zip_code, $city, $countryId)
+    {
+        //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
+        try {
+            //demarrage de la transaction
+            $this->db->beginTransaction();
+
+            $request = $this->db->prepare('CALL add_city(?,?,?)');
+            $cityId = $request->execute([$city, $zip_code, $countryId]);
+
+            $request = $this->db->prepare('CALL add_new_user(?,?,?,?,?,?,?)');
+            $userId = $request->execute([$name, $firstname, $email, $pswrd, $phone, $address, $cityId]);
+
+            //les requetes sql se sont terminées correctement envoi et modification de la db
+            $this->db->commit();
+
+            return $userId;
+        } catch (Exception $e) {
+
+            //les requetes sql ne se sont pas terminées correctement annulation
+            $this->db->rollBack();
+            var_dump($e->getMessage());
+        };
+    }
+
+    public function getSuperAdmin($email)
+    {
+        try {
+            $request = $this->db->prepare('SELECT 
+                                            super_admin_id AS id,
+                                            super_admin_name AS name,		
+                                            super_admin_firstname AS firstname,	
+                                            super_admin_email AS email,
+                                            super_admin_phone AS phone,	
+                                            super_admin_password AS password,		
+                                            super_admin_address AS address,
+                                            super_admin_city_id AS city_id,
+                                            super_admin_create_date AS create_date
+                                          FROM super_admins WHERE super_admin_email = ?');
+            $request->execute([$email]);
+            $user = $request->fetch();
+
+            return $user;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+    public function getAdmin($email)
+    {
+        try {
+            $request = $this->db->prepare('SELECT 
+                                            admin_id AS id,
+                                            admin_name AS name,		
+                                            admin_firstname AS firstname,	
+                                            admin_email AS email,
+                                            admin_phone AS phone,	
+                                            admin_password AS password,		
+                                            admin_address AS address,
+                                            admin_city_id AS city_id,
+                                            admin_create_date AS create_date
+                                          FROM admins WHERE admin_email = ?');
+            $request->execute([$email]);
+            $user = $request->fetch();
+
+            return $user;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+
+    public function getTrainer($email)
+    {
+        try {
+            $request = $this->db->prepare('SELECT 
+                                            trainer_id AS id,
+                                            trainer_name AS name,		
+                                            trainer_firstname AS firstname,	
+                                            trainer_email AS email,
+                                            trainer_phone AS phone,	
+                                            trainer_password AS password,		
+                                            trainer_address AS address,
+                                            trainer_city_id AS city_id,
+                                            trainer_create_date AS create_date
+                                           FROM trainers WHERE trainer_email = ?');
+            $request->execute([$email]);
+            $user = $request->fetch();
+
+            return $user;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+
+    public function getStudent($email)
+    {
+        try {
+            $request = $this->db->prepare('SELECT 
+                                            student_id AS id,
+                                            student_name AS name,		
+                                            student_firstname AS firstname,	
+                                            student_email AS email,
+                                            student_phone AS phone,	
+                                            student_password AS password,		
+                                            student_address AS address,
+                                            student_city_id AS city_id,
+                                            student_create_date AS create_date
+                                           FROM students WHERE student_email = ?');
+            $request->execute([$email]);
+            $user = $request->fetch();
+
+            return $user;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+
+    public function getCenters()
+    {
+        try {
+            $request = $this->db->prepare(
+                'SELECT center_id AS id,
+                        center_name AS name,
+                        center_admin_id AS admin_id,
+                        center_address AS address,
+                        center_phone AS phone,
+                        center_email AS email,
+                        cities.city_zip_code AS zip_code,
+                        cities.city_name AS city_name,
+                        countries.country_name AS country_name
+                FROM centers
+                LEFT JOIN cities ON cities.city_id = centers.center_city_id
+                LEFT JOIN countries ON countries.country_id = cities.city_country_id'
+            );
+            $request->execute([]);
+
+            $centers = $request->fetchAll(PDO::FETCH_ASSOC);
+
+            return $centers;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+
+    public function getCenter($centerId)
+    {
+        try {
+            $request = $this->db->prepare(
+                'SELECT *, cities.city_zip_code, cities.city_name, countries.country_name FROM centers
+                JOIN cities ON cities.city_id = centers.center_city_id
+                JOIN countries ON countries.country_id = cities.city_country_id
+                WHERE center_id = ?'
+            );
+            $request->execute([$centerId]);
+
+            $center = $request->fetch();
+
+            return $center;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+
+    public function getCountries()
+    {
+        try {
+            $request = $this->db->prepare(
+                'SELECT country_id, country_name FROM countries'
+            );
+            $request->execute([]);
+
+            $countries = $request->fetchAll();
+            
+            return $countries;
+            
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        };
+    }
+}

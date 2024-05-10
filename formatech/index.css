@@ -1,0 +1,15 @@
+:root {
+    --primary-color: #dc3545;
+    --primary-color-variant-alpha: rgb(200, 0, 0,.25);
+}
+
+.input-focus-custom-red:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem var(--primary-color-variant-alpha);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    scrollbar-color: var(--primary-color) transparent;
+}
