@@ -1,24 +1,24 @@
-<div class="container w-50 col-sm border-end border-danger">
-    <h3 class="text-danger"><?= $this->list_title ?></h3>
-    <table id="listCentersTab" class="table mt-5">
+<div class="flex flex-col w-50 border-r-red-1 p-2">
+    <h3 class="text-red"><?= $this->list_title ?></h3>
+    <table id="listCentersTab" class="mt-5 gap-4 p-2 text-2">
         <thead>
-            <tr>
-                <th scope="col">Nom du centre</th>
-                <th scope="col">Ville</th>
-                <th scope="col">email</th>
-                <th scope="col">Téléphone</th>
-                <th scope="col"></th>
+            <tr class="h-16">
+                <th scope="">Nom du centre</th>
+                <th scope="">Ville</th>
+                <th scope="">email</th>
+                <th scope="">Téléphone</th>
+                <th scope=""></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="overflow-auto">
             <?php foreach ($this->centers as $key => $center) { ?>
-                <tr class="align-middle">
-                    <th class="" scope="row"><?= $center['name'] ?></th>
+                <tr class="text-center mt-5 h-20">
+                    <th><?= $center['name'] ?></th>
                     <td><?= $center['city_name'] ?></td>
                     <td><?= $center['email'] ?></td>
                     <td>0<?= $center['phone'] ?></td>
-                    <td>
-                        <a class="btn btn-dark" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
+                    <td class="flex">
+                        <a class="block btn btn-dark w-full mt-1" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
                     </td>
                 </tr>
             <?php } ?>

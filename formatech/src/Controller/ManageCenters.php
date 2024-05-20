@@ -9,6 +9,10 @@ class ManageCenters
     public $list_title;
     public $form_title;
     public $centers;
+    public $param;
+    public $altParam;
+    public $displayValue;
+    
 
     public function __construct()
     {
@@ -19,6 +23,9 @@ class ManageCenters
         $this->list_title = 'Liste des centres';
         $this->form_title = 'Ajouter un centre';
         $this->centers = null;
+        $this->param = "index.php?page=listCenters";
+        $this->altParam = "retour";
+        $this->displayValue = "Retour";
     }
 
 
@@ -57,7 +64,6 @@ class ManageCenters
 
         include(__DIR__ . '/../view/header.php');
         include(__DIR__ . '/../view/popup.php');
-        // include(__DIR__ . '/../view/manageCenters.php');
         include(__DIR__ . '/../Components/headBody.php');
         include(__DIR__ . '/../Components/centers/listCentersTab.php');
         // include(__DIR__ . '/../Components/centers/listCentersCard.php');

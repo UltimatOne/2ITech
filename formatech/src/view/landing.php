@@ -1,1 +1,0 @@
-<h1 class="text-danger fw-bold" id="titre"><?= $this->title ?></h1>

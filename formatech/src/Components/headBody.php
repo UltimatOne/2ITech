@@ -1,3 +1,3 @@
-<h1 class="text-danger"><?= $this->title ?></h1>
+<h1 class="text-red text-center"><?= $this->title ?></h1>
 
-<section class="row w-100 pt-2 pb-2" style="height: 89.3vh">
+<section class="flex min-w-full" style="min-height: 89.3vh">

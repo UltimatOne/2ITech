@@ -22,7 +22,9 @@ class Landing
 
         include (__DIR__ . '/../view/header.php');
         include (__DIR__ . '/../view/popup.php');
-        include (__DIR__ . '/../view/landing.php');
+        include(__DIR__ . '/../Components/headBody.php');
+        
+        include(__DIR__ . '/../Components/footBody.php');
         include (__DIR__ . '/../view/footer.php');
     }
 }

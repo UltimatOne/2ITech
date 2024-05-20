@@ -195,9 +195,9 @@ class Model
             );
             $request->execute([]);
 
-            $countries = $request->fetchAll();
+            $datas = $request->fetchAll();
             
-            return $countries;
+            return $datas;
             
         } catch (Exception $e) {
             var_dump($e->getMessage());
