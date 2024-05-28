@@ -1,0 +1,1 @@
+<h1 class="text-red"><?= $this->title ?></h1>

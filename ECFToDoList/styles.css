@@ -1,0 +1,467 @@
+:root {
+    --red-color: #dc3545;
+    --red-color-variant-alpha: rgb(200, 0, 0,.25);
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --test-color: #c4c4c4;
+    --cover: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-color: var(--red-color) transparent;
+}
+
+body {
+    min-height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    height: 93.2vh;
+}
+
+/* BoxAlert */
+.boxAlert, .taskDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cover);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.boxAlertBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    background-color: var(--white-color);
+    padding: 1rem;
+    border: 4px solid var(--red-color);
+    border-radius: 10px;
+}
+
+.boxAlertBody div {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.375rem;
+    text-align: center;
+    font-size: 1.25rem;
+
+}
+
+.boxAlertBody a {
+    text-decoration: none;
+    color: var(--white-color);
+    padding: 0.125rem;
+    background-color: var(--black-color);
+    border-radius: 5px;
+    width: 50%;
+    padding: 0.375rem 0.25rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10%;
+}
+/* BoxAlert end */
+
+/* navbar */
+nav {
+    position: sticky;
+    top: 0px;
+    z-index: 3;
+}
+
+.navbar {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid var(--red-color);
+    position: relative;
+}
+
+.navDesktopTitle {
+    display: none;
+}
+
+.navMobileTitle {
+    display: flex;
+    font-weight: bold;
+    text-align: center;
+    color: var(--red-color) !important;
+    font-size: xx-large;
+}
+
+.navbar .desktopLinks {
+    display: none;
+}
+
+.navbar .mobileLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: x-large;
+    height: 50vh;
+    position: absolute;
+    top: 5vh;
+    left: 0;
+    right: 0;
+    background-color: var(--white-color);
+    border-bottom: 2px solid var(--red-color);
+}
+
+.navContainerLinks {
+    display: flex;
+    margin-left: auto;
+}
+
+.navbar li {
+    list-style: none;
+    padding: 0.5rem;
+
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+.navOpenButton, .navCloseButton {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    padding: 0.25rem;
+    background-color: var(--red-color);
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    margin-left: auto;
+}
+/* navbar end */
+
+/* form */
+form, form div {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    width: 90%;
+    align-items: center;
+    margin-top: 12.5vh;
+}
+
+form div {
+    margin-bottom: 1rem;
+    width: 75%;
+}
+
+form label, form input, form textarea, form select {
+    font-size: 1.2rem;
+}
+
+form label {
+    margin-bottom: 0.25rem;
+}
+
+form input,form textarea,form select {
+    border: 1px solid var(--black-color);
+    border-radius: 5px;
+    padding: 0.125rem;
+    text-align: center;
+}
+
+form textarea {
+    height: 200px;
+    text-align: left;
+    padding: 1rem;
+}
+
+form input:focus, form textarea:focus, form select:focus {
+    outline-color: var(--red-color);
+    border-color: var(--red-color);
+    box-shadow: 0 0 0 0.25rem var(--red-color-variant-alpha);
+}
+
+form button {
+    width: 25%;
+    padding: 0.25rem;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
+/* form end */
+
+/* taskList */
+.tasksListDesktop  {
+    display: none;
+}
+
+.tasksListMobile {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%;
+    margin-top: 5%;
+    padding: 0 1%;
+    gap: 6px;
+    overflow: auto;
+}
+
+.tasksListMobile button, .tasksListDesktop button {
+    width: 50%;
+    margin: 0 auto;
+    font-size: larger;
+    padding: 4px;
+    border-radius: 5px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+.tasksListMobile button {
+    margin-top: 5%;
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    text-align: center;
+    padding: 4px;
+    border: 1px solid var(--red-color);
+    border-radius: 5px;
+    margin-top: 6px;
+}
+
+.taskCard div {
+    padding: 2px;
+    font-size: larger;
+}
+
+.taskCard div p {
+    margin-top: 2px;
+}
+/* taskList end*/
+
+
+/* taskDetails */
+.taskDetails article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-color);
+    width: 90%;
+    border: 2px solid var(--red-color);
+    padding: 10px
+}
+
+.taskDetails h3, .taskDetails p {
+    text-align: center;
+}
+
+.taskDetails p {
+    font-size: large;
+    margin-top: 2%;
+}
+
+.taskDetails h3, .taskDetails h5 {
+    margin: 10px 0;
+}
+
+.taskDetails .closeDetails {
+    width: 8%;
+    font-size: large;
+    font-weight: bold;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--white-color);
+    background-color: var(--red-color);
+    border: none;
+}
+
+.taskDetails aside {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    gap: 5px;
+}
+
+.taskDetails aside button {
+    width: 24%;
+    padding: 5px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    border-radius: 5px;
+    font-size: x-small;
+}
+
+.taskDetails aside .deleteButton {
+    background-color: var(--red-color);
+    border: none;
+}
+/* taskDetails end */
+
+
+/* tool classes */
+.bg-test {
+    background-color: var(--test-color);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.text-red {
+    color: var(--red-color) !important;
+}
+
+.title {
+    font-size: x-large;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mt-10 {
+    margin-top: 10%;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-90 {
+    width: 90%;
+}
+/* Tool classes end */
+
+
+@media screen and (min-width: 800px) {
+    main {
+        height: 92.3vh;
+    }
+    /* BoxAlert */
+    .boxAlertBody {
+        width: 35%;
+    }
+    /* BoxAlert end*/
+
+
+    /* navbar */
+    .navDesktopTitle {
+        display: block;
+        width: 10%;
+        font-weight: bold;
+        color: var(--red-color) !important;
+        font-size: x-large;
+    }
+
+    .navMobileTitle {
+        display: none;
+    }
+
+    .navContainerLinks {
+        display: flex;
+        width: 100%;
+    }
+
+    .navbar .desktopLinks {
+        display: flex;
+        width: 100%;
+        font-size: large;
+        padding: 0.5rem 2rem;
+    }
+
+    .navOpenButton {
+        display: none;
+    }
+    .navCloseButton {
+        display: none;
+    }
+    /* navbar end */
+
+
+    /* form */
+    form {
+        width: 50%;
+        margin-top: 10vh;
+    }
+    
+    form div {
+        margin-bottom: 1rem;
+        width: 50%;
+    }
+    /* form end */
+
+
+    /* taskList */
+    .tasksListMobile {
+        display: none;
+    }
+
+    .tasksListDesktop  {
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+        overflow: auto;
+    }
+
+    .tasksListDesktop table  {
+        width: 75%;
+        text-align: center;
+    }
+
+    .tasksListDesktop th, .tasksListDesktop td {
+        padding: 0.5rem;
+    }
+    
+    /* taskList end*/
+
+    /* taskDetails */
+    .taskDetails article {
+        width: 50%;
+    }
+
+    .taskDetails .closeDetails {
+        width: 4%;
+        font-size: x-large;
+    }
+
+    .taskDetails aside button {
+        font-size: medium;
+    }
+}
+
