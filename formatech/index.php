@@ -13,6 +13,7 @@ require('src/Controller/ManageCenters.php');
 require('src/Controller/SignIn.php');
 require('src/Controller/SignUp.php');
 require('src/Model/Model.php');
+require('src/services/SQLDatabase.php');
 
 $page = filter_input(INPUT_GET, "page");
 

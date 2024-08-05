@@ -4,17 +4,20 @@ class SignIn
 {
 
     public $model;
-    public $msgSuccess;
-    public $msgError;
-
+    public $msg;
     public $title;
+    public $param;
+    public $altParam;
+    public $displayValue;
 
     public function __construct()
     {
         $this->model = new Model();
-        $this->msgSuccess = null;
-        $this->msgError = null;
+        $this->msg = null;
         $this->title = 'Connexion';
+        $this->param = "index.php?page=signIn";
+        $this->altParam = "retour";
+        $this->displayValue = "Retour";
     }
 
 
@@ -47,7 +50,7 @@ class SignIn
                     }
                 }
                 if ($user === false || !password_verify($_POST['pswrd'], $user['password'])) {
-                    $this->msgError = 'Merci de vérifier votre email et mot de passe !';
+                    $this->msg = 'Merci de vérifier votre email et mot de passe !';
                 } else {
                     $_SESSION['user'] = [
                         'id'    => $user['id'],
@@ -58,10 +61,10 @@ class SignIn
                     header('Location: index.php');
                 };
             } else {
-                $this->msgError = "<p>Merci de compléter les champs suivants:";
+                $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
-                        $this->msgError .= "<br> -> $key";
+                        $this->msg .= "<br> -> $key";
                     }
                 };
             }

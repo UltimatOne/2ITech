@@ -3,16 +3,20 @@
 class Landing
 {
     public $model;
-    public $msgSuccess;
-    public $msgError;
+    public $msg;
     public $title;
+    public $param;
+    public $altParam;
+    public $displayValue;
 
     public function __construct()
     {
         $this->model = new Model();
-        $this->msgSuccess = null;
-        $this->msgError = null;
+        $this->msg = null;
         $this->title = 'FORMATECH';
+        $this->param = "index.php";
+        $this->altParam = "retour";
+        $this->displayValue = "Retour";
     }
 
 

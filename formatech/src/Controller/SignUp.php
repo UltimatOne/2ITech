@@ -3,9 +3,10 @@
 class SignUp
 {
     public $model;
-    public $msgSuccess;
-    public $msgError;
-
+    public $msg;
+    public $param;
+    public $altParam;
+    public $displayValue;
     public $title;
     public $countryId;
     public $cityId;
@@ -13,10 +14,12 @@ class SignUp
     public function __construct()
     {
         $this->model = new Model();
-        $this->msgSuccess = null;
-        $this->msgError = null;
+        $this->msg = null;
         $this->title = 'Inscription';
         $this->cityId = null;
+        $this->param = "index.php?page=signUp";
+        $this->altParam = "retour";
+        $this->displayValue = "Retour";
     }
 
     public function manage()
@@ -37,13 +40,13 @@ class SignUp
                 empty($_POST["city"]) ||
                 empty($_POST["country"])
             ) {
-                $this->msgError = "<p>Merci de compléter les champs suivants:";
+                $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
-                        $this->msgError .= "<br> -> $key";
+                        $this->msg .= "<br> -> $key";
                     }
                 };
-                $this->msgError .= "</p>";
+                $this->msg .= "</p>";
             } else {
                 //Hashage du password avant sauvegarde dans BDD
                 $pswrd = password_hash( $_POST["pswrd"], PASSWORD_DEFAULT);
@@ -73,7 +76,7 @@ class SignUp
 
                     header('Location: index.php');
                 } else {
-                    $this->msgError = 'Erreur ! Merci de réessayer dans un moment !';
+                    $this->msg = 'Erreur ! Merci de réessayer dans un moment !';
                 }
             }
         };

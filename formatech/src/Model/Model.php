@@ -3,16 +3,10 @@
 class Model
 {
     //private permet une accessibilité à $db que depuis la classe Model
-    private \PDO $db;
+    private $db;
     public function __construct()
     {
-        include './dbpass.php';
-
-        try {
-            $this->db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pswrd, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
-        };
+        $this->db = SQLDatabase::getInstance()->getConnection();
     }
 
     public function manage()

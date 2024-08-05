@@ -3,8 +3,7 @@
 class ManageCenters
 {
     public $model;
-    public $msgSuccess;
-    public $msgError;
+    public $msg;
     public $title;
     public $list_title;
     public $form_title;
@@ -17,8 +16,7 @@ class ManageCenters
     public function __construct()
     {
         $this->model = new Model();
-        $this->msgSuccess = null;
-        $this->msgError = null;
+        $this->msg = null;
         $this->title = 'Les Centres';
         $this->list_title = 'Liste des centres';
         $this->form_title = 'Ajouter un centre';
@@ -49,10 +47,10 @@ class ManageCenters
                 empty($_POST['phone']) ||
                 empty($_POST['email'])
             ) {
-                $this->msgError = "<p>Merci de compléter les champs suivants:";
+                $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
-                        $this->msgError .= "<br> -> $key";
+                        $this->msg .= "<br> -> $key";
                     }
                 };
             } else {
@@ -65,8 +63,8 @@ class ManageCenters
         include(__DIR__ . '/../view/header.php');
         include(__DIR__ . '/../view/popup.php');
         include(__DIR__ . '/../Components/headBody.php');
-        include(__DIR__ . '/../Components/centers/listCentersTab.php');
-        // include(__DIR__ . '/../Components/centers/listCentersCard.php');
+        // include(__DIR__ . '/../Components/centers/listCentersTab.php');
+        include(__DIR__ . '/../Components/centers/listCentersCard.php');
         include(__DIR__ . '/../Components/centers/addCenterForm.php');
         include(__DIR__ . '/../Components/footBody.php');
         include(__DIR__ . '/../view/footer.php');
