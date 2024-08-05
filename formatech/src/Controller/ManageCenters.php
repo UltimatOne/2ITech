@@ -53,6 +53,7 @@ class ManageCenters
                         $this->msg .= "<br> -> $key";
                     }
                 };
+                $this->msg .= "</p>";
             } else {
 
                 
@@ -62,11 +63,8 @@ class ManageCenters
 
         include(__DIR__ . '/../view/header.php');
         include(__DIR__ . '/../view/popup.php');
-        include(__DIR__ . '/../Components/headBody.php');
-        // include(__DIR__ . '/../Components/centers/listCentersTab.php');
-        include(__DIR__ . '/../Components/centers/listCentersCard.php');
+        include(__DIR__ . '/../Components/centers/listCenters.php');
         include(__DIR__ . '/../Components/centers/addCenterForm.php');
-        include(__DIR__ . '/../Components/footBody.php');
         include(__DIR__ . '/../view/footer.php');
     }
 }

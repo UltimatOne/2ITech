@@ -181,6 +181,29 @@ class Model
         };
     }
 
+    public function addCenter($name, $address, $zip, $city, $country, $email, $phone) 
+    {
+        //pas encore fonctionnel voir api pays ville
+         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
+         try {
+            //demarrage de la transaction
+            $this->db->beginTransaction();
+
+            $request = $this->db->prepare('CALL add_new_center(?,?,?,?,?,?,?)');
+            $centerId = $request->execute([$name, $address, $zip, $city, $country, $email, $phone]);
+
+            //les requetes sql se sont terminées correctement envoi et modification de la db
+            $this->db->commit();
+
+            return $centerId;
+        } catch (Exception $e) {
+
+            //les requetes sql ne se sont pas terminées correctement annulation
+            $this->db->rollBack();
+            var_dump($e->getMessage());
+        };
+    }
+
     public function getCountries()
     {
         try {
