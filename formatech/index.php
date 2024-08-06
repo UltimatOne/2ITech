@@ -7,7 +7,7 @@ if (isset($_GET['logout'])) {
 }
 
 require('src/Controller/Landing.php');
-require('src/api/countries.php');
+require('src/api/GetCountries.php');
 require('src/Controller/DetailsCenter.php');
 require('src/Controller/ManageCenters.php');
 require('src/Controller/SignIn.php');
@@ -19,7 +19,7 @@ $page = filter_input(INPUT_GET, "page");
 
 $route = [
     "landing"       => Landing::class,
-    "getcountries"   => countries::class,
+    "getcountries"   => GetCountries::class,
     "detailsCenter"  => DetailsCenter::class,
     "listCenters"    => ManageCenters::class,
     "signIn"        => SignIn::class,

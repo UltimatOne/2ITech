@@ -1,6 +1,6 @@
 <?php
 
-class countries
+class GetCountries
 {
     public $model;
     public $msgSuccess;

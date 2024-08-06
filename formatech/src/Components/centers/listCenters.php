@@ -2,7 +2,7 @@
     <h3 class="text-red"><?= $this->list_title ?></h3>
     <div class="container">
         <?php foreach ($this->centers as $key => $center) { ?>
-            <div id="listCentersCard" class="card">
+            <div class="card">
                 <h3><?= $center["name"] ?></h3>
                 <ul>Ville :
                     <li>
@@ -22,6 +22,9 @@
                 <a class="block btn btn-dark w-full mt-1" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
             </div>
         <?php } ?>
+        <div id="addCenterButton" class="card">
+            <p>+</p>
+        </div>
         <table id="listCentersTab" class="tab">
             <thead>
                 <tr class="h-16">

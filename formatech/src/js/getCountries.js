@@ -1,6 +1,6 @@
 //countries pour insérer dans un select de formulaire
 let countries = []
-fetch("http://localhost2it/formatech/index.php?page=getcountries")
+fetch("http://192.168.1.69/index.php?page=getcountries")
 .then(resp => resp.json())
 .then(resp => {
     // alert(JSON.stringify(resp))
