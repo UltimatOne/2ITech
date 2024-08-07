@@ -29,6 +29,9 @@
             <label for="email" class="">Email</label>
             <input id="email" type="text" class="input-custom-red" name="email" autocomplete="off">
         </div>
-        <button type="submit" class="btn btn-dark w-25 mx-auto">Envoyer</button>
+        <div class="containerButton">
+            <a class="btn btnAddCenterCancel" href="index.php?page=listCenters">Annuler</a>
+            <button type="submit" class="btn btn-dark">Envoyer</button>
+        </div>
     </form>
 </div>

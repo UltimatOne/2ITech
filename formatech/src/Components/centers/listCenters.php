@@ -1,5 +1,5 @@
 <div class="centersList">
-    <h3 class="text-red"><?= $this->list_title ?></h3>
+    <h3><?= $this->list_title ?></h3>
     <div class="container">
         <?php foreach ($this->centers as $key => $center) { ?>
             <div class="card">
@@ -19,7 +19,7 @@
                         0<?= $center['phone'] ?>
                     </li>
                 </ul>
-                <a class="block btn btn-dark w-full mt-1" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
+                <a class="btn btn-dark" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
             </div>
         <?php } ?>
         <div id="addCenterButton" class="card">
@@ -27,15 +27,15 @@
         </div>
         <table id="listCentersTab" class="tab">
             <thead>
-                <tr class="h-16">
-                    <th scope="">Nom du centre</th>
-                    <th scope="">Ville</th>
-                    <th scope="">email</th>
-                    <th scope="">Téléphone</th>
-                    <th scope=""></th>
+                <tr>
+                    <th>Nom du centre</th>
+                    <th>Ville</th>
+                    <th>email</th>
+                    <th>Téléphone</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody class="overflow-auto">
+            <tbody>
                 <?php foreach ($this->centers as $key => $center) { ?>
                     <tr class="text-center mt-5 h-20">
                         <th><?= $center['name'] ?></th>
@@ -43,7 +43,7 @@
                         <td><?= $center['email'] ?></td>
                         <td>0<?= $center['phone'] ?></td>
                         <td class="flex">
-                            <a class="block btn btn-dark w-full mt-1" href="index.php?page=detailsCenter&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
+                            <a class="btn btn-dark" href="index.php?page=detailsCenter&id=<?= $center['id'] ?>" alt="liens vers les détails du centre">détails</a>
                         </td>
                     </tr>
                 <?php } ?>
