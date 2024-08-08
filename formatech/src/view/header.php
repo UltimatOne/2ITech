@@ -5,14 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css">
     <title>FORMATECH</title>
 </head>
 
 <body>
-    <header class="">
+    <header>
         <nav>
-            <a class="" href="index.php"><h1>FORMATECH</h1></a>
+            <a href="index.php"><h1>FORMATECH</h1></a>
             <div class="nav-link">
                 <?php if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
                     include(__DIR__ . '/../Components/Navbar/superAdminNavbar.php');

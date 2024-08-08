@@ -32,12 +32,62 @@ main h1 {
     margin-top: 1rem;
 }
 
-input {
+input, select {
     outline-color: var(--red-color);
     min-height: 2rem;
     border-radius: 5px;
     border: 1px solid rgba(128, 128, 128, 0.247);
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem;
+}
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select select {
+    appearance: none;
+    width: 100%; 
+    background-color: #fff;
+    color: #000;
+    cursor: pointer; 
+}
+
+.custom-select select::-webkit-scrollbar {
+    appearance: none;
+}
+
+.custom-select select::-webkit-scrollbar-thumb {
+    background-color: var(--red-color);
+    border-radius: 10px;
+    width: 1px;
+}
+
+.custom-select select option {
+    color: var(--black-color);
+}
+
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  position: absolute;
+  content: "";
+  right: 1.5rem;
+  pointer-events: none;
+}
+
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid var(--red-color);
+  top: 62%;
+}
+
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid var(--red-color);
+  top: 77%;
 }
 
 .flex {

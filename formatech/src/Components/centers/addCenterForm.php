@@ -3,31 +3,37 @@
     <form action="" method="post">
         <div class="containerInput">
             <label for="name">Nom du centre</label>
-            <input id="name" type="text" class="input-custom-red" name="name" autocomplete="off">
+            <input id="name" type="text" name="name" autocomplete="off">
         </div>
         <div class="containerInput">
-            <label for="address" class="">Adresse</label>
-            <input id="address" type="text" class="input-custom-red" name="address" autocomplete="off">
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email" autocomplete="off">
         </div>
         <div class="containerInput">
-            <label for="zipCode" class="">Code postal</label>
-            <input id="zipCode" type="text" class="input-custom-red" name="zipCode">
+            <label for="phone">Téléphone</label>
+            <input id="phone" type="phone" name="phone" autocomplete="off">
+        </div>
+        <div class="containerInput custom-select">
+            <label for="country">Pays</label>
+            <select id="country" name="country">
+                <option value="">--------</option>
+            </select>
+        </div>
+        <div class="containerInput custom-select">
+            <label for="zipCode">Code postal</label>
+            <select id="zipCode" type="text" name="zipCode">
+                <option value="">--------</option>
+            </select>
+        </div>
+        <div class="containerInput custom-select">
+            <label for="city">Ville</label>
+            <select id="city" type="text" name="city">
+                <option value="">--------</option>
+            </select>
         </div>
         <div class="containerInput">
-            <label for="city" class="">Ville</label>
-            <input id="city" type="text" class="input-custom-red" name="city">
-        </div>
-        <div class="containerInput">
-            <label for="country" class="">Pays</label>
-            <input id="country" type="text" class="input-custom-red" name="country" autocomplete="off">
-        </div>
-        <div class="containerInput">
-            <label for="phone" class="">Téléphone</label>
-            <input id="phone" type="phone" class="input-custom-red" name="phone" autocomplete="off">
-        </div>
-        <div class="containerInput">
-            <label for="email" class="">Email</label>
-            <input id="email" type="text" class="input-custom-red" name="email" autocomplete="off">
+            <label for="address">Adresse</label>
+            <input id="address" type="text" name="address" autocomplete="off">
         </div>
         <div class="containerButton">
             <a class="btn btnAddCenterCancel" href="index.php?page=listCenters">Annuler</a>
