@@ -22,21 +22,14 @@
             <label for="phone" class="form-label text-white">Votre téléphone</label>
             <input type="phone" class="form-control" name="phone">
         </div>
-        <div>
-            <label for="address" class="form-label text-white">Votre adresse</label>
-            <input type="text" class="form-control" name="address">
+        <div class="containerInput custom-select">
+            <label for="country">Pays</label>
+            <select id="country" name="country">
+                <option value="">--------</option>
+            </select>
         </div>
-        <div>
-            <label for="zip_code" class="form-label text-white">Votre code postale</label>
-            <input type="text" class="form-control" name="zip_code">
-        </div>
-        <div>
-            <label for="city" class="form-label text-white">Votre ville</label>
-            <input type="text" class="form-control" name="city">
-        </div>
-        <div>
-            <label for="country" class="form-label text-white">Votre pays</label>
-            <input type="text" class="form-control" name="country">
+        <div class="containerAddress">
+           
         </div>
         <button type="submit" class="btn btn-dark">Envoyer</button>
     </form>

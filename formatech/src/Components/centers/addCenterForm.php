@@ -19,21 +19,8 @@
                 <option value="">--------</option>
             </select>
         </div>
-        <div class="containerInput custom-select">
-            <label for="zipCode">Code postal</label>
-            <select id="zipCode" type="text" name="zipCode">
-                <option value="">--------</option>
-            </select>
-        </div>
-        <div class="containerInput custom-select">
-            <label for="city">Ville</label>
-            <select id="city" type="text" name="city">
-                <option value="">--------</option>
-            </select>
-        </div>
-        <div class="containerInput">
-            <label for="address">Adresse</label>
-            <input id="address" type="text" name="address" autocomplete="off">
+        <div class="containerAddress">
+           
         </div>
         <div class="containerButton">
             <a class="btn btnAddCenterCancel" href="index.php?page=listCenters">Annuler</a>

@@ -41,7 +41,7 @@ input, select {
     font-size: 1.2rem;
 }
 
-.custom-select {
+.custom-select, .containerAddress {
     position: relative;
 }
 
@@ -348,19 +348,42 @@ nav {
     width: 75%;
     margin: auto;
     padding: 1.25rem;
-    gap: 2rem;
+    gap: 0.5rem;
     font-size: 1.25rem;
+    min-height: 80vh;
 }
 
-.containerForm form .containerInput {
+.containerForm form .containerInput,form .containerAddress, form .containerSearch {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
+form .containerAddressOptions {
+    position: absolute;
+    border: 1px solid var(--red-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    bottom: 60%;
+}
+
+form .addressOption {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
 .containerForm form .btnAddCenterCancel {
     color: var(--white-color);
     background-color: var(--red-color);
+}
+
+.containerForm form .containerButton {
+    margin-top: auto;
 }
 
 .containerForm form button {
@@ -481,6 +504,10 @@ nav {
         gap: 0.5rem;
         margin-top: 0.5rem;
         flex: 1 1 0;
+    }
+
+    form .addressOption:hover {
+        background-color: var(--red-color-variant-alpha);
     }
 
     .containerForm form .containerButton {
