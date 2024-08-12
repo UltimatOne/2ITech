@@ -20,8 +20,14 @@ fetch("http://192.168.1.69/index.php?page=getcountries")
             //ici commence la gestion pour l'adresse complète
             selectCountry.on("change", () => {
                 selectedCountry = $("#country option:selected").text()
+                $(".containerSearch").remove()
+                $("#containerAddress").remove()
+                $("#containerZip_code").remove()
+                $("#containerCity").remove()
+                $("#city_id").remove()
+                containerAddress.append("<div class='containerSearch'><label for='search'>Entrez votre adresse</label><input type='search' name='search' id='search' /></div>")
+
                 if (selectedCountry == "France") {
-                    containerAddress.append("<div class='containerSearch'><label for='search'>Entrez votre adresse</label><input type='search' name='search' id='search' /></div>")
                     const urlApiAdressesfrance = new URL("http://api-adresse.data.gouv.fr/search")
                     const searchInput = $("#search")
                     if (searchInput.length > 0) {
@@ -52,16 +58,20 @@ fetch("http://192.168.1.69/index.php?page=getcountries")
                                             $("#" + data.features[k].properties.id + "").on("click", () => {
                                                 containerAddressOptions.addClass("hidden")
                                                 searchInput.val("")
+                                                $("#containerAddress").remove()
+                                                $("#containerZip_code").remove()
+                                                $("#containerCity").remove()
+                                                $("#city_id").remove()
                                                 const address =
-                                                    "<div class='containerInput'><label for='address'>Adresse</label><input id='address' name='address' disabled='true' type='text' value='" +
+                                                    "<div id='containerAddress' class='containerInput'><label for='address'>Adresse</label><input id='address' name='address' disabled='true' type='text' value='" +
                                                     data.features[k].properties.name +
                                                     "'/></div>"
                                                 const zipCode =
-                                                    "<div class='containerInput'><label for='zip_code'>Code postale</label><input id='zip_code' name='zip_code' disabled='true' type='text' value='" +
+                                                    "<div id='containerZip_code' class='containerInput'><label for='zip_code'>Code postale</label><input id='zip_code' name='zip_code' disabled='true' type='text' value='" +
                                                     data.features[k].properties.postcode +
                                                     "'/></div>"
                                                 const city =
-                                                    "<div class='containerInput'><label for='city'>Ville</label><input id='city' name='city' disabled='true' type='text' value='" +
+                                                    "<div id='containerCity' class='containerInput'><label for='city'>Ville</label><input id='city' name='city' disabled='true' type='text' value='" +
                                                     data.features[k].properties.city +
                                                     "'/></div>"
                                                 const cityId = "<input id='city_id' name='city_id' type='hidden' value='" + data.features[k].properties.citycode + "'/>"
