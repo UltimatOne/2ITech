@@ -32,7 +32,8 @@ main h1 {
     margin-top: 1rem;
 }
 
-input, select {
+input,
+select {
     outline-color: var(--red-color);
     min-height: 2rem;
     border-radius: 5px;
@@ -41,16 +42,88 @@ input, select {
     font-size: 1.2rem;
 }
 
-.custom-select, .containerAddress {
+.address-collection-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.geoapify-autocomplete-input {
+    outline: none;
+    line-height: 36px;
+    height: 36px;
+    padding: 0 31px 0 7px;
+    width: calc(100% - 40px);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.geoapify-close-button {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    height: 100%;
+    display: none;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.geoapify-close-button.visible {
+    display: flex;
+}
+
+.autocomplete-container {
+    position: relative;
+}
+
+.address-row {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 10px;
+}
+
+.address-row .main-part {
+    flex: 1;
+}
+
+.small-input {
+    width: 90px;
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+
+.message-container {
+    margin-top: 10px;
+}
+
+.button-container {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.warning-input {
+    border-color: #ffb610;
+}
+
+.message-container {
+    color: grey;
+}
+
+.custom-select,
+.containerAddress {
     position: relative;
 }
 
 .custom-select select {
     appearance: none;
-    width: 100%; 
+    width: 100%;
     background-color: #fff;
     color: #000;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .custom-select select::-webkit-scrollbar {
@@ -69,25 +142,25 @@ input, select {
 
 .custom-select::before,
 .custom-select::after {
-  --size: 0.3rem;
-  position: absolute;
-  content: "";
-  right: 1.5rem;
-  pointer-events: none;
+    --size: 0.3rem;
+    position: absolute;
+    content: "";
+    right: 1.5rem;
+    pointer-events: none;
 }
 
 .custom-select::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-bottom: var(--size) solid var(--red-color);
-  top: 62%;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid var(--red-color);
+    top: 62%;
 }
 
 .custom-select::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid var(--red-color);
-  top: 77%;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid var(--red-color);
+    top: 77%;
 }
 
 .flex {
@@ -97,7 +170,6 @@ input, select {
 .hidden {
     display: none !important;
 }
-
 
 .btn {
     border-radius: 5px;
@@ -227,7 +299,8 @@ nav {
 }
 /* fin Navbar */
 
-.signIn, .signUp {
+.signIn,
+.signUp {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -239,7 +312,8 @@ nav {
     margin-top: 10%;
 }
 
-.signIn form, .signUp form {
+.signIn form,
+.signUp form {
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
@@ -247,16 +321,18 @@ nav {
     width: 25%;
 }
 
-.signIn div, .signUp div {
+.signIn div,
+.signUp div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     font-size: 1.2rem;
 }
 
-.signIn button, .signUp button {
+.signIn button,
+.signUp button {
     width: 50%;
-    margin: 1rem auto ;
+    margin: 1rem auto;
 }
 
 .boxAlert {
@@ -287,7 +363,8 @@ nav {
     display: flex;
 }
 
-.centersList, .containerForm {
+.centersList,
+.containerForm {
     flex-direction: column;
     min-height: 50vh;
     padding: 0.5rem;
@@ -296,7 +373,8 @@ nav {
     flex: 1 1 0;
 }
 
-.centersList h3, .containerForm h3 {
+.centersList h3,
+.containerForm h3 {
     color: var(--red-color);
 }
 
@@ -353,7 +431,9 @@ nav {
     min-height: 80vh;
 }
 
-.containerForm form .containerInput,form .containerAddress, form .containerSearch {
+.containerForm form .containerInput,
+form .containerAddress,
+form .containerSearch {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -369,7 +449,7 @@ form .containerAddressOptions {
     width: 100%;
     gap: 0.5rem;
     padding: 0.5rem;
-    bottom: 60%;
+    top: 70px;
 }
 
 form .addressOption {
@@ -390,7 +470,6 @@ form .addressOption {
     width: 50%;
     margin: 0 auto;
 }
-
 
 @media screen and (max-width: 768px) {
     .hamburger {
@@ -444,7 +523,8 @@ form .addressOption {
         margin-top: 5%;
     }
 
-    .signIn form, .signUp form {
+    .signIn form,
+    .signUp form {
         width: 75%;
     }
 
@@ -462,7 +542,6 @@ form .addressOption {
         justify-content: space-evenly;
     }
 }
-
 
 @media screen and (min-width: 769px) {
     main {
@@ -515,7 +594,8 @@ form .addressOption {
         justify-content: center;
     }
 
-    .card, .containerForm form .btnAddCenterCancel {
+    .card,
+    .containerForm form .btnAddCenterCancel {
         display: none;
     }
 
