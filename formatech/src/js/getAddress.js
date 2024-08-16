@@ -1,12 +1,14 @@
 //Register on https://myprojects.geoapify.com/ and create new project to get your API key
 const myAPIKey = "fe2b9f16760e4869a013ee2527251203"
 
-//countries pour insérer dans un select de formulaire
 let countries = []
 const selectCountry = $("#country")
 let selectedCountry = $("#country option:selected").text()
+
 const containerAddress = $(".containerAddress")
-const containerSearch = `<div class='containerSearch'><label for='search'>Entrez votre adresse</label><input type='search' name='search' id='search' placeholder='ici...' /></div>`
+const containerSearch = `<div class='containerSearch'><label for='search'>Entrez ${
+    $("#signUpAddress").length > 0 ? "votre " : "l'"
+}adresse</label><input type='search' name='search' id='search' placeholder='ici...' /></div>`
 containerAddress.append("<div class='containerAddressOptions hidden'></div>")
 const containerAddressOptions = $(".containerAddressOptions")
 
@@ -46,7 +48,7 @@ const searchAddress = (country) => {
                     containerAddressOptions.addClass("hidden")
                     containerAddressOptions.empty()
                 }
-                if ((searchTerm.length >= 6)) {
+                if (searchTerm.length >= 6) {
                     containerAddressOptions.removeClass("hidden")
                 }
                 for (let k = 0; k < options.length; k++) {
