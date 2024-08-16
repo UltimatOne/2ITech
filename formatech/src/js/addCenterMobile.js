@@ -6,5 +6,3 @@ addCenterButton.on("click", () => {
     centersList.addClass('hidden')
     form.addClass('flex')
 })
-
-
