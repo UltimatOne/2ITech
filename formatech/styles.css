@@ -35,82 +35,8 @@ main h1 {
 input,
 select {
     outline-color: var(--red-color);
-    min-height: 2rem;
     border-radius: 5px;
     border: 1px solid rgba(128, 128, 128, 0.247);
-    padding: 0.5rem 0.75rem;
-    font-size: 1.2rem;
-}
-
-.address-collection-container {
-    max-width: 400px;
-    margin: auto;
-}
-
-.geoapify-autocomplete-input {
-    outline: none;
-    line-height: 36px;
-    height: 36px;
-    padding: 0 31px 0 7px;
-    width: calc(100% - 40px);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.geoapify-close-button {
-    position: absolute;
-    right: 5px;
-    top: 0;
-    height: 100%;
-    display: none;
-    align-items: center;
-    color: rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-}
-
-.geoapify-close-button.visible {
-    display: flex;
-}
-
-.autocomplete-container {
-    position: relative;
-}
-
-.address-row {
-    display: flex;
-    flex-direction: row;
-
-    margin-bottom: 10px;
-}
-
-.address-row .main-part {
-    flex: 1;
-}
-
-.small-input {
-    width: 90px;
-}
-
-.margin-right {
-    margin-right: 10px;
-}
-
-.message-container {
-    margin-top: 10px;
-}
-
-.button-container {
-    margin-top: 20px;
-    text-align: right;
-}
-
-.warning-input {
-    border-color: #ffb610;
-}
-
-.message-container {
-    color: grey;
 }
 
 .custom-select,
@@ -299,8 +225,7 @@ nav {
 }
 /* fin Navbar */
 
-.signIn,
-.signUp {
+.signIn {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -309,30 +234,49 @@ nav {
 }
 
 .signIn form {
+    display: flex;
+    flex-direction: column;
     margin-top: 10%;
+    width: 25%;
+    padding: 0.5rem;
+    gap: 0.5rem;
 }
 
-.signIn form,
+.signIn div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.signIn button {
+    width: 50%;
+    margin: 1rem auto;
+}
+
+.signUp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
 .signUp form {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
-    gap: 0.5rem;
-    width: 25%;
+    width: 75%;
 }
 
-.signIn div,
-.signUp div {
+.signUp form .containerInputs,
+.signUp form .containerInputs .content,
+.signUp form .containerInputs .content div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    font-size: 1.2rem;
 }
 
-.signIn button,
-.signUp button {
-    width: 50%;
-    margin: 1rem auto;
+.signUp form button {
+    margin: 0.5rem auto;
 }
 
 .boxAlert {
@@ -368,8 +312,8 @@ nav {
     flex-direction: column;
     min-height: 50vh;
     padding: 0.5rem;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
     flex: 1 1 0;
 }
 
@@ -426,9 +370,9 @@ nav {
     width: 75%;
     margin: auto;
     padding: 1.25rem;
-    gap: 0.5rem;
+    gap: 0.025rem;
     font-size: 1.25rem;
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
 .containerForm form .containerInput,
@@ -472,6 +416,12 @@ form .addressOption {
 }
 
 @media screen and (max-width: 768px) {
+    select,
+    input {
+        min-height: 1.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+
     .hamburger {
         display: block;
     }
@@ -494,10 +444,8 @@ form .addressOption {
 
         a,
         span {
-            background: var(--white-color);
             width: 100%;
             padding: 10px;
-            border-radius: 8px;
             text-align: center;
 
             &:first-child {
@@ -510,6 +458,22 @@ form .addressOption {
         }
     }
 
+    .nav-link .userLinks {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 100%;
+        order: 2;
+    }
+
+    .nav-link .welcome {
+        order: 1;
+    }
+
+    .nav-link .disconnection-link {
+        order: 3;
+    }
+
     .boxAlertBody {
         width: 75%;
         gap: 1.5rem;
@@ -517,15 +481,24 @@ form .addressOption {
 
     .signIn form {
         margin-top: 50%;
-    }
-
-    .signUp form {
-        margin-top: 5%;
-    }
-
-    .signIn form,
-    .signUp form {
         width: 75%;
+    }
+
+    form .containerAddressOptions {
+        top: 60px;
+    }
+
+    .signUp form {
+        min-height: 75vh;
+        margin-top: 1rem;
+    }
+
+    .signUp form .containerInputs {
+        min-height: 95%;
+    }
+
+    .signUp form button {
+        width: 50%;
     }
 
     .card ul {
@@ -536,16 +509,36 @@ form .addressOption {
         display: none;
     }
 
+    .centersList,
+    .containerForm {
+        min-height: 45vh;
+    }
+
     .containerForm form .containerButton {
         display: flex;
         gap: 1rem;
         justify-content: space-evenly;
+    }
+
+    .containerForm form #cityContainer {
+        margin-bottom: 0.5rem;
+    }
+
+    .containerForm form .containerButton {
+        margin-bottom: 1rem;
     }
 }
 
 @media screen and (min-width: 769px) {
     main {
         flex-direction: row;
+    }
+
+    select,
+    input {
+        font-size: 1.2rem;
+        min-height: 2rem;
+        padding: 0.5rem 0.75rem;
     }
 
     .nav-link {
@@ -564,6 +557,33 @@ form .addressOption {
     .nav-link span,
     .nav-link .connection-link {
         margin-left: auto;
+    }
+
+    .signIn div,
+    .signUp .containerInputs div {
+        font-size: 1.2rem;
+    }
+
+    .signUp form {
+        min-height: 83vh;
+    }
+
+    .signUp form .containerInputs {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 95%;
+        padding: 0.5rem;
+    }
+
+    .signUp form .containerInputs .content {
+        margin: 0 auto;
+        width: 49%;
+        height: 65%;
+    }
+
+    .signUp form button {
+        width: 25%;
     }
 
     .centersList {

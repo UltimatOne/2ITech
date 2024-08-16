@@ -21,10 +21,10 @@
                     include(__DIR__ . '/../Components/Navbar/trainerNavbar.php');
                     include(__DIR__ . '/../Components/Navbar/studentNavbar.php');
                 ?>
-                    <span>Bienvenue <?= $_SESSION['user']['firstname'] ?>, </span>
-                    <a href="index.php?logout=true">Déconnexion</a>
+                    <span class="welcome">Bienvenue <?= $_SESSION['user']['firstname'] ?>, </span>
+                    <a class="disconnection-link" href="index.php?logout=true">Déconnexion</a>
                 <?php } else { ?>
-                    <a class="connection-link" href="index.php?page=signIn">Connexion</a>
+                    <a href="index.php?page=signIn">Connexion</a>
                     <a href="index.php?page=signUp">Inscription</a>
                 <?php }; ?>
             </div>

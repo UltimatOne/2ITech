@@ -1,5 +1,5 @@
 <div class="containerForm">
-    <h3 class="text-red"><?= $this->form_title ?></h3>
+    <h3><?= $this->form_title ?></h3>
     <form action="" method="post">
         <div class="containerInput">
             <label for="name">Nom du centre</label>
