@@ -48,9 +48,6 @@ class Model
                 student_city_id
                 ) VALUES (?,?,?,?,?,?,?,?,?);');
                 $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
-
-                $studentId = $this->db->lastInsertId();
-
             } else {
                 $request = $this->db->prepare('INSERT INTO cities (city_id, city_name, city_zip_code, city_country_id) VALUES (?,?,?,?)');
                 $request->execute([$cityId, $city, $zip_code, $countryId]);
@@ -67,12 +64,13 @@ class Model
                         student_city_id
                 ) VALUES (?,?,?,?,?,?,?,?,?);');
                 $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
-
-                $studentId = $this->db->lastInsertId();
             }
-
+            
             //les requetes sql se sont terminées correctement envoi et modification de la db
+            $studentId = $this->db->lastInsertId();
+
             $this->db->commit();
+
 
             return $studentId;
         } catch (Exception $e) {
