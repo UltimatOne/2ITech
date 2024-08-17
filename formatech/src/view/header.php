@@ -23,7 +23,7 @@
                     <span class="welcome">Bienvenue <?= $_SESSION['user']['firstname'] ?>, </span>
                     <a class="disconnection-link" href="index.php?logout=true">Déconnexion</a>
                 <?php } else { ?>
-                    <a href="index.php?page=signIn">Connexion</a>
+                    <a class="connection-link" href="index.php?page=signIn">Connexion</a>
                     <a href="index.php?page=signUp">Inscription</a>
                 <?php }; ?>
             </div>

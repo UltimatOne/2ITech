@@ -10,12 +10,16 @@ class SignUp
     public $title;
     public $countryId;
     public $cityId;
+    public $maxDate;
+    public $minDate;
 
     public function __construct()
     {
         $this->model = new Model();
         $this->msg = null;
         $this->title = 'Inscription';
+        $this->minDate = date("Y-m-d", strtotime("-90 year"));
+        $this->maxDate = date("Y-m-d", strtotime("-16 year"));
         $this->cityId = null;
         $this->param = "index.php?page=signUp";
         $this->altParam = "retour";
@@ -32,18 +36,22 @@ class SignUp
             if (
                 empty($_POST["name"]) ||
                 empty($_POST["firstname"]) ||
+                empty($_POST["birthday"]) ||
                 empty($_POST["email"]) ||
-                empty($_POST["pswrd"]) ||
                 empty($_POST["phone"]) ||
+                empty($_POST["pswrd"]) ||
                 empty($_POST["address"]) ||
                 empty($_POST["zip_code"]) ||
                 empty($_POST["city"]) ||
                 empty($_POST["country"])
             ) {
+                var_dump($_POST);
                 $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
-                        $this->msg .= "<br> -> $key";
+                        if ($key != "search") {
+                            $this->msg .= "<br> -> $key";
+                        }
                     }
                 };
                 $this->msg .= "</p>";
@@ -52,25 +60,28 @@ class SignUp
                 $pswrd = password_hash( $_POST["pswrd"], PASSWORD_DEFAULT);
                 $center = null;
 
-                //$idUser récupère l'id du nouvel utilisateur ou false si problème lors de la création
-                $userId = $this->model->addNewUser(
+                //$userId récupère l'id du nouvel utilisateur ou false si problème lors de la création
+                $studentId = $this->model->addNewStudent(
                     $_POST["name"],
                     $_POST["firstname"],
+                    $_POST["birthday"],
                     $_POST["email"],
-                    $pswrd,
                     $_POST["phone"],
+                    $pswrd,
                     $_POST["address"],
+                    $_POST["additionalAddress"],
                     $_POST["zip_code"],
                     $_POST["city"],
+                    $_POST["city_id"],
                     $_POST["country"]
                 );
 
-                if ($userId) {
+                if ($studentId) {
                     $_SESSION['user'] = [
                         'name' => $_POST["name"],
-                        'firstname' => $_POST["name"],
+                        'firstname' => $_POST["firstname"],
                         'email' => $_POST["email"],
-                        'id' => $userId,
+                        'id' => $studentId,
                         'role' => 'student'
                     ];
 

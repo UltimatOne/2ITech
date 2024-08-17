@@ -5,27 +5,31 @@
         <div class="containerInputs">
             <div class="content">
                 <div>
-                    <label for="name" class="form-label text-white">Votre nom</label>
-                    <input type="text" class="form-control" name="name">
+                    <label for="name">Votre nom <span>*</span></label>
+                    <input type="text" name="name" id="name">
                 </div>
                 <div>
-                    <label for="firstname" class="form-label text-white">Votre prénom</label>
-                    <input type="text" class="form-control" name="firstname">
+                    <label for="firstname">Votre prénom <span>*</span></label>
+                    <input type="text" name="firstname" id="firstname">
                 </div>
                 <div>
-                    <label for="email" class="form-label text-white">Votre Email</label>
-                    <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                    <label for="birthday">Votre date de naissance <span>*</span></label>
+                    <input type="date" name="birthday" id="birthday" min="<?= $this->minDate ?>" max="<?= $this->maxDate ?>" >
                 </div>
                 <div>
-                    <label for="pswrd" class="form-label text-white">Votre mot de passe</label>
-                    <input type="password" class="form-control" name="pswrd">
+                    <label for="email">Votre Email <span>*</span></label>
+                    <input type="text" name="email" id="email">
                 </div>
                 <div>
-                    <label for="phone" class="form-label text-white">Votre téléphone</label>
-                    <input type="phone" class="form-control" name="phone">
+                    <label for="phone">Votre téléphone <span>*</span></label>
+                    <input type="phone" name="phone" id="phone">
+                </div>
+                <div>
+                    <label for="pswrd">Votre mot de passe <span>*</span></label>
+                    <input type="password" name="pswrd" id="pswrd">
                 </div>
                 <div class="containerInput custom-select">
-                    <label for="country">Pays</label>
+                    <label for="country">Pays <span>*</span></label>
                     <select id="country" name="country">
                         <option value="">--------</option>
                     </select>
@@ -36,6 +40,7 @@
 
                 </div>
             </div>
+            <p class="obligation">Tout les champs marqués d'un astérisque <span>*</span> sont obligatoires.</p>
         </div>
         <button type="submit" class="btn btn-dark">Envoyer</button>
     </form>

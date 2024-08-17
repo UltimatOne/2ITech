@@ -9,6 +9,7 @@ class Landing
     public $altParam;
     public $displayValue;
 
+
     public function __construct()
     {
         $this->model = new Model();
@@ -19,6 +20,7 @@ class Landing
         $this->displayValue = "Retour";
     }
 
+    
 
     public function manage()
     {

@@ -9,27 +9,72 @@ class Model
         $this->db = SQLDatabase::getInstance()->getConnection();
     }
 
-    public function manage()
-    {
-    }
+    public function manage() {}
 
-    public function addNewUser($name, $firstname, $email, $pswrd, $phone, $address, $zip_code, $city, $countryId)
+    public function addNewStudent($name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $zip_code, $city, $cityId, $countryId)
     {
+        if ($additionalAddress == "") {
+            $additionalAddress = NULL;
+        }
         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
             //demarrage de la transaction
             $this->db->beginTransaction();
 
-            $request = $this->db->prepare('CALL add_city(?,?,?)');
-            $cityId = $request->execute([$city, $zip_code, $countryId]);
+            $request = $this->db->prepare('SELECT city_id FROM cities');
+            $request->execute([]);
+            
+            $citiesDatas = $request->fetchAll(PDO::FETCH_ASSOC);
 
-            $request = $this->db->prepare('CALL add_new_user(?,?,?,?,?,?,?)');
-            $userId = $request->execute([$name, $firstname, $email, $pswrd, $phone, $address, $cityId]);
+            $cityIdExist = false;
+
+            for ($i = 0; $i < count($citiesDatas); $i++) {
+                if ($citiesDatas[$i]["city_id"] == $cityId) {
+                    $cityIdExist = true;
+                    break;
+                }
+            };
+
+            if ($cityIdExist) {
+                $request = $this->db->prepare('INSERT INTO students (
+                student_name, 
+                student_firstname, 
+                student_birthday, 
+                student_email, 
+                student_phone, 
+                student_password, 
+                student_address, 
+                student_additional_address, 
+                student_city_id
+                ) VALUES (?,?,?,?,?,?,?,?,?);');
+                $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
+
+                $studentId = $this->db->lastInsertId();
+
+            } else {
+                $request = $this->db->prepare('INSERT INTO cities (city_id, city_name, city_zip_code, city_country_id) VALUES (?,?,?,?)');
+                $request->execute([$cityId, $city, $zip_code, $countryId]);
+
+                $request = $this->db->prepare('INSERT INTO students (
+                        student_name, 
+                        student_firstname, 
+                        student_birthday, 
+                        student_email, 
+                        student_phone, 
+                        student_password, 
+                        student_address, 
+                        student_additional_address, 
+                        student_city_id
+                ) VALUES (?,?,?,?,?,?,?,?,?);');
+                $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
+
+                $studentId = $this->db->lastInsertId();
+            }
 
             //les requetes sql se sont terminées correctement envoi et modification de la db
             $this->db->commit();
 
-            return $userId;
+            return $studentId;
         } catch (Exception $e) {
 
             //les requetes sql ne se sont pas terminées correctement annulation
@@ -181,11 +226,11 @@ class Model
         };
     }
 
-    public function addCenter($name, $address, $zip, $city, $country, $email, $phone) 
+    public function addCenter($name, $address, $zip, $city, $country, $email, $phone)
     {
         //pas encore fonctionnel voir api pays ville
-         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
-         try {
+        //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
+        try {
             //demarrage de la transaction
             $this->db->beginTransaction();
 
@@ -213,9 +258,8 @@ class Model
             $request->execute([]);
 
             $datas = $request->fetchAll();
-            
+
             return $datas;
-            
         } catch (Exception $e) {
             var_dump($e->getMessage());
             return null;

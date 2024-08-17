@@ -8,7 +8,7 @@ let selectedCountry = $("#country option:selected").text()
 const containerAddress = $(".containerAddress")
 const containerSearch = `<div class='containerSearch'><label for='search'>Entrez ${
     $("#signUpAddress").length > 0 ? "votre " : "l'"
-}adresse</label><input type='search' name='search' id='search' placeholder='ici...' /></div>`
+}adresse <span>*</span></label><input type='search' name='search' id='search' placeholder='ici...' /></div>`
 containerAddress.append("<div class='containerAddressOptions hidden'></div>")
 const containerAddressOptions = $(".containerAddressOptions")
 
@@ -52,20 +52,21 @@ const searchAddress = (country) => {
                     containerAddressOptions.removeClass("hidden")
                 }
                 for (let k = 0; k < options.length; k++) {
+                    console.log("%c options", "background:green; color:white; padding:2px", options[k])
                     containerAddressOptions.append(`<p id="${options[k].place_id}" class="addressOption" >${options[k].formatted}</p>`)
                     $("#" + options[k].place_id + "").on("click", () => {
                         containerAddressOptions.addClass("hidden")
                         searchInput.val("")
                         searchInput.attr("placeholder", "vous pouvez modifier ici...")
                         removeAddress()
-                        const address = `<div id='addressContainer' class='containerInput'><label for='address'>Adresse</label><input id='address' name='address' disabled='true' type='text' value='${
+                        const address = `<div id='addressContainer' class='containerInput'><label for='address'>Adresse</label><input id='address' name='address' type='text' value='${
                             options[k].housenumber ? options[k].housenumber : ""
                         } ${options[k].street.replace("'", " ")}'/></div>`
                         const additionalAddress = `<div id='additionalAddressContainer' class='containerInput'><label for='additionalAddress'>Complément d'Adresse</label><input id='additionalAddress' name='additionalAddress'  type='text' value=''/></div>`
-                        const zipCode = `<div id='zip_codeContainer' class='containerInput'><label for='zip_code'>Code postale</label><input id='zip_code' name='zip_code' disabled='true' type='text' value='${
+                        const zipCode = `<div id='zip_codeContainer' class='containerInput'><label for='zip_code'>Code postale</label><input id='zip_code' name='zip_code' type='text' value='${
                             options[k].postcode ? options[k].postcode : options[k].city
                         }'/></div>`
-                        const city = `<div id='cityContainer' class='containerInput'><label for='city'>Ville</label><input id='city' name='city' disabled='true' type='text' value='${options[k].city}'/></div>`
+                        const city = `<div id='cityContainer' class='containerInput'><label for='city'>Ville</label><input id='city' name='city' type='text' value='${options[k].city}'/></div>`
                         const cityId = `<input id='city_id' name='city_id' type='hidden' value='${options[k].city}${options[k].postcode ? options[k].postcode : options[k].country}'/>`
                         containerAddress.append(address, additionalAddress, zipCode, city, cityId)
                     })
