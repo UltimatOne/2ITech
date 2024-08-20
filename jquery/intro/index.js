@@ -21,8 +21,8 @@
 
 // })
 
-//exemple requete AJAX
 // $(document).ready(function(){
+    //exemple requete AJAX
 //     $.ajax({
 //         //L'URL de la requête
 //         url: "url",
@@ -198,21 +198,21 @@
 //     reload();
 // });
 
-// $(document).ready(function () {
-//     let deplaced = false
+$(document).ready(function () {
+    let deplaced = false
 
-//     $("#moov-btn").on("click", function (e) {
-//         if (!deplaced) {
-//             e.stopPropagation()
-//             $("#myElement").animate({ left: "+=200px" }, "slow")
-//             deplaced = true
-//         } else {
-//             e.stopPropagation()
-//             $("#myElement").animate({ left: "-=200px" }, "slow")
-//             deplaced = false
-//         }
-//     })
-// })
+    $("#moov-btn").on("click", function (e) {
+        if (!deplaced) {
+            e.stopPropagation()
+            $("#myElement").animate({ left: "+=200px" }, "slow")
+            deplaced = true
+        } else {
+            e.stopPropagation()
+            $("#myElement").animate({ left: "-=200px" }, "slow")
+            deplaced = false
+        }
+    })
+})
 
 //GET
 /** $.get(url, [data], [success], [dataType]);
@@ -241,6 +241,46 @@
  * $("#maCaseACocher").width(300px)
  * $("#maCaseACocher").eight(300px)
  */
-$(document).ready(function () {
-  
-})
+
+//exemple requete AJAX
+    $.ajax({
+        //L'URL de la requête
+        url: "url",
+
+        //La méthode d"envoi (type de requête)
+        methode: "GET",
+
+        //Le format de réponse attendu
+        dataType: "json"
+
+    })
+    //Ce code sera exécuté en cas de succès - La réponse du serveur est passée à done()
+    /*On peut par exemple convertir cette réponse en chaine JSON et insérer
+     * cette chaine dans un div id="res"*/
+    .done(function(response){
+        let data = JSON.stringify(response);
+        $("div#res").append(data);
+    })
+
+    //Ce code sera exécuté en cas d'échec - L'erreur est passée à fail()
+    //On peut afficher les informations relatives à la requête et à l'erreur
+    .fail(function(error){
+        alert("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
+    })
+
+    //Ce code sera exécuté que la requête soit un succès ou un échec
+    .always(function(){
+        alert("Requête effectuée");
+    });
+
+    //load
+    $(selector).load(url, [data], [callback])
+
+    //exemple
+    $("#resultat").load("contenu.html", function (response, status, xhr){
+        if(status === "success"){
+            console.log("chargement réussi")
+        } else if (status === "error") {
+            console.log("Erreur ", +xhr.status)
+        }
+    })

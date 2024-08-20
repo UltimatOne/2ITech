@@ -50,8 +50,8 @@ class Model
         try {
             $request = $this->db->prepare(
                 'SELECT * FROM users
-                                           LEFT JOIN roles ON users.role_id = roles.role_id
-                                           WHERE user_email = ?'
+                LEFT JOIN roles ON users.role_id = roles.role_id
+                WHERE user_email = ?'
             );
             $request->execute([$email]);
 
@@ -281,6 +281,31 @@ class Model
         } catch (Exception $e) {
             var_dump($e->getMessage());
             return null;
+        };
+    }
+
+    public function deleteMovie($id)
+    {
+
+        //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
+        try {
+            //demarrage de la transaction
+            $this->db->beginTransaction();
+
+            $request = $this->db->prepare('DELETE FROM movies_actors WHERE id_movie = ?');
+            $request->execute([$id]);
+
+            $request = $this->db->prepare('DELETE FROM movies WHERE id_movie = ?');
+            $request->execute([$id]);
+
+            //les requetes sql se sont terminées correctement envoi et modification de la db
+            $this->db->commit();
+
+        } catch (Exception $e) {
+
+            //les requetes sql ne se sont pas terminées correctement annulation
+            $this->db->rollBack();
+            var_dump($e->getMessage());
         };
     }
 }

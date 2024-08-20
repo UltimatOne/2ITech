@@ -1,0 +1,50 @@
+main {
+    display: flex;
+    flex-direction: column;
+    background-color: blanchedalmond;
+    min-height: 98vh;
+    justify-content: center;
+    gap: 20px;
+}
+main p {
+    text-align: center;
+    font-size: 3rem;
+}
+#response, #buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.border-b {
+    border-bottom: 3px solid black;
+}
+
+#response p {
+    min-width: 50px;
+    text-align: center;
+}
+
+#response span {
+    font-size: 3rem;
+}
+
+#buttons button {
+    min-width: 50px;
+    font-size: 3rem;
+}
+
+#hanged {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-height: 300px;
+    min-width: 200px;
+    max-width: 200px;
+    align-self: center
+}
+
+#reload {
+    min-width: 25%;
+    margin: 0 auto;
+}
