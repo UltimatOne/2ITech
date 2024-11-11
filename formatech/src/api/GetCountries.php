@@ -16,9 +16,13 @@ class GetCountries
     }
 
 
-    public function manage()
+    public function manage(): void
     {
+        header(header: "Access-Control-Allow-Origin: *");
+        // header("Content-Type:application/json");
+        
         $this->countries = $this->model->getCountries();
-        echo json_encode($this->countries);
+
+        echo json_encode(value: $this->countries);
     }
 }

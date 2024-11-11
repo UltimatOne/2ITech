@@ -59,15 +59,32 @@ const searchAddress = (country) => {
                         searchInput.val("")
                         searchInput.attr("placeholder", "vous pouvez modifier ici...")
                         removeAddress()
-                        const address = `<div id='addressContainer' class='containerInput'><label for='address'>Adresse</label><input id='address' name='address' type='text' value='${
-                            options[k].housenumber ? options[k].housenumber : ""
-                        } ${options[k].street.replace("'", " ")}'/></div>`
-                        const additionalAddress = `<div id='additionalAddressContainer' class='containerInput'><label for='additionalAddress'>Complément d'Adresse</label><input id='additionalAddress' name='additionalAddress'  type='text' value=''/></div>`
-                        const zipCode = `<div id='zip_codeContainer' class='containerInput'><label for='zip_code'>Code postale</label><input id='zip_code' name='zip_code' type='text' value='${
-                            options[k].postcode ? options[k].postcode : options[k].city
-                        }'/></div>`
-                        const city = `<div id='cityContainer' class='containerInput'><label for='city'>Ville</label><input id='city' name='city' type='text' value='${options[k].city}'/></div>`
-                        const cityId = `<input id='city_id' name='city_id' type='hidden' value='${options[k].city}${options[k].postcode ? options[k].postcode : options[k].country}'/>`
+
+                        const address = `<div id='addressContainer' class='containerInput'>
+                                            <label for='address'>Adresse</label>
+                                            <input id='address' name='address' type='text' value='${options[k].housenumber ? options[k].housenumber : ""} ${options[k].street.replace("'", " ")}' disabled/>
+                                            <input id='address' name='address' type='hidden' value='${options[k].housenumber ? options[k].housenumber : ""} ${options[k].street.replace("'", " ")}'/>
+                                        </div>`
+
+                        const additionalAddress = `<div id='additionalAddressContainer' class='containerInput'>
+                                                    <label for='additionalAddress'>Complément d'Adresse</label>
+                                                    <input id='additionalAddress' name='additionalAddress' type='text' value=''/>
+                                                  </div>`
+
+                        const zipCode = `<div id='zip_codeContainer' class='containerInput'>
+                                            <label for='zip_code'>Code postale</label>
+                                            <input id='zip_code' name='zip_code' type='text' value='${options[k].postcode ? options[k].postcode : options[k].city}' disabled/>
+                                            <input id='zip_code' name='zip_code' type='hidden' value='${options[k].postcode ? options[k].postcode : options[k].city}'/>
+                                        </div>`
+
+                        const city = `<div id='cityContainer' class='containerInput'>
+                                        <label for='city'>Ville</label>
+                                        <input id='city' name='city' type='text' value='${options[k].city}' disabled />
+                                        <input id='city' name='city' type='hidden' value='${options[k].city}'/>
+                                      </div>`
+
+                        const cityId = `<input id='city_id' name='city_id' type='hidden' value='${options[k].place_id}'/>`
+
                         containerAddress.append(address, additionalAddress, zipCode, city, cityId)
                     })
                 }
@@ -77,14 +94,14 @@ const searchAddress = (country) => {
 }
 
 fetch("http://192.168.1.69/index.php?page=getcountries")
-    .then((resp) => resp.json())
-    .then((resp) => {
-        for (let data of resp) {
+    .then(resp => resp.json())
+    .then((datas) => {
+        for (let data of datas) {
             countries.push({ country_id: data.country_id, country_name: data.country_name })
         }
         if (selectCountry.length > 0) {
             for (let i = 0; i < countries.length; i++) {
-                selectCountry.append("<option value=" + countries[i]["country_id"] + ">" + countries[i]["country_name"] + "</option>")
+                selectCountry.append("<option id='country_" + countries[i]["country_id"] + "' value=" + countries[i]["country_id"] + ">" + countries[i]["country_name"] + "</option>")
             }
             selectCountry.on("change", () => {
                 selectedCountry = $("#country option:selected").text()
@@ -134,4 +151,4 @@ fetch("http://192.168.1.69/index.php?page=getcountries")
             })
         }
     })
-    .catch((error) => console.log("%c Erreur : ", "background:red; color:white; padding:2px" + error))
+    .catch((error) => console.log("%c Erreur : ", "background:red; color:white; padding:2px", error))

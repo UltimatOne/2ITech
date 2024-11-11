@@ -20,20 +20,20 @@ class SQLDatabase
         $this->pswrd = $pswrd;
 
         try {
-            $this->connection = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';charset=utf8', $this->user, $this->pswrd);
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO(dsn: "mysql:host=$this->host;dbname=$this->dbname;charset=utf8", username: $this->user, password: $this->pswrd);
+            $this->connection->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            error_log('Connection error: ' . $e->getMessage());
+            error_log(message: 'Connection error: ' . $e->getMessage());
         }
     }
-    public static function getInstance()
+    public static function getInstance(): mixed
     {
         if (self::$instance == null) {
             self::$instance = new SQLDatabase();
         }
         return self::$instance;
     }
-    public function getConnection()
+    public function getConnection(): PDO
     {
         return $this->connection;
     }

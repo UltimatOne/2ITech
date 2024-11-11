@@ -30,9 +30,9 @@ class ManageCenters
     public function manage()
     {
         if (!$_SESSION["user"]["id"]) {
-            header("Location: index.php?page=signIn");
+            header(header: "Location: index.php?page=signIn");
             if ($_SESSION['user']['role'] !== 'super_admin') {
-                header("Location: index.php?page=accessDenied");
+                header(header: "Location: index.php?page=accessDenied");
             }
         } else {
             $this->centers = $this->model->getCenters();
@@ -55,8 +55,18 @@ class ManageCenters
                 };
                 $this->msg .= "</p>";
             } else {
-
-                
+                $this->model->addCenter(
+                    name: $_POST['name'],
+                    address: $_POST['address'],
+                    additionalAddress: $_POST['additionalAddress'],
+                    email: $_POST['email'],
+                    phone: $_POST['phone'],
+                    zip: $_POST['zip_code'],
+                    city: $_POST['city'],
+                    cityId: $_POST['city_id'],
+                    countryId: $_POST['country']
+                );
+                $this->msg = "<p>Le centre " . $_POST['name'] . " a bien été ajouté</p>";
             }
         }
 

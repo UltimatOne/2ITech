@@ -9,13 +9,13 @@ class Model
         $this->db = SQLDatabase::getInstance()->getConnection();
     }
 
-    public function manage() {}
+    public function manage(): void {}
 
+    // Students
     public function addNewStudent($name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $zip_code, $city, $cityId, $countryId)
     {
-        if ($additionalAddress == "") {
-            $additionalAddress = NULL;
-        }
+        $additionalAddress = !empty($additionalAddress) ? $additionalAddress : NULL;
+
         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
             //demarrage de la transaction
@@ -28,7 +28,7 @@ class Model
 
             $cityIdExist = false;
 
-            for ($i = 0; $i < count($citiesDatas); $i++) {
+            for ($i = 0; $i < count(value: $citiesDatas); $i++) {
                 if ($citiesDatas[$i]["city_id"] == $cityId) {
                     $cityIdExist = true;
                     break;
@@ -46,7 +46,7 @@ class Model
                 student_address, 
                 student_additional_address, 
                 student_city_id
-                ) VALUES (?,?,?,?,?,?,?,?,?);');
+                ) VALUES (?,?,?,?,?,?,?,?,?)');
                 $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
             } else {
                 $request = $this->db->prepare('INSERT INTO cities (city_id, city_name, city_zip_code, city_country_id) VALUES (?,?,?,?)');
@@ -62,11 +62,11 @@ class Model
                         student_address, 
                         student_additional_address, 
                         student_city_id
-                ) VALUES (?,?,?,?,?,?,?,?,?);');
+                ) VALUES (?,?,?,?,?,?,?,?,?)');
                 $request->execute([$name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId]);
             }
             
-            //les requetes sql se sont terminées correctement envoi et modification de la db
+            // les requetes sql se sont terminées correctement envoi et modification de la db
             $studentId = $this->db->lastInsertId();
 
             $this->db->commit();
@@ -75,13 +75,14 @@ class Model
             return $studentId;
         } catch (Exception $e) {
 
-            //les requetes sql ne se sont pas terminées correctement annulation
+            // les requetes sql ne se sont pas terminées correctement annulation
             $this->db->rollBack();
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
         };
     }
 
-    public function getSuperAdmin($email)
+    // Super Admins
+    public function getSuperAdmin($email): mixed
     {
         try {
             $request = $this->db->prepare('SELECT 
@@ -100,11 +101,13 @@ class Model
 
             return $user;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
-    public function getAdmin($email)
+
+    // Admins
+    public function getAdmin($email): mixed
     {
         try {
             $request = $this->db->prepare('SELECT 
@@ -123,12 +126,32 @@ class Model
 
             return $user;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
 
-    public function getTrainer($email)
+    public function getSelectAdmins()
+    {
+        try {
+            $request = $this->db->prepare(
+                'SELECT admin_id AS id,
+                        admin_name AS name,
+                        admin_firstname AS firstname
+                FROM admins'
+            );
+            $request->execute([]);
+
+            $admins = $request->fetchAll(PDO::FETCH_ASSOC);
+
+            return $admins;
+        } catch (Exception $e) {
+            var_dump(value: $e->getMessage());
+            return null;
+        };
+    }
+
+    public function getTrainer($email): mixed
     {
         try {
             $request = $this->db->prepare('SELECT 
@@ -147,12 +170,12 @@ class Model
 
             return $user;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
 
-    public function getStudent($email)
+    public function getStudent($email): mixed
     {
         try {
             $request = $this->db->prepare('SELECT 
@@ -171,12 +194,12 @@ class Model
 
             return $user;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
 
-    public function getCenters()
+    public function getCenters(): mixed
     {
         try {
             $request = $this->db->prepare(
@@ -199,12 +222,12 @@ class Model
 
             return $centers;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
 
-    public function getCenter($centerId)
+    public function getCenter($centerId): mixed
     {
         try {
             $request = $this->db->prepare(
@@ -219,35 +242,78 @@ class Model
 
             return $center;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }
 
-    public function addCenter($name, $address, $zip, $city, $country, $email, $phone)
+    public function addCenter($name, $address, $additionalAddress, $zip, $city, $cityId, $countryId, $email, $phone): void
     {
         //pas encore fonctionnel voir api pays ville
         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
+            $additionalAddressCheck = !empty($additionalAddress) ? $additionalAddress : NULL;
+            
             //demarrage de la transaction
             $this->db->beginTransaction();
 
-            $request = $this->db->prepare('CALL add_new_center(?,?,?,?,?,?,?)');
-            $centerId = $request->execute([$name, $address, $zip, $city, $country, $email, $phone]);
+
+            $request = $this->db->prepare('SELECT city_id FROM cities');
+            $request->execute([]);
+            
+            $citiesDatas = $request->fetchAll(PDO::FETCH_ASSOC);
+
+            $cityIdExist = false;
+
+            for ($i = 0; $i < count(value: $citiesDatas); $i++) {
+                if ($citiesDatas[$i]["city_id"] == $cityId && $citiesDatas[$i]["city_country_id" == $countryId]) {
+                    $cityIdExist = true;
+                    break;
+                }
+            };
+
+            if ($cityIdExist) {
+                $request = $this->db->prepare('INSERT INTO centers (
+                    center_name,
+                    center_address,
+                    center_additional_address,
+                    center_phone,
+                    center_email,
+                    center_city_id
+                    ) VALUES (?,?,?,?,?,?)');
+
+                $request->execute([$name, $address, $additionalAddressCheck, $phone, $email, $cityId]);
+
+            } else {
+                $request = $this->db->prepare('INSERT INTO cities (city_id, city_name, city_zip_code, city_country_id) VALUES (?,?,?,?)');
+                $request->execute([$cityId, $city, $zip, $countryId]);
+
+                $request = $this->db->prepare('INSERT INTO centers (
+                    center_name,
+                    center_address,
+                    center_additional_address,
+                    center_phone,
+                    center_email,
+                    center_city_id
+                    ) VALUES (?,?,?,?,?,?)');
+
+                $request->execute([$name, $address, $additionalAddressCheck, $phone, $email, $cityId]);
+
+            }
 
             //les requetes sql se sont terminées correctement envoi et modification de la db
             $this->db->commit();
 
-            return $centerId;
+            // return $centerId;
         } catch (Exception $e) {
 
             //les requetes sql ne se sont pas terminées correctement annulation
             $this->db->rollBack();
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
         };
     }
 
-    public function getCountries()
+    public function getCountries(): mixed
     {
         try {
             $request = $this->db->prepare(
@@ -259,7 +325,7 @@ class Model
 
             return $datas;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            var_dump(value: $e->getMessage());
             return null;
         };
     }

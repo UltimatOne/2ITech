@@ -15,7 +15,7 @@ require('src/Controller/SignUp.php');
 require('src/Model/Model.php');
 require('src/services/SQLDatabase.php');
 
-$page = filter_input(INPUT_GET, "page");
+$page = filter_input(type: INPUT_GET, var_name: "page");
 
 $route = [
     "landing"       => Landing::class,

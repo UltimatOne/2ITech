@@ -18,15 +18,15 @@ class SignUp
         $this->model = new Model();
         $this->msg = null;
         $this->title = 'Inscription';
-        $this->minDate = date("Y-m-d", strtotime("-90 year"));
-        $this->maxDate = date("Y-m-d", strtotime("-16 year"));
+        $this->minDate = date(format: "Y-m-d", timestamp: strtotime("-90 year"));
+        $this->maxDate = date(format: "Y-m-d", timestamp: strtotime("-16 year"));
         $this->cityId = null;
         $this->param = "index.php?page=signUp";
         $this->altParam = "retour";
         $this->displayValue = "Retour";
     }
 
-    public function manage()
+    public function manage(): void
     {
         if (
             isset($_POST["name"]) &&
@@ -45,7 +45,7 @@ class SignUp
                 empty($_POST["city"]) ||
                 empty($_POST["country"])
             ) {
-                var_dump($_POST);
+                // var_dump(value: $_POST);
                 $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
@@ -57,23 +57,23 @@ class SignUp
                 $this->msg .= "</p>";
             } else {
                 //Hashage du password avant sauvegarde dans BDD
-                $pswrd = password_hash( $_POST["pswrd"], PASSWORD_DEFAULT);
+                $pswrd = password_hash( password: $_POST["pswrd"], algo: PASSWORD_DEFAULT);
                 $center = null;
 
                 //$userId récupère l'id du nouvel utilisateur ou false si problème lors de la création
                 $studentId = $this->model->addNewStudent(
-                    $_POST["name"],
-                    $_POST["firstname"],
-                    $_POST["birthday"],
-                    $_POST["email"],
-                    $_POST["phone"],
-                    $pswrd,
-                    $_POST["address"],
-                    $_POST["additionalAddress"],
-                    $_POST["zip_code"],
-                    $_POST["city"],
-                    $_POST["city_id"],
-                    $_POST["country"]
+                    name: $_POST["name"],
+                    firstname: $_POST["firstname"],
+                    birthday: $_POST["birthday"],
+                    email: $_POST["email"],
+                    phone: $_POST["phone"],
+                    pswrd: $pswrd,
+                    address: $_POST["address"],
+                    additionalAddress: $_POST["additionalAddress"],
+                    zip_code: $_POST["zip_code"],
+                    city: $_POST["city"],
+                    cityId: $_POST["city_id"],
+                    countryId: $_POST["country"]
                 );
 
                 if ($studentId) {
@@ -85,7 +85,7 @@ class SignUp
                         'role' => 'student'
                     ];
 
-                    header('Location: index.php');
+                    header(header: 'Location: index.php');
                 } else {
                     $this->msg = 'Erreur ! Merci de réessayer dans un moment !';
                 }

@@ -2,13 +2,14 @@
 
 class DetailsCenter
 {
-    public $model;
-    public $msg;
-    public $title;
-    public $param;
-    public $altParam;
-    public $displayValue;
-    public $center;
+    private $model;
+    private $msg;
+    private $title;
+    private $param;
+    private $altParam;
+    private $displayValue;
+    private $center;
+    private $admins;
 
     public function __construct()
     {
@@ -16,23 +17,32 @@ class DetailsCenter
         $this->msg = null;
         $this->title = 'Détails du centre';
         $this->center = [];
+        $this->admins = [];
     }
 
 
-    public function manage()
+    public function manage(): void
     {
         if(!$_SESSION["user"]["id"]) {
-            header("Location: index.php?page=signIn");
+            header(header: "Location: index.php?page=signIn");
         } else {
-            $center = $this->model->getCenter($_GET["id"]);
+            $center = $this->model->getCenter(centerId: $_GET["id"]);
+            $admins = $this->model->getSelectAdmins();
+            // echo '<pre>';
+            // var_dump(value: $center);
+            // var_dump(value: $admins);
+            // echo '</pre>';
             if (empty($center)) {
                 $this->msg = "Le centre n'a pas été trouvé !";
+                $this->param = "index.php?page=listCenters";
+                $this->altParam = "retour à la liste des centres";
+                $this->displayValue = "RETOUR";
             } else {
                 $this->center = $center;
+                $this->admins = $admins;
             }
         }
         
-
 
         include (__DIR__ . '/../view/header.php');
         include (__DIR__ . '/../view/popup.php');
