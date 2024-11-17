@@ -16,10 +16,10 @@
             <a href="index.php"><h1>FORMATECH</h1></a>
             <div class="nav-link">
                 <?php if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
-                    include __DIR__ . '/../Components/Navbar/superAdminNavbar.php';
-                    include __DIR__ . '/../Components/Navbar/adminNavbar.php';
-                    include __DIR__ . '/../Components/Navbar/trainerNavbar.php';
-                    include __DIR__ . '/../Components/Navbar/studentNavbar.php';
+                    include __DIR__ . '/../Components/Navbars/superAdminNavbar.php';
+                    include __DIR__ . '/../Components/Navbars/adminNavbar.php';
+                    include __DIR__ . '/../Components/Navbars/trainerNavbar.php';
+                    include __DIR__ . '/../Components/Navbars/studentNavbar.php';
                 ?>
                     <span class="welcome">Bienvenue <?= $_SESSION['user']['firstname'] ?>, </span>
                     <a class="disconnection-link" href="index.php?logout=true">Déconnexion</a>

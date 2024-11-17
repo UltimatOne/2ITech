@@ -4,5 +4,6 @@
         <script src="src/js/getAddress.js"></script>
         <script src="src/js/navbar.js"></script>
         <script src="src/js/addCenterMobile.js"></script>
+        <script src="src/js/detailsFormControls.js"></script>
     </body>
 </html>

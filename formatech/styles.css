@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+p, span, input, label, select, option {
+    font-size: 1rem;
+} 
+
 main {
     display: flex;
     box-sizing: border-box;
@@ -447,46 +451,102 @@ form .addressOption {
     margin: 0 auto;
 }
 
-.detailsCenter {
+.details {
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
     margin-top: 1rem;
-    padding: 0.25rem 1rem;
+    padding: 0 1rem;
     h1 {
         color:  var(--red-color);
         text-align: center;
     }
-    #form_center_picture div {
+    .input_picture_reserved {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 3rem;
+    }
+    .picture-container {
+        margin: 0 auto;
         max-width: fit-content;
         position: relative;
     }
-    #form_center_picture div .btn {
+    #change_picture_btn {
         position: absolute;
-        right: 0.125rem;
-        top: 0.125rem;
+        right: 0.25rem;
+        top: 0.25rem;
+    }
+    .custom-select-details {
+        width: 75%;
+    }
+    .picture-input-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
     }
     table {
         min-width: 100%;
     }
-    form .btn, .btn-danger {
+    .btn-change {
         display: flex;
         justify-content: center;
         align-items: center;
         max-width: fit-content;
         aspect-ratio: 1/1;
+        border: none;
     }
-    .btn-danger {
+    .btns-container {
+        display: flex;
+        gap: 0.25rem;
+        width: 5rem;
+        height: 2.2rem;
+        background-color: var(--test-color);
+    }
+    .btn-delete {
         position: absolute;
     }
-    .btn-dark:not(:has(form)) {
-        margin: 0 auto;
+    .btn-back {
+        margin: 0 auto 1rem;
     }
-    
+    .address-details {
+        display: flex;
+        justify-content: center;
+    }
+    #input_address {
+        width: 75%;
+    }
+    #input_address .containerAddress {
+        padding-top: 0.5rem;
+    }
+    #input_address .containerAddress,
+    #input_address .containerSearch,
+    #input_address .containerInput {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    #input_address .containerAddressOptions {
+        position: absolute;
+        border: 1px solid var(--red-color);
+        border-radius: 5px;
+        background-color: var(--white-color);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        top: 70px;
+    }
+    #input_address .addressOption {
+        padding: 0.5rem;
+        cursor: pointer;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1365.9px) {
     select,
     input {
         min-height: 1.7rem;
@@ -612,7 +672,11 @@ form .addressOption {
         margin-bottom: 1rem;
     }
 
-    .detailsCenter{
+    .details{
+        p, span, input, label, select, option {
+            font-size: 0.75rem;
+            /* line-height: 0.85rem; */
+        }
         gap: 1rem;
         justify-content: space-between;
         img {
@@ -624,24 +688,42 @@ form .addressOption {
             flex-direction: column;
             gap: 1rem;
         }
-        .btn-danger {
+        .btn-delete {
             top: 0;
             right: 0;
         }
+        .btn-back {
+            max-width: 50%;
+        }
+        #input_address .custom-select::before {
+            top: 61%;
+            right: 10%;
+        }
+        #input_address .custom-select::after {
+            top: 74%;
+            right: 10%;
+        }
+        .custom-select-details::before {
+            top: 37.5%;
+            right: 10%;
+        }
         
+        .custom-select-details::after {
+            top: 62.5%;
+            right: 10%;
+        }
     }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1366px) {
     main {
         flex-direction: row;
     }
 
     select,
     input {
-        font-size: 1.2rem;
-        min-height: 2rem;
-        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        padding: 0.25rem;
     }
 
     .nav-link {
@@ -738,7 +820,7 @@ form .addressOption {
         }
     }
 
-    .detailsCenter {
+    .details {
         article {
             display: flex;
             flex-grow: 1;
@@ -747,16 +829,33 @@ form .addressOption {
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 50%;
             flex-grow: 1;
             padding: 1rem;
         }
-        .btn-danger {
+        .btn-delete {
             bottom: 0;
             right: 0;
         }
-        .btn-dark:not(:has(form)) {
+        .btn-back {
             max-width: 15%;
-            margin: 0 auto;
+        }
+        #input_address .custom-select::before {
+            top: 61%;
+        }
+        #input_address .custom-select::after {
+            top: 74%;
+        }
+        .custom-select-details::before {
+            top: 40%
+        }
+        
+        .custom-select-details::after {
+            top: 60%
+        }
+        #input_address .containerSearch {
+            display: flex;
+            flex-direction: column;
         }
     }
 }

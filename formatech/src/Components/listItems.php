@@ -19,7 +19,7 @@
                         0<?= $center['phone'] ?>
                     </li>
                 </ul>
-                <a class="btn btn-dark" href="index.php?page=detailsCenters&id=<?= $center['id'] ?>" alt="liens vers les détails du centre"><i class="fa-regular fa-eye"></i></a>
+                <a class="btn btn-dark" href="index.php?page=detailsCenter&id=<?= $center['id'] ?>" alt="liens vers les détails du centre"><i class="fa-regular fa-eye"></i></a>
             </div>
         <?php } ?>
         <div id="addCenterButton" class="card">

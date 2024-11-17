@@ -27,7 +27,7 @@ class ManageCenters
     }
 
 
-    public function manage()
+    public function manage(): void
     {
         if (!$_SESSION["user"]["id"]) {
             header(header: "Location: index.php?page=signIn");
@@ -73,8 +73,8 @@ class ManageCenters
 
         include(__DIR__ . '/../view/header.php');
         include(__DIR__ . '/../view/popup.php');
-        include(__DIR__ . '/../Components/centers/listCenters.php');
-        include(__DIR__ . '/../Components/centers/addCenterForm.php');
+        include(__DIR__ . '/../Components/listItems.php');
+        include(__DIR__ . '/../Components/addForm.php');
         include(__DIR__ . '/../view/footer.php');
     }
 }

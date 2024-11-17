@@ -46,7 +46,7 @@ class DetailsCenter
 
         include (__DIR__ . '/../view/header.php');
         include (__DIR__ . '/../view/popup.php');
-        include (__DIR__ . '/../view/detailsCenter.php');
+        include (__DIR__ . '/../Components/detailsForm.php');
         include (__DIR__ . '/../view/footer.php');
     }
 }
