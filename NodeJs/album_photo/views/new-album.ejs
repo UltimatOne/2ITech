@@ -1,0 +1,16 @@
+<%- include('partials/head') %>
+
+<h3><%= title %></h3>
+
+<form action="/album/new_album" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label">Titre de l'album</label>
+        <input type="text" class="form-control" id="title" name="title"/>
+        <% if (errors.length) { %>
+            <div class="alert alert-danger mt-4 mb-2" role="alert"><%= errors[0] %></div>
+        <% } %>
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+</form>
+
+<%- include('partials/foot') %>

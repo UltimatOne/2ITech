@@ -2,14 +2,14 @@
 
 class DetailsCenter
 {
-    private $model;
-    private $msg;
-    private $title;
-    private $param;
-    private $altParam;
-    private $displayValue;
-    private $center;
-    private $admins;
+    public $model;
+    public $msg;
+    public $title;
+    public $param;
+    public $altParam;
+    public $displayValue;
+    public $center;
+    public $admins;
 
     public function __construct()
     {

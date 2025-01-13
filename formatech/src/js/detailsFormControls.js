@@ -33,6 +33,7 @@ if (details.length > 0) {
         toggleAll(e, "picture")
 
     })
+    
     $("#change_name_btn").click((e) => {
         console.log(e.target.id);
         toggleAll(e, "name")
@@ -42,6 +43,7 @@ if (details.length > 0) {
         toggleAll(e, "name")
 
     })
+
     $("#change_admin_btn").click((e) => {
         console.log(e.target.id);
         toggleAll(e, "admin")
@@ -51,6 +53,7 @@ if (details.length > 0) {
         toggleAll(e, "admin")
 
     })
+
     $("#change_email_btn").click((e) => {
         console.log(e.target.id);
         toggleAll(e, "email")
@@ -60,6 +63,7 @@ if (details.length > 0) {
         toggleAll(e, "email")
 
     })
+
     $("#change_phone_btn").click((e) => {
         console.log(e.target.id);
         toggleAll(e, "phone")
@@ -69,6 +73,7 @@ if (details.length > 0) {
         toggleAll(e, "phone")
 
     })
+
     $("#change_address_btn").click((e) => {
         console.log(e.target.id);
         toggleAll(e, "address")
@@ -78,6 +83,7 @@ if (details.length > 0) {
         toggleAll(e, "address")
 
     })
+
     $("#delete_btn").click((e) => {
         e.stopPropagation();
         e.preventDefault();

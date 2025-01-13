@@ -1,0 +1,24 @@
+<%- include('partials/head') %>
+<section class="container-fluid d-flex flex-column align-items-center gap-3">
+    <h1>Mes Albums</h1>
+
+    <a href="/album/create" type="btn" class="btn btn-dark">Nouvel Album</a>
+    <div class="card w-50">
+        <% if (albums) { albums.map((album, key) => { %>
+        <div id="<% key %>" class="d-flex p-4 justify-content-between">
+            <h3>
+                <a class="text-decoration-none text-dark" href="/albums/<%= album._id %>"><%= album.title %></a>
+            </h3>
+            <a href="/delete_album/<%= album.title %>" type="btn" class="btn btn-danger">Supprimer</a>
+        </div>
+        <% }) } %>
+    </div>
+    <% if (errors.length) { %>
+    <div class="alert alert-danger mt-4 mb-2" role="alert"><%= errors[0] %></div>
+    <% } %>
+    <% if (success.length) { %>
+    <div class="alert alert-success mt-4 mb-2" role="alert"><%= success[0] %></div>
+    <% } %>
+</section>
+
+<%- include('partials/foot') %>

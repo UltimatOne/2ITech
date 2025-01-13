@@ -503,7 +503,6 @@ form .addressOption {
         gap: 0.25rem;
         width: 5rem;
         height: 2.2rem;
-        background-color: var(--test-color);
     }
     .btn-delete {
         position: absolute;

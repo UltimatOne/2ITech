@@ -12,7 +12,7 @@ class Model
     public function manage(): void {}
 
     // Students
-    public function addNewStudent($name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $zip_code, $city, $cityId, $countryId)
+    public function addNewStudent($name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $zip_code, $city, $cityId, $countryId): mixed
     {
         $additionalAddress = !empty($additionalAddress) ? $additionalAddress : NULL;
 
@@ -131,7 +131,7 @@ class Model
         };
     }
 
-    public function getSelectAdmins()
+    public function getSelectAdmins(): mixed
     {
         try {
             $request = $this->db->prepare(
@@ -207,6 +207,7 @@ class Model
                         center_name AS name,
                         center_admin_id AS admin_id,
                         center_address AS address,
+                        center_additional_address AS additional_address,
                         center_phone AS phone,
                         center_email AS email,
                         cities.city_zip_code AS zip_code,
@@ -249,7 +250,6 @@ class Model
 
     public function addCenter($name, $address, $additionalAddress, $zip, $city, $cityId, $countryId, $email, $phone): void
     {
-        //pas encore fonctionnel voir api pays ville
         //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
             $additionalAddressCheck = !empty($additionalAddress) ? $additionalAddress : NULL;

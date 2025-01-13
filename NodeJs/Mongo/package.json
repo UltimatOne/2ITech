@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "axios": "^1.7.9",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.9.1"
+  },
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "travaux pratiques avec une base de données no sql",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JJG",
+  "license": "ISC"
+}

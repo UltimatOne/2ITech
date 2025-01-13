@@ -1,0 +1,11 @@
+<%- include('../templates/header') %>
+
+<h1>Todo List</h1>
+<h3>Ajouter une Tâche</h3>
+<form action="/addTaskController" method="post" style="display: flex;flex-direction: column;align-items: center;">
+    <label for="task">tâche</label>
+    <input type="text" name="description" id="">
+    <button type="submit">enregistrer</button>
+</form>
+
+<%- include('../templates/footer') %>

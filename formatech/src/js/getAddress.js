@@ -6,9 +6,10 @@ const selectCountry = $("#country")
 let selectedCountry = $("#country option:selected").text()
 
 const containerAddress = $(".containerAddress")
-const containerSearch = `<div class='containerSearch'><label for='search'>Entrez ${
-    $("#signUpAddress").length > 0 ? "votre " : "l'"
-}adresse <span>*</span></label><input type='search' name='search' id='search' placeholder='ici...' /></div>`
+const containerSearch = `<div class='containerSearch'>
+                            <label for='search'>Entrez ${ $("#signUpAddress").length > 0 ? "votre " : "l'" }adresse <span>*</span></label>
+                            <input type='search' name='search' id='search' placeholder='ici...' />
+                        </div>`
 containerAddress.append("<div class='containerAddressOptions hidden'></div>")
 const containerAddressOptions = $(".containerAddressOptions")
 
@@ -52,7 +53,6 @@ const searchAddress = (country) => {
                     containerAddressOptions.removeClass("hidden")
                 }
                 for (let k = 0; k < options.length; k++) {
-                    console.log("%c options", "background:green; color:white; padding:2px", options[k])
                     containerAddressOptions.append(`<p id="${options[k].place_id}" class="addressOption" >${options[k].formatted}</p>`)
                     $("#" + options[k].place_id + "").on("click", () => {
                         containerAddressOptions.addClass("hidden")
@@ -96,12 +96,28 @@ const searchAddress = (country) => {
 fetch("http://192.168.1.69/index.php?page=getcountries")
     .then(resp => resp.json())
     .then((datas) => {
+        const countryExist = $("#country_displayed").attr("value")
         for (let data of datas) {
             countries.push({ country_id: data.country_id, country_name: data.country_name })
         }
         if (selectCountry.length > 0) {
-            for (let i = 0; i < countries.length; i++) {
-                selectCountry.append("<option id='country_" + countries[i]["country_id"] + "' value=" + countries[i]["country_id"] + ">" + countries[i]["country_name"] + "</option>")
+            if (countryExist) {
+                selectCountry.append("<option id='country_null' value=''>--------</option>")
+                for (let i = 0; i < countries.length; i++) {
+                    if (countries[i]["country_id"] === +countryExist){
+                        selectCountry.append("<option id='country_" + countries[i]["country_id"] + "' value=" + countries[i]["country_id"] + " selected>" + countries[i]["country_name"] + "</option>")
+                    } else {
+                        selectCountry.append("<option id='country_" + countries[i]["country_id"] + "' value=" + countries[i]["country_id"] + ">" + countries[i]["country_name"] + "</option>")
+                    }
+                }
+                containerAddress.append(containerSearch)
+                const searchInput = $("#search")
+                searchInput.attr("placeholder", "vous pouvez modifier ici...")
+            } else {
+                selectCountry.append("<option id='country_null' value='' selected>--------</option>")
+                for (let i = 0; i < countries.length; i++) {
+                    selectCountry.append("<option id='country_" + countries[i]["country_id"] + "' value=" + countries[i]["country_id"] + ">" + countries[i]["country_name"] + "</option>")
+                }
             }
             selectCountry.on("change", () => {
                 selectedCountry = $("#country option:selected").text()

@@ -1,0 +1,9 @@
+<%- include('../templates/header') %>
+
+<ul>
+    <% articles.map((article) => { %>
+        <li><%= article.title %> - <%= article.category %></li>
+    <% }) %>
+</ul>
+
+<%- include('../templates/footer') %>

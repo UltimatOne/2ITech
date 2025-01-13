@@ -1,0 +1,9 @@
+<%- include('../templates/header') %>
+
+<% if (name.length >= 3) { %>
+    <h3>Bonjour <%= name %></h3>
+<% } else { %>
+    <p>Le nom n'est pas valide</p>
+<%  } %>
+
+<%- include('../templates/footer') %>

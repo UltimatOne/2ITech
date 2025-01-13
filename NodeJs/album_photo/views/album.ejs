@@ -1,0 +1,34 @@
+<%- include('partials/head') %>
+<section>
+    <% if (album) { %>
+    <h3><%= album.title %></h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <% if (album.images.length != 0 ) { %>
+            <% album.images.map((image, key) => { %>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/<%= album._id %>/<%= image %>" alt="<%= image %>" class="card-img-top" />
+                        <div class="card-body">
+                            <h5>test</h5>
+                            <a href="/album/<%= album._id %>/delete/<%= key %>">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+    <% } %>
+    <form action="/album/addpicture" method="post" enctype="multipart/form-data" class="card p-2">
+        <input type="hidden" name="id" value="<%= album._id %>" />
+        <label class="form-inline" for="images">Ajouter des photos</label>
+        <input class="form-control-file" type="file" name="images" id="images" multiple />
+        <button type="submit" class="btn btn-dark m-3">Ajouter</button>
+    </form>
+    <% if (errors.length) { %>
+    <div class="alert alert-danger mt-4 mb-2" role="alert"><%= errors[0] %></div>
+    <% } %> <% if (success.length) { %>
+    <div class="alert alert-success mt-4 mb-2" role="alert"><%= success[0] %></div>
+    <% } %>
+</section>
+
+<%- include('partials/foot') %>

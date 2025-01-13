@@ -106,16 +106,16 @@
                             <th class="address-details"><label for="address">Adresse :</label></th>
                             <td class="containerInput">
                                 <div id="address">
-                                    <p>1 rue dev</p>
-                                    <p>complément d'adresse</p>
-                                    <p>code postale, ville</p>
-                                    <p>Pays</p>
+                                    <p><?= $this->center["center_address"] ?></p>
+                                    <p><?= $this->center["center_additional_address"] ?></p>
+                                    <p><?= $this->center["city_zip_code"] . ", " . $this->center["city_name"] ?></p>
+                                    <p id="country_displayed" value="<?= $this->center["country_id"] ?>"><?= $this->center["country_name"] ?></p>
                                 </div>
                                 <div id="input_address" class="hidden">
                                     <div class="containerInput custom-select">
                                         <label for="country">Pays <span>*</span></label>
                                         <select id="country" name="country">
-                                            <option value="">--------</option>
+
                                         </select>
                                     </div>
                                     <div class="containerAddress">
@@ -135,13 +135,9 @@
             </div>
         </article>
         <div>
-            <a class="btn btn-dark btn-back" href="index.php?page=listCenters" alt="retour à la liste des centres">
-                Retour
-            </a>
+            <a class="btn btn-dark btn-back" href="index.php?page=listCenters" alt="retour à la liste des centres">Retour</a>
         </div>
-        <button id="delete_btn" class="btn btn-danger btn-change btn-delete">
-            <i class="fa-solid fa-trash"></i>
-        </button>
+        <button id="delete_btn" class="btn btn-danger btn-change btn-delete"><i class="fa-solid fa-trash"></i></button>
     </section>
 <?php } else { ?>
     <h1><?= $this->title ?></h1>
