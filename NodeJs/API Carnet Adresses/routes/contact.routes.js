@@ -1,12 +1,29 @@
-import express from "express";
-import { createContact, getContactById, getContacts, updateContactById, deleteContactById } from "../controllers/contact.controller.js";
+import express from "express"
+import {
+    createContact,
+    getContactById,
+    getContacts,
+    updateContactById,
+    deleteContactById,
+    contactFormAdd,
+    contactFormMod,
+    createCookie,
+    getCookie
+} from "../controllers/contact.controller.js"
  
-const router = express.Router();
+const router = express.Router()
 
-router.post("/contacts/newContact", createContact )
-router.get("/contacts", getContacts )
-router.get("/contacts/:id", getContactById )
-router.patch("/contacts/update/:id", updateContactById )
-router.delete("/contacts/delete/:id", deleteContactById )
+router.get("/contacts", getContacts)
 
-export default router;
+router.post("/contacts/newContact", createContact)
+router.get("/contacts/add", contactFormAdd)
+router.get("/contacts/mod/:id", contactFormMod)
+
+router.patch("/contacts/update/:id", updateContactById)
+router.delete("/contacts/delete/:id", deleteContactById)
+router.get("/createCookie", createCookie)
+router.get("/getCookie", getCookie)
+
+router.get("/contacts/:id", getContactById)
+
+export default router

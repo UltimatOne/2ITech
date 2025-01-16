@@ -1,16 +1,22 @@
-import express from "express";
-import router from "./routes/contact.routes.js";
-import mongoose from "mongoose";
-import session from "express-session";
+import express from "express"
+import router from "./routes/contact.routes.js"
+import mongoose from "mongoose"
+import session from "express-session"
+import methodOverride from "method-override"
+import cookieParser from "cookie-parser"
  
-const app = express();
+const app = express()
  
-mongoose.connect("mongodb://127.0.0.1:27017/carnet-adresses");
+mongoose.connect("mongodb://127.0.0.1:27017/carnet-adresses")
  
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.set("view engine", "ejs")
+app.use(express.static("public"))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(cookieParser())
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
  
 app.use(
   session({
@@ -21,16 +27,16 @@ app.use(
 );
  
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Hello World!')
 });
  
-app.use('/api', router);
+app.use('/api', router)
  
 app.use((req, res) => {
-  res.status(404);
-  res.send("Page non trouvée");
+  res.status(404)
+  res.send("Page non trouvée")
 });
  
 app.listen(3000, () => {
-  console.log("Application est lancée sur le port 3000");
-});
+  console.log("Application est lancée sur le port 3000")
+})
