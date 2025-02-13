@@ -10,7 +10,7 @@ export default function VideoMovie({ videos }) {
                 <div className={styles.slider}>
                     {videos.map((video) => (
                         <div key={video.id} className={styles.videoItem}>
-                            <h3 className={styles.videoTitle}>{ }</h3>
+                            <h3 className={styles.videoTitle}>{video.name}</h3>
                             <div className={styles.videoFrame}>
                                 <iframe
                                     src={`https://www.youtube.com/embed/${video.key}`}
