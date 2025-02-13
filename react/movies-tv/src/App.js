@@ -16,7 +16,7 @@ export default function App() {
     const [recommendationsTVShow, setRecommendationsTVShow] = useState()
     const [currentTVShow, setCurrentTVShow] = useState()
     const [videosTVShow, setVideosTVShow] = useState()
-    const description = "Logo Movies TV"
+    const description = "Logo MoviesTV"
     const siteName = "Movies TV"
     const subtitle = "Find a show you may like"
 
