@@ -1,0 +1,10 @@
+.main_container {
+  display: flex;
+  height: 100vh;
+  padding: 25px;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.header {
+  flex: 1;
+}

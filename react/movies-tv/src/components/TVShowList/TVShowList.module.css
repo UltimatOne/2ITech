@@ -1,0 +1,43 @@
+.title {
+  font-family: Roboto;
+  font-weight: 60px;
+  font-size: 20px;
+}
+
+.slider::-webkit-scrollbar {
+  height: 7px;
+}
+
+.slider::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 10px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid #ffffea;
+}
+
+.slider::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.slider {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.tv_show_list_item {
+  margin-right: 20px;
+}
