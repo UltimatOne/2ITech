@@ -6,7 +6,7 @@ export default function Details({TVShow}) {
     
     return (
         <div className={style.tv_show_detail}>
-            <div className={style.title}>{TVShow.name && TVShow.name}</div>
+            <div className={style.title}>{TVShow.name || TVShow.original_title}</div>
             <FiveStarRating rating={TVShow.vote_average / 2}/>
             <div className={style.overview}>{TVShow.overview && TVShow.overview}</div>
         </div>

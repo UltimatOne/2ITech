@@ -12,3 +12,26 @@
 .header {
   flex: 1;
 }
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  button {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    background: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #FFFFFFB3 !important;
+  }
+}
+
+.active {
+  background-color: #FFFFFF66 !important;
+  color: black !important;
+}
