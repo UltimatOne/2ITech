@@ -20,7 +20,6 @@ export class TVShowAPI {
 
     static async fetchTVShowVideos(tvShowId) {
         const response = await axios.get(`${BASE_URL}tv/${tvShowId}/videos${API_KEY_PARAM}`);
-        console.log("response", response.data.results);
         return response.data.results;
     }
 }

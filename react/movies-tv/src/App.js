@@ -15,7 +15,7 @@ export default function App() {
     const [popularsTVShow,setPopularsTVShow] = useState()
     const [recommendationsTVShow, setRecommendationsTVShow] = useState()
     const [currentTVShow, setCurrentTVShow] = useState()
-    const [videosTVShow, setVideosTVShow] = useState()
+    const [videosTVShow, setVideosTVShow] = useState([])
     const description = "Logo MoviesTV"
     const siteName = "Movies TV"
     const subtitle = "Find a show you may like"
@@ -75,7 +75,7 @@ export default function App() {
             </div>
             {currentTVShow && <Details TVShow={currentTVShow} />}
             {popularsTVShow && <TVShowList className={styles.populars} title="Populars" TVShowList={popularsTVShow} setCurrentTVShow={setCurrentTVShow} />}
-            {videosTVShow && <VideoMovie videos={videosTVShow} />}
+            {videosTVShow.length > 0 && <VideoMovie videos={videosTVShow} title="Videos" />}
             {recommendationsTVShow && <TVShowList title="Recommendations" TVShowList={recommendationsTVShow} setCurrentTVShow={setCurrentTVShow} />}
         </div>
     )
