@@ -17,7 +17,7 @@ export default function App() {
     const [currentTVShow, setCurrentTVShow] = useState()
     const [videosTVShow, setVideosTVShow] = useState()
     const description = "Logo MoviesTV"
-    const siteName = "Movies TV"
+    const siteName = "Movies TV 1"
     const subtitle = "Find a show you may like"
 
     const fetchPopulars = async () => {
