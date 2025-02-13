@@ -8,12 +8,14 @@ import Details from "./components/Details/Details"
 import Logo from "./components/Logo/Logo"
 import logo from "./assets/images/Logo.png"
 import SearchBar from "./components/SearchBar/SearchBar"
+import VideoMovie from "./components/VideoMovie/VideoMovie"
 
 export default function App() {
     
     const [popularsTVShow,setPopularsTVShow] = useState()
     const [recommendationsTVShow, setRecommendationsTVShow] = useState()
     const [currentTVShow, setCurrentTVShow] = useState()
+    const [videosTVShow, setVideosTVShow] = useState()
     const description = "Logo Movies TV"
     const siteName = "Movies TV"
     const subtitle = "Find a show you may like"
@@ -26,12 +28,17 @@ export default function App() {
         }
     }
 
-    const fetchRecommendations = async(series_id) => {
-        const recommendations = await TVShowAPI.fetchRecommendations(series_id)
+    const fetchRecommendations = async(item_id) => {
+        const recommendations = await TVShowAPI.fetchRecommendations(item_id)
         if(recommendations.length > 0) {
             return setRecommendationsTVShow(recommendations.slice(0, 10))
         }
         return
+    }
+
+    const fetchTVShowVideos = async(item_id) => {
+        const videos = await TVShowAPI.fetchTVShowVideos(item_id)
+        setVideosTVShow(videos)
     }
 
     useEffect(() => {
@@ -41,15 +48,16 @@ export default function App() {
     useEffect(() => {
         if(!currentTVShow) return
         fetchRecommendations(currentTVShow.id)
+        fetchTVShowVideos(currentTVShow.id)
     }, [currentTVShow])
 
     const searchTitle = async (e) => {
         console.log("title", e.target.value)
         const title = e.target.value
         if (!title || title.length < 3 || (title.trim(' ') === "")) return
-        const item = await TVShowAPI.fetchByTitle(title)
-        console.log("item", item);
-        setCurrentTVShow(item[0])
+        const items = await TVShowAPI.fetchByTitle(title)
+        console.log("item", items);
+        setCurrentTVShow(items[0])
         e.target.value = ""
     }
 
@@ -65,8 +73,9 @@ export default function App() {
                     <SearchBar searchTitle={searchTitle} />
                 </div>
             </div>
-            {currentTVShow && <Details TVShow={currentTVShow}/>}
-            {popularsTVShow && <TVShowList title="Populars" TVShowList={popularsTVShow} setCurrentTVShow={setCurrentTVShow} />}
+            {currentTVShow && <Details TVShow={currentTVShow} />}
+            {popularsTVShow && <TVShowList className={styles.populars} title="Populars" TVShowList={popularsTVShow} setCurrentTVShow={setCurrentTVShow} />}
+            {videosTVShow && <VideoMovie videos={videosTVShow} />}
             {recommendationsTVShow && <TVShowList title="Recommendations" TVShowList={recommendationsTVShow} setCurrentTVShow={setCurrentTVShow} />}
         </div>
     )

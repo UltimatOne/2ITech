@@ -11,7 +11,7 @@ export default function Recommandations({ TVShowList, title, setCurrentTVShow}) 
     }
 
     return (
-        <>
+        <div className={title === "Populars" && styles.populars}>
             <div className={styles.title}>
                 {title}
             </div>
@@ -20,5 +20,5 @@ export default function Recommandations({ TVShowList, title, setCurrentTVShow}) 
                     {list && list}
                 </div>
             </div>
-        </>);
+        </div>);
 }

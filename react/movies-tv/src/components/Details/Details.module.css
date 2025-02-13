@@ -1,16 +1,17 @@
 .tv_show_detail {
     flex: 2;
+    margin-top: 15vh;
 }
 
 .title {
     font-weight: 400;
     font-size: 35px;
 }
-/* .rating {
-} */
+
 .overview:hover {
     overflow-y: auto;
 }
+
 .overview {
     font-family: roboto;
     font-weight: 400;

@@ -17,5 +17,11 @@ export class TVShowAPI {
         const response = await axios.get(`${BASE_URL}search/tv${API_KEY_PARAM}&query=${title}&include_adult=false&language=en-US&page=1`)
         return response.data.results
     }
+
+    static async fetchTVShowVideos(tvShowId) {
+        const response = await axios.get(`${BASE_URL}tv/${tvShowId}/videos${API_KEY_PARAM}`);
+        console.log("response", response.data.results);
+        return response.data.results;
+    }
 }
 
