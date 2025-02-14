@@ -21,6 +21,8 @@ export default function App() {
     const [currentMovieTVShow, setCurrentMovieTVShow] = useState()
     const [seriesVideosTVShow, setSeriesVideosTVShow] = useState([])
     const [moviesVideosTVShow, setMoviesVideosTVShow] = useState([])
+    const [seriesCast, setSeriesCast] = useState([])
+    const [movieCast, setMovieCast] = useState([])
     const [searchResults, setSearchResults] = useState([])
     const description = "Logo MoviesTV"
     const siteName = "Movies TV"
@@ -43,11 +45,19 @@ export default function App() {
         return
     }
 
+    const fetchTVShowSeriesCast = async (item_id) => {
+        const seriesCastTmp = await TVShowAPI.fetchTVShowSeriesCast(item_id)
+        if (seriesCastTmp.length > 0) {
+            setSeriesCast(seriesCastTmp)
+        } 
+    }
+
     const fetchTVShowVideosSeries = async (item_id) => {
         const seriesVideosTmp = await TVShowAPI.fetchTVShowVideosSeries(item_id)
         setSeriesVideosTVShow(seriesVideosTmp.slice(0, 10))
     }
 
+    // Movies
     const fetchMoviesTVShow = async () => {
         const moviesTVShowTmp = await TVShowAPI.fetchMoviesTVShow()
         if (moviesTVShowTmp.length > 0) {
@@ -64,6 +74,13 @@ export default function App() {
         return
     }
 
+    const fetchTVShowMovieCast = async (item_id) => {
+        const seriesCastTmp = await TVShowAPI.fetchTVShowMovieCast(item_id)
+        if (seriesCastTmp.length > 0) {
+            setSeriesCast(seriesCastTmp)
+        } 
+    }
+
     const fetchTVShowVideosMovies = async (item_id) => {
         const moviesVideosTmp = await TVShowAPI.fetchTVShowVideosMovies(item_id)
         setMoviesVideosTVShow(moviesVideosTmp.slice(0, 10))
@@ -78,12 +95,14 @@ export default function App() {
         if (!currentSeriesTVShow) return
         fetchRecommendationsSeries(currentSeriesTVShow.id)
         fetchTVShowVideosSeries(currentSeriesTVShow.id)
+        fetchTVShowSeriesCast(currentSeriesTVShow.id)
     }, [currentSeriesTVShow])
 
     useEffect(() => {
         if (!currentMovieTVShow) return
         fetchRecommendationsMovies(currentMovieTVShow.id)
         fetchTVShowVideosMovies(currentMovieTVShow.id)
+        fetchTVShowMovieCast(currentSeriesTVShow.id)
     }, [currentMovieTVShow])
 
     const searchTitleSeries = async (e) => {
@@ -109,13 +128,11 @@ export default function App() {
 
     function handleResultClickSeries(tvShow) {
       setCurrentSeriesTVShow(tvShow);
-      //On vide les résultats après sélection
       setSearchResults([]);
     }
 
     function handleResultClickMovies(tvShow) {
       setCurrentMovieTVShow(tvShow);
-      //On vide les résultats après sélection
       setSearchResults([]);
     }
 
@@ -136,7 +153,7 @@ export default function App() {
                     <button onClick={() => setShowMovies(false)}>Series</button>
                     <button className={styles.active} onClick={() => setShowMovies(true)}>Movies</button>
                 </div>
-                {currentMovieTVShow && <Details TVShow={currentMovieTVShow} />}
+                {currentMovieTVShow && <Details TVShow={currentMovieTVShow} movieCast={movieCast}/>}
                 {moviesTVShow && <TVShowList title="Movies" TVShowList={moviesTVShow} setCurrentTVShow={setCurrentMovieTVShow} />}
                 {moviesVideosTVShow.length > 0 && <VideoMovie videos={moviesVideosTVShow} title="Videos" />}
                 {recommendationsMovies && <TVShowList title="Recommendations" TVShowList={recommendationsMovies} setCurrentTVShow={setCurrentMovieTVShow} />}
@@ -159,7 +176,7 @@ export default function App() {
                     <button className={styles.active} onClick={() => setShowMovies(false)}>Series</button>
                     <button onClick={() => setShowMovies(true)}>Movies</button>
                 </div>
-                {currentSeriesTVShow && <Details TVShow={currentSeriesTVShow} />}
+                {currentSeriesTVShow && <Details TVShow={currentSeriesTVShow} seriesCast={seriesCast}/>}
                 {popularsSeriesTVShow && <TVShowList className={styles.popular} title="Populars" TVShowList={popularsSeriesTVShow} setCurrentTVShow={setCurrentSeriesTVShow} />}
                 {seriesVideosTVShow.length > 0 && <VideoMovie videos={seriesVideosTVShow} title="Videos" />}
                 {recommendationsSeriesTVShow && <TVShowList title="Recommendations" TVShowList={recommendationsSeriesTVShow} setCurrentTVShow={setCurrentSeriesTVShow} />}

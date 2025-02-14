@@ -47,8 +47,16 @@ export class TVShowAPI {
     }
 
     //Obtenir la liste des acteurs d'une série.
-    static async fetchTVShowCast(tvShowId) {
+    static async fetchTVShowSeriesCast(tvShowId) {
         const response = await axios.get(`${BASE_URL}tv/${tvShowId}/credits${API_KEY_PARAM}`);
+        console.log("series cast", response.data.cast);
+        return response.data.cast;
+    }
+
+    //Obtenir la liste des acteurs d'un film.
+    static async fetchTVShowMovieCast(tvShowId) {
+        const response = await axios.get(`${BASE_URL}movie/${tvShowId}/credits${API_KEY_PARAM}`);
+        console.log("movie cast", response.data.cast);
         return response.data.cast;
     }
 }
