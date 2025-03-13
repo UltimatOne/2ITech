@@ -1,8 +1,8 @@
 import styles from "./ButtonPrimary.module.css"
 
-export default function ButtonPrimary({children}) {
+export default function ButtonPrimary({onClick = () => {}, children}) {
     return (
-        <button type="button" className={`btn btn-primary ${styles.button}`}>
+        <button type="button" onClick={onClick} className={`btn btn-primary ${styles.button}`}>
           {children}
         </button>
     )
