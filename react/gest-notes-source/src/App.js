@@ -1,9 +1,10 @@
+import styles from "./App.module.css"
 import { NotesAPI } from "api/note-api";
 import Header from "components/Header/Header";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch/*, useSelector*/ } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { setNotesList } from "store/note/note-slice";
+import { setCategories, setNotesList } from "store/note/note-slice";
 
 export function App() {
     // Méthode pour envoyer les données dans le store Redux
@@ -18,17 +19,25 @@ export function App() {
         }
     }
 
+    const getCategories = async () => {
+        const categoriesTmp = await NotesAPI.fetchCategories()
+        if (categoriesTmp.length > 0) {
+            dispatch(setCategories(categoriesTmp))
+        }
+    }
+
     // Récupère les données depuis le store
-    const notesList = useSelector((store) => store.NOTES.notesList)
+    // const notesList = useSelector((store) => store.NOTES.notesList)
+    // const categories = useSelector((store) => store.NOTES.categories)
 
     // Lance la récupération des données dans la BDD
     useEffect(() => {
         getNotesList()
-        // console.log("notes", notesList)
+        getCategories()
     }, [])
 
     return (
-        <div className="container-fluid">
+        <div className={styles.container}>
             <Header />
             <Outlet />
         </div>

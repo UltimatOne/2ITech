@@ -9,7 +9,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     return (
-        <div className={`row ${styles.container}`}>
+        <div className={styles.container}>
             <div className="col-xs-12 col-sm-4">
                 <Logo onClick={() => navigate("/")} title="Note-Gestion" subtitle="Manage your notes" image={logo} />
             </div>

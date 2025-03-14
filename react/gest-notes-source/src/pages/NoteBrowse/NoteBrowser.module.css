@@ -1,9 +1,18 @@
 .container {
     display: flex;
     min-width: 100%;
-    min-height: 100%;
     flex-wrap: wrap;
-    padding: 0.5rem;
+    padding: 1rem;
     gap: 0.5rem;
     justify-content: center;
+    flex-grow: 1;
+}
+
+.bodyContainer {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+    min-height: 75vh;
+    flex-grow: 1;
 }

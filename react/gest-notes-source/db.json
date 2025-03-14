@@ -3,44 +3,86 @@
     {
       "title": "React - Props",
       "content": "Props are data I can send to a component. You can send any kind of data : Objects, strings, numbers, arrays, jsx...\nYou can never modify a props directly they are read-only. Any time a component props changes the component re-render.\n\nExample : \n\n<Component myProps=\"This is a props\" />",
+      "category_id": "1",
       "created_at": "23/08/2025",
       "id": "2"
     },
     {
       "title": "React - States",
       "content": "A state is a data managed by a component. Any time a component state changes the component re-render",
+      "category_id": "1",
       "created_at": "23/08/2025",
       "id": "5"
     },
     {
       "title": "React - useEffect()",
       "content": "The function passed to useEffect will run after the first render is committed to the screen.\nYou can pass an array as second parameter. useEffect() will run anytime a value in this array change.\nYou can return a function in useEffect() that will be executed when the component is removed from the DOM\n\nExample\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n}, [])\n\nuseEffect( () => {\n   console.log(\"Run on first render and when valueToListen changes\")\n}, [valueToListen])\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n   return () =>{\n        console.log(\"Run when component is removed from the DOM\")\n    }\n}, [])",
+      "category_id": "1",
       "created_at": "23/08/2025",
       "id": "8"
     },
     {
       "title": "React - useState()",
       "content": "useState is a React hooks that gives access to a value and a setter.\nAny time the setter is called the value is updated and the component re-render.\nYou can pass a default value to useState.\n\nExample :\n\nconst [value,setValue] = useState(\"defaultValue\")",
+      "category_id": "1",
       "created_at": "23/08/2025",
       "id": "9"
     },
     {
       "title": "Javascript - Destructuring",
       "content": "The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables. \n\nExample :\n\nlet a, b, rest;\n[a, b] = [10, 20];\n\nconsole.log(a);\n// expected output: 10\n\nconsole.log(b);\n// expected output: 20\n\n[a, b, ...rest] = [10, 20, 30, 40, 50];\n\nconsole.log(rest);\n// expected output: Array [30,40,50]\n",
+      "category_id": "6",
       "created_at": "13/10/2025",
-      "id": "10"
+      "id": "10",
+      "categoryId": "2"
     },
     {
       "title": "Javascript - map()",
       "content": "The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.\n\nExample : \n\nconst array1 = [1, 4, 9, 16];\n\n// pass a function to map\nconst map1 = array1.map(x => x * 2);\n\nconsole.log(map1);\n// expected output: Array [2, 8, 18, 32]",
+      "category_id": "6",
       "created_at": "13/10/2025",
-      "id": "11"
+      "id": "11",
+      "categoryId": "2"
     },
     {
-      "id": "9ad2",
-      "title": "La super note",
-      "content": "La super note content",
-      "created_at": "12/03/2025"
+      "id": "e277",
+      "title": "test",
+      "content": "test content",
+      "category_id": "4",
+      "created_at": "14/03/2025"
+    },
+    {
+      "id": "0bce",
+      "title": "test",
+      "content": "content design",
+      "category_id": "3",
+      "created_at": "14/03/2025"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "Développement Front"
+    },
+    {
+      "id": "2",
+      "title": "Développement Back"
+    },
+    {
+      "id": "3",
+      "title": "Design"
+    },
+    {
+      "id": "4",
+      "title": "Sécurité"
+    },
+    {
+      "id": "5",
+      "title": "Test"
+    },
+    {
+      "id": "6",
+      "title": "Languages"
     }
   ]
 }

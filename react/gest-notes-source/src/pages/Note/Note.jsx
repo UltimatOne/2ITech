@@ -10,6 +10,7 @@ export default function Note() {
     const [isEditable, setIsEditable] = useState(false)
     const { id } = useParams()
     const note = useSelector((store) => store.NOTES.notesList).find(note => note.id === id)
+    const categories = useSelector((store) => store.NOTES.categories)
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
@@ -34,10 +35,13 @@ export default function Note() {
             <NoteForm
                 isEditable={isEditable}
                 note={note}
+                categories={categories}
                 title={isEditable ? "Edit Note" : note.title}
                 onClickEdit={() => setIsEditable(!isEditable)}
                 onClickTrash={() => deleteThisNote(note.id)}
                 onSubmit={isEditable && ((formValues) => editNote(formValues))}
+                close={() => setIsEditable(!isEditable)}
+                closeArrow={() => navigate("/")}
             />
         </div>
     )

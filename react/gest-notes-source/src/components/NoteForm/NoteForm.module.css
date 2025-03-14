@@ -2,7 +2,8 @@
     padding: 50px;
     background-color: white;
     border-radius: 22px;
-    width: 33%;
+    min-width: 33%;
+    position: relative;
 }
 
 .icon {
@@ -19,4 +20,10 @@
 
 .content {
     width: inherit;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px
 }

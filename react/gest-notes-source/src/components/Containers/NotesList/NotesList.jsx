@@ -4,8 +4,9 @@ import TextCard from "components/TextCard/TextCard"
 import { useNavigate } from "react-router-dom"
 import { NotesAPI } from "api/note-api"
 import { deleteNote } from "store/note/note-slice"
+import ButtonPrimary from "components/ButtonPrimary/ButtonPrimary"
 
-export default function NotesList({notesList}) {
+export default function NotesList({ notesList }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -17,20 +18,26 @@ export default function NotesList({notesList}) {
     }
 
     return (
-        <div className={`row justify-content-center container-fluid`}>
-            {notesList?.map((note, key) => {
-                return (
-                    <div key={key} className={styles.card_container}>
-                        <TextCard
-                            title={note.title}
-                            subtitle={note.created_at}
-                            content={note.content}
-                            onClickTrash={(e) => deleteThisNote(note.id)}
-                            onClick={() => navigate("/note/" + note.id)}
-                        />
-                    </div>
-                )
-            })}
+        <div className={`${styles.topContainer}`}>
+            {notesList
+                ? notesList?.map((note, key) => {
+                    return (
+                        <div key={key} className={styles.card_container}>
+                            <TextCard
+                                title={note.title}
+                                subtitle={note.created_at}
+                                content={note.content}
+                                onClickTrash={(e) => deleteThisNote(note.id)}
+                                onClick={() => navigate("/note/" + note.id)}
+                            />
+                        </div>
+                    )
+                })
+                : <div className={styles.container} >
+                    <p className={styles.notNotes}>Il n'y a pas de notes !</p>
+                    <ButtonPrimary onClick={() => (navigate("/note/new"))}>Ajouter</ButtonPrimary>
+                </div>
+            }
         </div>
     )
 }

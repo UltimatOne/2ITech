@@ -8,8 +8,8 @@ export default function TextCard(
         title = "test title",
         subtitle = "test subtitle",
         content = "test content",
-        onClickTrash = () => { },
-        onClick = () => { }
+        onClickTrash = () => {},
+        onClick = () => {},
     }
 ) {
     const [isTrashHovered, setIsTrashHovered] = useState(false)
