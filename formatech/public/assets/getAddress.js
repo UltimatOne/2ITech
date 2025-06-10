@@ -83,7 +83,7 @@ const searchAddress = (country) => {
                                         <input id='city' name='city' type='hidden' value='${options[k].city}'/>
                                       </div>`
 
-                        const cityId = `<input id='city_id' name='city_id' type='hidden' value='${options[k].place_id}'/>`
+                        const cityId = `<input id='city_id' name='city_id' type='hidden' value='${options[k].city + (options[k].postcode ? options[k].postcode : options[k].city)}'/>`
 
                         containerAddress.append(address, additionalAddress, zipCode, city, cityId)
                     })
@@ -93,7 +93,7 @@ const searchAddress = (country) => {
     })
 }
 
-fetch("http://192.168.1.69/index.php?page=getcountries")
+fetch("http://localhost2it/formatech/index.php?page=getcountries")
     .then(resp => resp.json())
     .then((datas) => {
         const countryExist = $("#country_displayed").attr("value")

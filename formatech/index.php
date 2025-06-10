@@ -6,24 +6,31 @@ if (isset($_GET['logout'])) {
     session_destroy();
 }
 
-require('src/Controller/Landing.php');
-require('src/api/GetCountries.php');
-require('src/Controller/DetailsCenter.php');
-require('src/Controller/ManageCenters.php');
-require('src/Controller/SignIn.php');
-require('src/Controller/SignUp.php');
-require('src/Model/Model.php');
-require('src/services/SQLDatabase.php');
+require 'vendor/autoload.php';
+require 'src/Controller/LandingController.php';
+require 'src/Controller/GetCountriesController.php';
+require 'src/Controller/DetailsCenterController.php';
+require 'src/Controller/ManageCentersController.php';
+require 'src/Controller/SignInController.php';
+require 'src/Controller/SignUpController.php';
+require 'src/Controller/ChatController.php';
+require 'src/Controller/MessagePostController.php';
+
+require 'src/Model/Model.php';
+
+require 'src/services/SQLDatabase.php';
 
 $page = filter_input(type: INPUT_GET, var_name: "page");
 
 $route = [
-    "landing"       => Landing::class,
-    "getcountries"   => GetCountries::class,
-    "detailsCenter"  => DetailsCenter::class,
-    "listCenters"    => ManageCenters::class,
-    "signIn"        => SignIn::class,
-    "signUp"        => SignUp::class,
+    "landing"        => LandingController::class,
+    "getcountries"   => GetCountriesController::class,
+    "detailsCenter"  => DetailsCenterController::class,
+    "listCenters"    => ManageCentersController::class,
+    "signIn"         => SignInController::class,
+    "signUp"         => SignUpController::class,
+    "chat"           => ChatController::class,
+    "message_post"   => MessagePostController::class,
 ];
 
 $controller = null;
@@ -38,6 +45,6 @@ foreach ($route as $routeValue => $className) {
 
 //error 404
 if (!$controller) {
-    $controller = new Landing();
+    $controller = new LandingController();
     $controller->manage();
 }

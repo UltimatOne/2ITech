@@ -1,6 +1,6 @@
 <?php
 
-class GetCountries
+class GetCountriesController
 {
     public $model;
     public $msgSuccess;
@@ -20,7 +20,7 @@ class GetCountries
     {
         header(header: "Access-Control-Allow-Origin: *");
         // header("Content-Type:application/json");
-        
+
         $this->countries = $this->model->getCountries();
 
         echo json_encode(value: $this->countries);
