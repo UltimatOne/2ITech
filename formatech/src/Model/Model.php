@@ -420,7 +420,7 @@ class Model
     }
 
     /* fonction générique pour modifier une ou plusieurs propriétés dans une table et index indiqués */
-    public function updateField($table, $data, $namePropertyId, $id): mixed
+    public function updateFields($table, $data, $namePropertyId, $id): mixed
     {
         // formatage des propriétés a modifier et leurs valeurs en chaine de caractères pour la requete sql "prop1 = :prop1, prop2 = :prop2, ..."
         $sqlFormat = implode(separator: ", ", array: array_map(callback: fn($key): string => "$key = :$key", array: array_keys(array: $data)));

@@ -28,31 +28,47 @@ class SignUpController
 
     public function manage(): void
     {
-        // echo '<pre>';
-        // var_dump($_POST);
-        // echo '<pre>';
+        function test_input($data): string
+        {
+            $data = trim(string: $data);
+            $data = stripslashes(string: $data);
+            $data = htmlspecialchars(string: $data);
+            return $data;
+        }
+
+        $name = $firstname = $birthday = $email = $phone = $password = "";
+        $address = $additionalAddress = $zipCode = $city = $cityId = $country = "";
+
         if (
             isset($_POST["name"]) &&
             isset($_POST["email"]) &&
             isset($_POST["pswrd"])
         ) {
+            $name = test_input(data: $_POST["name"]);
+            $firstname = test_input(data: $_POST["firstname"]);
+            $birthday = test_input(data: $_POST["birthday"]);
+            $email = test_input(data: $_POST["email"]);
+            $phone = test_input(data: $_POST["phone"]);
+            $password = test_input(data: $_POST["pswrd"]);
+            $address = test_input(data: $_POST["address"]);
+            $additionalAddress = test_input(data: $_POST["additional_address"]);
+            $zipCode = test_input(data: $_POST["zip_code"]);
+            $city = test_input(data: $_POST["city"]);
+            $cityId = test_input(data: $_POST["city_id"]);
+            $country = test_input(data: $_POST["country"]);
+
             if (
-                empty($_POST["name"]) ||
-                empty($_POST["firstname"]) ||
-                empty($_POST["birthday"]) ||
-                empty($_POST["email"]) ||
-                empty($_POST["phone"]) ||
-                empty($_POST["pswrd"]) ||
-                empty($_POST["address"]) ||
-                empty($_POST["zip_code"]) ||
-                empty($_POST["city"]) ||
-                empty($_POST["country"])
+                empty($name) || empty($firstname) ||
+                empty($birthday) || empty($email) ||
+                empty($phone) || empty($password) ||
+                empty($address) || empty($zipCode) ||
+                empty($cityId) || empty($country)
             ) {
                 // var_dump(value: $_POST);
                 $this->msg = "<p>Merci de compléter les champs suivants:";
                 foreach ($_POST as $key => $value) {
                     if (empty($value)) {
-                        if ($key != "search") {
+                        if ($key != "additionalAddress" && $key != "city_id") {
                             $this->msg .= "<br> -> $key";
                         }
                     }
@@ -63,32 +79,32 @@ class SignUpController
                 // 8 characters, uppercase letter, lowercase letter, number and authorized special character #?!@$%^&*-
                 $pattern = '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/';
 
-                if (preg_match($pattern, $_POST["pswrd"])) {
+                if (preg_match(pattern: $pattern, subject: $password)) {
 
                     // Password hashing before saving to database
-                    $pswrd = password_hash(password: $_POST["pswrd"], algo: PASSWORD_DEFAULT);
+                    $pswrd = password_hash(password: $password, algo: PASSWORD_DEFAULT);
 
                     // $userId retrieves the ID of the new user or false if there is a problem during creation
                     $studentId = $this->model->addNewStudent(
-                        name: $_POST["name"],
-                        firstname: $_POST["firstname"],
-                        birthday: $_POST["birthday"],
-                        email: $_POST["email"],
-                        phone: $_POST["phone"],
+                        name: $name,
+                        firstname: $firstname,
+                        birthday: $birthday,
+                        email: $email,
+                        phone: $phone,
                         pswrd: $pswrd,
-                        address: $_POST["address"],
-                        additionalAddress: $_POST["additionalAddress"],
-                        cityId: $_POST["city_id"],
-                        city: $_POST["city"],
-                        zipCode: $_POST["zip_code"],
-                        countryId: $_POST["country"]
+                        address: $address,
+                        additionalAddress: $additionalAddress,
+                        cityId: $cityId,
+                        city: $city,
+                        zipCode: $zipCode,
+                        countryId: $country
                     );
 
                     if ($studentId > 0) {
                         $_SESSION['user'] = [
-                            'name' => $_POST["name"],
-                            'firstname' => $_POST["firstname"],
-                            'email' => $_POST["email"],
+                            'name' => $name,
+                            'firstname' => $firstname,
+                            'email' => $email,
                             'id' => $studentId,
                             'inscription_id' => null,
                             'role' => 'student'

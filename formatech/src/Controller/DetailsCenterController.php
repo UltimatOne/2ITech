@@ -48,7 +48,7 @@ class DetailsCenterController
                     }
                     unset($_POST["center_id"],);
 
-                    $resp = $this->model->updateField(table: $table, data: $_POST, namePropertyId: $namePropertyId, id: $id);
+                    $resp = $this->model->updateFields(table: $table, data: $_POST, namePropertyId: $namePropertyId, id: $id);
                     // echo '<pre>';
                     // var_dump($resp);
                     // echo '<pre>';

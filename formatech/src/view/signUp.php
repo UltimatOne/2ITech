@@ -1,29 +1,3 @@
-<?php 
-// define variables and set to empty values
-$name = $firstname = $birthday = $email = $phone = $password = $address = $additionalAddress = $zipCode = $city = $country = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = test_input(data: $_POST["name"]);
-  $firstname = test_input(data: $_POST["firstname"]);
-  $birthday = test_input(data: $_POST["birthday"]);
-  $email = test_input(data: $_POST["email"]);
-  $phone = test_input(data: $_POST["phone"]);
-  $password = test_input(data: $_POST["pswrd"]);
-  $address = test_input(data: $_POST["pswrd"]);
-  $additionalAddress = test_input(data: $_POST["pswrd"]);
-  $zipCode = test_input(data: $_POST["pswrd"]);
-  $city = test_input(data: $_POST["pswrd"]);
-}
-
-function test_input($data): string {
-  $data = trim(string: $data);
-  $data = stripslashes(string: $data);
-  $data = htmlspecialchars(string: $data);
-  return $data;
-}
-
-?>
-
 <section class="signUp">
     <h1><?= $this->title ?></h1>
 
