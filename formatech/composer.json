@@ -3,7 +3,7 @@
     "description": "site web d'accès aux informations utilisateurs de centres de formations formatech - projet fil rouge 2ITech academy DWWM Mut-4 session 2024 2025",
     "autoload": {
         "psr-4": {
-            "Jjg\\Formatech\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [

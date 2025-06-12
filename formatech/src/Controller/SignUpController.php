@@ -1,5 +1,6 @@
 <?php
 
+use App\services\Services;
 class SignUpController
 {
     public $model;

@@ -1,8 +1,8 @@
 <?php
-
+namespace App\services;
 class Services
 {
-    private function __construct() {}
+    public function __construct() {}
 
     public function test_input($data): string
     {
@@ -23,8 +23,8 @@ class Services
 
     public function emailCheck ($email): bool
     {
-        
-        $pattern = '/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/i';
+
+        $pattern = '/^(?!.*\.\.)[\w\d][\w\d._-]*[\w\d]@[\w\d.-]+\.[a-zA-Z]{2,}$/i';
         return preg_match(pattern: $pattern, subject: $email);
 
     }
