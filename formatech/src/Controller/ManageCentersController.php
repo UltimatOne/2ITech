@@ -76,10 +76,10 @@ class ManageCentersController
             $this->centers = $this->model->getCenters();
         }
 
-        include(__DIR__ . '/../view/header.php');
-        include(__DIR__ . '/../view/popup.php');
-        include(__DIR__ . '/../Components/listItems.php');
-        include(__DIR__ . '/../Components/addForm.php');
-        include(__DIR__ . '/../view/footer.php');
+        include(__DIR__ . '/../Views/header.php');
+        include(__DIR__ . '/../Views/popup.php');
+        include(__DIR__ . '/../Views/centersList.php');
+        include(__DIR__ . '/../Components/centerAddForm.php');
+        include(__DIR__ . '/../Views/footer.php');
     }
 }

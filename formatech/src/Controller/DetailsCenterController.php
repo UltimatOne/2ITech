@@ -49,9 +49,7 @@ class DetailsCenterController
                     unset($_POST["center_id"],);
 
                     $resp = $this->model->updateFields(table: $table, data: $_POST, namePropertyId: $namePropertyId, id: $id);
-                    // echo '<pre>';
-                    // var_dump($resp);
-                    // echo '<pre>';
+
                     $resp
                         ? $this->msg = "Modification éffectuée"
                         : $this->msg = "Echec de la modification";
@@ -72,9 +70,9 @@ class DetailsCenterController
         }
 
 
-        include __DIR__ . '/../view/header.php';
-        include __DIR__ . '/../view/popup.php';
-        include __DIR__ . '/../Components/detailsForm.php';
-        include __DIR__ . '/../view/footer.php';
+        include __DIR__ . '/../views/header.php';
+        include __DIR__ . '/../views/popup.php';
+        include __DIR__ . '/../Components/centerDetailsForm.php';
+        include __DIR__ . '/../views/footer.php';
     }
 }

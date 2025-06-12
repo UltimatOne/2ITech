@@ -88,12 +88,9 @@ class SignInController
             }
         }
 
-
-
-
-        include __DIR__ . '/../view/header.php';
-        include __DIR__ . '/../view/popup.php';
-        include __DIR__ . '/../view/signIn.php';
-        include __DIR__ . '/../view/footer.php';
+        include __DIR__ . '/../Views/header.php';
+        include __DIR__ . '/../Views/popup.php';
+        include __DIR__ . '/../Views/signIn.php';
+        include __DIR__ . '/../Views/footer.php';
     }
 }

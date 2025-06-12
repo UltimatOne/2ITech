@@ -26,15 +26,9 @@ class LandingController
 
     public function manage()
     {
-        if(isset($_SESSION['user'])) {
-            var_dump('<pre>');
-            var_dump($_SESSION);
-            var_dump('<pre>');
-        }
-
-        include __DIR__ . '/../view/header.php';
-        include __DIR__ . '/../view/popup.php';
-        include __DIR__ . '/../Components/landing.php';
-        include __DIR__ . '/../view/footer.php';
+        include __DIR__ . '/../Views/header.php';
+        include __DIR__ . '/../Views/popup.php';
+        include __DIR__ . '/../Views/landing.php';
+        include __DIR__ . '/../Views/footer.php';
     }
 }
