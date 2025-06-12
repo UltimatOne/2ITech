@@ -3,6 +3,7 @@
 class MessagePostController
 {
     public $model;
+    public $serv;
     public $msgSuccess;
     public $msgError;
 
@@ -11,6 +12,7 @@ class MessagePostController
     public function __construct()
     {
         $this->model = new Model();
+        $this->serv = new Services();
         $this->msgSuccess = null;
         $this->msgError = null;
         $this->response = null;
@@ -19,12 +21,17 @@ class MessagePostController
 
     public function manage(): void
     {
-        $data = json_decode(file_get_contents("php://input"));
-
+        $data = json_decode(json: file_get_contents(filename: "php://input"));
         header(header: "Access-Control-Allow-Origin: *");
 
+        $roomId = $inscriptionId = $message = "";
+
         if (isset($data)) {
-            $this->response = $this->model->messagePost(roomId: $data -> roomId, inscriptionId: $data -> inscriptionId, message: $data -> message);
+            $roomId = $data -> roomId;
+            $inscriptionId = $data -> inscriptionId;
+            $message = $this->serv->test_input(data: $data -> message);
+
+            $this->response = $this->model->messagePost(roomId: $roomId, inscriptionId: $inscriptionId, message: $message);
         }
 
         echo $this->response;

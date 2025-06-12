@@ -29,7 +29,7 @@ class ManageCentersController
 
     public function manage(): void
     {
-        // var_dump($_SESSION);
+
         if (!$_SESSION["user"]["id"]) {
             header(header: "Location: index.php?page=signIn");
             if ($_SESSION['user']['role'] !== 'super_admin') {
@@ -37,7 +37,7 @@ class ManageCentersController
             }
         } else {
             if (isset($_POST["entity"])) {
-                $resp = $this->model->deleteItem(entity: $_POST["entity"], property: $_POST["property"], value: $_POST["value"]);
+                $resp = $this->model->deleteItem(table: $_POST["entity"], property: $_POST["property"], value: $_POST["value"]);
                 $resp
                     ? $this->msg = "Le centre " . $_POST["itemName"] . " a bien été supprimé"
                     : $this->msg = "Une erreur est survenue";

@@ -2,7 +2,6 @@
 
 class Model
 {
-    //private permet une accessibilité à $db que depuis la classe Model
     private $db;
     public function __construct()
     {
@@ -11,14 +10,12 @@ class Model
 
     public function manage(): void {}
 
-    // Students
     public function addNewStudent($name, $firstname, $birthday, $email, $phone, $pswrd, $address, $additionalAddress, $cityId, $city, $zipCode, $countryId): mixed
     {
         $additionalAddressTmp = !empty($additionalAddress) ? $additionalAddress : NULL;
 
-        //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
-            //demarrage de la transaction
+            // demarrage de la transaction
             $this->db->beginTransaction();
 
             // Appel d'une procédure stockée SQL
@@ -49,6 +46,7 @@ class Model
             $request->bindvalue(":studentAdditionalAddress", $additionalAddressTmp, PDO::PARAM_STR);
             $request->bindvalue(":studentCityId", $cityId, PDO::PARAM_STR);
             $resp = $request->execute();
+
             // Fin de la transaction
             $this->db->commit();
 
@@ -167,8 +165,6 @@ class Model
         };
     }
 
-
-
     public function getStudent($email): mixed
     {
         try {
@@ -272,11 +268,9 @@ class Model
 
     public function addCenter($name, $address, $additionalAddress, $zip, $city, $cityId, $countryId, $email, $phone): void
     {
-        //permet de créer une transaction. tout se validera au commit si toutes les requetes sql se sont terminées correctement sinon catch et rollback pour éviter la modification de la db
         try {
             $additionalAddressCheck = !empty($additionalAddress) ? $additionalAddress : NULL;
 
-            //demarrage de la transaction
             $this->db->beginTransaction();
 
 
@@ -316,13 +310,10 @@ class Model
                 $request->execute([$name, $address, $additionalAddressCheck, $phone, $email, $cityId]);
             }
 
-            //les requetes sql se sont terminées correctement envoi et modification de la db
             $this->db->commit();
 
             // return $centerId;
         } catch (Exception $e) {
-
-            //les requetes sql ne se sont pas terminées correctement annulation
             $this->db->rollBack();
             var_dump(value: $e->getMessage());
         };
@@ -361,7 +352,7 @@ class Model
         try {
             $request = $this->db->prepare(
                 'INSERT INTO messages (
-                    message_room_id,
+                    message_chatroom_id,
                     message_inscription_id,
                     message_message
                 ) VALUES (?,?,?)'
@@ -399,9 +390,9 @@ class Model
         };
     }
 
-    public function deleteItem($entity, $property, $value): mixed
+    public function deleteItem($table, $property, $value): mixed
     {
-        $sql = "DELETE FROM $entity WHERE $property = :value";
+        $sql = "DELETE FROM $table WHERE $property = :value";
         $resp = $this->db->prepare($sql);
         $resp->execute([
             "value" => $value
@@ -422,20 +413,31 @@ class Model
     /* fonction générique pour modifier une ou plusieurs propriétés dans une table et index indiqués */
     public function updateFields($table, $data, $namePropertyId, $id): mixed
     {
-        // formatage des propriétés a modifier et leurs valeurs en chaine de caractères pour la requete sql "prop1 = :prop1, prop2 = :prop2, ..."
-        $sqlFormat = implode(separator: ", ", array: array_map(callback: fn($key): string => "$key = :$key", array: array_keys(array: $data)));
+        try {
+            $this->db->beginTransaction();
+    
+            // formatage des propriétés a modifier et leurs valeurs en chaine de caractères pour la requete sql "prop1 = :prop1, prop2 = :prop2, ..."
+            $sqlFormat = implode(separator: ", ", array: array_map(callback: fn($key): string => "$key = :$key", array: array_keys(array: $data)));
+    
+            // Construction de la requête SQL
+            $sql = "UPDATE $table SET $sqlFormat WHERE $namePropertyId = :id";
+    
+            // Préparation et exécution de la requête
+            $resp = $this->db->prepare($sql);
 
-        // Construction de la requête SQL
-        $sql = "UPDATE $table SET $sqlFormat WHERE $namePropertyId = :id";
+            // On ajoute l'id à data pour la condition à la fin de la requête
+            $data["id"] = $id;
+    
+            $resp->execute($data);
 
-        // Préparation et exécution de la requête
-        $resp = $this->db->prepare($sql);
-        $data["id"] = $id;
+            $this->db->commit();
 
-        $resp->execute($data);
-        echo '<pre>';
-        var_dump($resp);
-        echo '<pre>';
-        return $resp->rowCount() > 0;
+            return $resp->rowCount() > 0;
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            var_dump(value: $e->getMessage());
+            return false;
+        }
     }
 }

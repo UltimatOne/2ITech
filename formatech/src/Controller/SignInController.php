@@ -53,19 +53,14 @@ class SignInController
                     $this->user = $this->model->getStudent(email: $_POST['email']);
                     if ($this->user) {
                         $this->inscriptionId = $this->model->getInscription(studentId: $this->user["id"]);
-                        // echo '<pre>';
-                        // var_dump($inscriptionId);
-                        // echo '</pre>';
                         $this->user["inscription_id"] = $this->inscriptionId["inscription_id"]; 
                         $this->role = 'student';
                     }
                 }
                 if ($this->user === false || !password_verify(password: $_POST['pswrd'], hash: $this->user['password'])) {
+
                     $this->msg = 'Merci de vérifier votre email et mot de passe !';
                 } else {
-                    // echo '<pre>';
-                    // var_dump($user);
-                    // echo '</pre>';
                     isset($this->user["inscription_id"])
                         ? $_SESSION['user'] = [
                             'id' => $this->user['id'],
