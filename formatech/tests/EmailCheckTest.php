@@ -24,6 +24,7 @@ class EmailCheckTest extends TestCase
     public function testInvalidEmail(): void
     {
         $this->assertFalse(condition: $this->validator->emailCheck(email: ".email@example.com")); // Point interdit au début
+        $this->assertFalse(condition: $this->validator->emailCheck(email: ".email%@example.com")); // caractère interdit
         $this->assertFalse(condition: $this->validator->emailCheck(email: "email@domain..com")); // Double point interdit
         $this->assertFalse(condition: $this->validator->emailCheck(email: "email@domain")); // pas de domaine
         $this->assertFalse(condition: $this->validator->emailCheck(email: "plainaddress")); // Pas de @
