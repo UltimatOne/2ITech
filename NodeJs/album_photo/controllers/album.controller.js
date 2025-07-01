@@ -23,6 +23,15 @@ const getAlbum = async (req, res) => {
     res.render("album", { album: album, errors: req.flash("error"), success: req.flash("success") })
 }
 
+const updateAlbum = async (req, res) => {
+    const updateAlbum = await Album.findOneAndUpdate(
+        { _id: ObjectId(req.params.id) },
+        { $set: { nom: req.params.newName } },
+        { returnDocument: "after" }
+    )
+    return updateAlbum
+}
+
 const delAlbum = async (req, res) => {
     try {
         let delAlbum = await Album.findOne({ title: req.params.title })
@@ -31,14 +40,14 @@ const delAlbum = async (req, res) => {
             res.redirect("/albums")
             return
         }
-        const delAlbumId = ""+delAlbum._id
+        const delAlbumId = "" + delAlbum._id
 
         await delAlbum.deleteOne()
 
-        const albumDir = path.join(__dirname,'public','images', delAlbumId);
+        const albumDir = path.join(__dirname, 'public', 'images', delAlbumId);
 
         console.log("albumDir", albumDir)
- 
+
         fs.rmSync(albumDir, { recursive: true, force: true });
 
 
@@ -56,18 +65,18 @@ const delPicture = async (req, res) => {
         const album = await Album.findById(albumId)
 
         const imageId = req.params.imageId
- 
+
         const image = album.images[imageId];
 
         if (!image) {
             res.redirect(`/albums/${albumId}`);
         }
- 
+
         album.images.splice(imageId, 1)
 
         await album.save();
 
-        const albumDir = path.join(__dirname,'public','images', albumId, image);
+        const albumDir = path.join(__dirname, 'public', 'images', albumId, image);
 
         console.log("albumDir", albumDir)
 
@@ -76,7 +85,7 @@ const delPicture = async (req, res) => {
         res.redirect(`/albums/${albumId}`);
 
     } catch (error) {
-       console.log("error")
+        console.log("error")
     }
 
 };
@@ -192,4 +201,4 @@ const addPicture = async (req, res) => {
     res.redirect(`/albums/${album._id}`)
 }
 
-export { albumForm, newAlbum, getAlbums, getAlbum, delAlbum, addPicture, delPicture }
+export { albumForm, newAlbum, getAlbums, getAlbum, delAlbum, addPicture, delPicture, updateAlbum }

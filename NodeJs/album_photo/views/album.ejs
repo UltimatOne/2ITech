@@ -18,7 +18,7 @@
         <% } %>
     </div>
     <% } %>
-    <form action="/album/addpicture" method="post" enctype="multipart/form-data" class="card p-2">
+    <form action="/album/addpicture" method="post" enctype="multipart/form-data" class="card p-2 mt-3">
         <input type="hidden" name="id" value="<%= album._id %>" />
         <label class="form-inline" for="images">Ajouter des photos</label>
         <input class="form-control-file" type="file" name="images" id="images" multiple />

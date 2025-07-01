@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from "./TVShowList.module.css"
-import TVShowListItem from '../TVShowListItem/TVShowListItem';
+import TVShowListItem from '../../containers/TVShowListItem/TVShowListItem';
 
-export default function Recommandations({ TVShowList, title, setCurrentTVShow}) {
+export default function Recommandations({ TVShowList, title }) {
+
     const list = []
     if (TVShowList) {
         for (let i = 0; i < TVShowList.length; i++) {
-            list.push(<TVShowListItem className={styles.tv_show_list_item} key={"movie-" + i} setCurrentTVShow={setCurrentTVShow} TVShow={TVShowList[i]}/>)
+            list.push(<TVShowListItem className={styles.tv_show_list_item} key={`item-${title}-` + i} TVShow={TVShowList[i]}/>)
         }
     }
 

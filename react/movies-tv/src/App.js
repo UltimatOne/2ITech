@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { TVShowAPI } from "./api/tv-show"
 import "./global.css"
 import styles from './Styles.module.css'
@@ -7,180 +7,162 @@ import TVShowList from "./components/TVShowList/TVShowList"
 import Details from "./components/Details/Details"
 import Logo from "./components/Logo/Logo"
 import logo from "./assets/images/Logo.png"
-import SearchBar from "./components/SearchBar/SearchBar"
+import SearchBar from "./containers/SearchBar/SearchBar"
 import VideoMovie from "./components/VideoMovie/VideoMovie"
+import { useDispatch, useSelector } from "react-redux"
+import {
+    setShowMovies,
+    setSearchResults,
+    setMovies, 
+    setCurrentMovie,
+    setCurrentMovieCredits,
+    setCurrentMovieVideos,
+    setRecommendationsMovies,
+    setSeries,
+    setCurrentSeries,
+    setCurrentSeriesCredits,
+    setCurrentSeriesVideos,
+    setRecommendationsSeries
+} from "./store/movies/movies-slice"
+
+
 
 export default function App() {
 
-    const [showMovies, setShowMovies] = useState(false)
-    const [popularsSeriesTVShow, setPopularsSeriesTVShow] = useState()
-    const [moviesTVShow, setMoviesTVShow] = useState()
-    const [recommendationsSeriesTVShow, setRecommendationsSeriesTVShow] = useState()
-    const [recommendationsMovies, setRecommendationsMovies] = useState()
-    const [currentSeriesTVShow, setCurrentSeriesTVShow] = useState()
-    const [currentMovieTVShow, setCurrentMovieTVShow] = useState()
-    const [seriesVideosTVShow, setSeriesVideosTVShow] = useState([])
-    const [moviesVideosTVShow, setMoviesVideosTVShow] = useState([])
-    const [seriesCast, setSeriesCast] = useState([])
-    const [movieCast, setMovieCast] = useState([])
-    const [searchResults, setSearchResults] = useState([])
+    const dispatch = useDispatch()
+
     const description = "Logo MoviesTV"
     const siteName = "Movies TV"
     const subtitle = "Find a show you may like"
 
-    // Series
-    const fetchPopularsSeries = async () => {
-        const popularsSeriesTmp = await TVShowAPI.fetchPopularsSeries()
-        if (popularsSeriesTmp.length > 0) {
-            setPopularsSeriesTVShow(popularsSeriesTmp.slice(0, 10))
-            setCurrentSeriesTVShow(popularsSeriesTmp[0])
-        }
-    }
-
-    const fetchRecommendationsSeries = async (item_id) => {
-        const recommendationsSeriesTmp = await TVShowAPI.fetchRecommendationsSeries(item_id)
-        if (recommendationsSeriesTmp.length > 0) {
-            return setRecommendationsSeriesTVShow(recommendationsSeriesTmp.slice(0, 10))
-        }
-        return
-    }
-
-    const fetchTVShowSeriesCast = async (item_id) => {
-        const seriesCastTmp = await TVShowAPI.fetchTVShowSeriesCast(item_id)
-        if (seriesCastTmp.length > 0) {
-            setSeriesCast(seriesCastTmp)
-        } 
-    }
-
-    const fetchTVShowVideosSeries = async (item_id) => {
-        const seriesVideosTmp = await TVShowAPI.fetchTVShowVideosSeries(item_id)
-        setSeriesVideosTVShow(seriesVideosTmp.slice(0, 10))
-    }
+    const showMovies = useSelector((store) => store.MOVIES.showMovies)
 
     // Movies
-    const fetchMoviesTVShow = async () => {
-        const moviesTVShowTmp = await TVShowAPI.fetchMoviesTVShow()
-        if (moviesTVShowTmp.length > 0) {
-            setMoviesTVShow(moviesTVShowTmp.slice(0, 10))
-            setCurrentMovieTVShow(moviesTVShowTmp[0])
+    const movies = useSelector((store) => store.MOVIES.movies)
+    const currentMovie = useSelector((store) => store.MOVIES.currentMovie)
+    const currentMovieCredits = useSelector((store) => store.MOVIES.currentMovieCredits)
+    const currentMovieVideos = useSelector((store) => store.MOVIES.currentMovieVideos)
+    const recommendationsMovies = useSelector((store) => store.MOVIES.recommendationsMovies)
+
+    const fetchMovies = async () => {
+        const moviesTmp = await TVShowAPI.fetchMovies()
+        if (moviesTmp.length > 0) {
+            dispatch(setMovies(moviesTmp.slice(0, 10)))
+            dispatch(setCurrentMovie(moviesTmp[0]))
         }
-    }
-
-    const fetchRecommendationsMovies= async (item_id) => {
-        const recommendationsMoviesTmp = await TVShowAPI.fetchRecommendationsMovies(item_id)
-        if (recommendationsMoviesTmp.length > 0) {
-            return setRecommendationsMovies(recommendationsMoviesTmp.slice(0, 10))
-        }
-        return
-    }
-
-    const fetchTVShowMovieCast = async (item_id) => {
-        const seriesCastTmp = await TVShowAPI.fetchTVShowMovieCast(item_id)
-        if (seriesCastTmp.length > 0) {
-            setSeriesCast(seriesCastTmp)
-        } 
-    }
-
-    const fetchTVShowVideosMovies = async (item_id) => {
-        const moviesVideosTmp = await TVShowAPI.fetchTVShowVideosMovies(item_id)
-        setMoviesVideosTVShow(moviesVideosTmp.slice(0, 10))
-    }
-
-    useEffect(() => {
-        fetchPopularsSeries()
-        fetchMoviesTVShow()
-    }, [])
-
-    useEffect(() => {
-        if (!currentSeriesTVShow) return
-        fetchRecommendationsSeries(currentSeriesTVShow.id)
-        fetchTVShowVideosSeries(currentSeriesTVShow.id)
-        fetchTVShowSeriesCast(currentSeriesTVShow.id)
-    }, [currentSeriesTVShow])
-
-    useEffect(() => {
-        if (!currentMovieTVShow) return
-        fetchRecommendationsMovies(currentMovieTVShow.id)
-        fetchTVShowVideosMovies(currentMovieTVShow.id)
-        fetchTVShowMovieCast(currentSeriesTVShow.id)
-    }, [currentMovieTVShow])
-
-    const searchTitleSeries = async (e) => {
-        const titleSeriesTmp = e.target.value
-        if (!titleSeriesTmp || titleSeriesTmp.length < 3 || (titleSeriesTmp.trim(' ') === "")) {
-            setSearchResults([]);
-            return
-        }
-        const items = await TVShowAPI.fetchByTitleSeries(titleSeriesTmp)
-        setSearchResults(items)
-        return;
     }
 
     const searchTitleMovie = async (e) => {
         const titleMoviesTmp = e.target.value
         if (!titleMoviesTmp || titleMoviesTmp.length < 3 || (titleMoviesTmp.trim(' ') === "")) {
-            setSearchResults([]);
             return
         }
         const items = await TVShowAPI.fetchByTitleMovie(titleMoviesTmp)
-        setSearchResults(items)
+        dispatch(setSearchResults(items))
     }
 
-    function handleResultClickSeries(tvShow) {
-      setCurrentSeriesTVShow(tvShow);
-      setSearchResults([]);
+    useEffect(() => {
+        fetchMovies()
+    }, [])
+
+    const fetchCurrentMovieCredits = async (item_id) => {
+        const currentMovieCreditsTmp = await TVShowAPI.fetchCurrentMovieCredits(item_id)
+        dispatch(setCurrentMovieCredits(currentMovieCreditsTmp))
     }
 
-    function handleResultClickMovies(tvShow) {
-      setCurrentMovieTVShow(tvShow);
-      setSearchResults([]);
+    const fetchCurrentMovieVideos = async (item_id) => {
+        const currentMovieVideosTmp = await TVShowAPI.fetchCurrentMovieVideos(item_id)
+        dispatch(setCurrentMovieVideos(currentMovieVideosTmp.slice(0, 10)))
     }
 
-    if (showMovies) {
+    const fetchRecommendationsMovies = async (item_id) => {
+        const recommendationsMoviesTmp = await TVShowAPI.fetchRecommendationsMovies(item_id)
+        dispatch(setRecommendationsMovies(recommendationsMoviesTmp.slice(0, 10)))
+    }
+
+    useEffect(() => {
+        if (!currentMovie) return
+        fetchCurrentMovieCredits(currentMovie.id)
+        fetchCurrentMovieVideos(currentMovie.id)
+        fetchRecommendationsMovies(currentMovie.id)
+    }, [currentMovie])
+
+
+
+    // Series
+    const series = useSelector((store) => store.MOVIES.series)
+    const currentSeries = useSelector((store) => store.MOVIES.currentSeries)
+    const currentSeriesCredits = useSelector((store) => store.MOVIES.currentSeriesCredits)
+    const currentSeriesVideos = useSelector((store) => store.MOVIES.currentSeriesVideos)
+    const recommendationsSeries = useSelector((store) => store.MOVIES.recommendationsSeries)
+
+    const fetchSeries = async () => {
+        const seriesTmp = await TVShowAPI.fetchSeries()
+        if (seriesTmp.length > 0) {
+            dispatch(setSeries(seriesTmp.slice(0, 10)))
+            dispatch(setCurrentSeries(seriesTmp[0]))
+        }
+    }
+
+    const searchTitleSeries = async (e) => {
+        const titleSeriesTmp = e.target.value
+        if (!titleSeriesTmp || titleSeriesTmp.length < 3 || (titleSeriesTmp.trim(' ') === "")) {
+            return
+        }
+        const items = await TVShowAPI.fetchByTitleSeries(titleSeriesTmp)
+        dispatch(setSearchResults(items))
+    }
+
+    useEffect(() => {
+        fetchSeries()
+    }, [])
+
+    const fetchCurrentSeriesCredits = async (item_id) => {
+        const currentSeriesCreditsTmp = await TVShowAPI.fetchCurrentSeriesCredits(item_id)
+        dispatch(setCurrentSeriesCredits(currentSeriesCreditsTmp))
+    }
+
+    const fetchCurrentSeriesVideos = async (item_id) => {
+        const currentSeriesVideosTmp = await TVShowAPI.fetchCurrentSeriesVideos(item_id)
+        dispatch(setCurrentSeriesVideos(currentSeriesVideosTmp.slice(0, 10)))
+    }
+
+    const fetchRecommendationsSeries = async (item_id) => {
+        const recommendationsSeriesTmp = await TVShowAPI.fetchRecommendationsSeries(item_id)
+        dispatch(setRecommendationsSeries(recommendationsSeriesTmp.slice(0, 10)))
+    }
+
+    useEffect(() => {
+        if (!currentSeries) return
+        fetchCurrentSeriesCredits(currentSeries.id)
+        fetchCurrentSeriesVideos(currentSeries.id)
+        fetchRecommendationsSeries(currentSeries.id)
+    }, [currentSeries])
+
+
+
         return (
-            <div className={styles.main_container} style={{
-                background: currentMovieTVShow && `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${BACKDROP_BASE_URL + (currentMovieTVShow.backdrop_path || currentMovieTVShow.poster_path)}") no-repeat center / cover`
+            <div className={styles.main_container} style={showMovies ? {
+                background: currentMovie && `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${BACKDROP_BASE_URL + (currentMovie.backdrop_path || currentMovie.poster_path)}") no-repeat center / cover`
+            } : {
+                background: currentSeries && `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${BACKDROP_BASE_URL + (currentSeries.backdrop_path || currentSeries.poster_path)}") no-repeat center / cover`
             }}>
                 <div className={styles.header}>
                     <div className="row">
                         <div className="col-4">
                             <Logo image={logo} description={description} title={siteName} subtitle={subtitle} />
                         </div>
-                        <SearchBar onSubmit={searchTitleMovie} searchResults={searchResults} onResultClick={handleResultClickMovies} />
+                        <SearchBar onSubmit={showMovies ? searchTitleMovie : searchTitleSeries} />
                     </div>
                 </div>
                 <div className={styles.buttons}>
-                    <button onClick={() => setShowMovies(false)}>Series</button>
-                    <button className={styles.active} onClick={() => setShowMovies(true)}>Movies</button>
+                    <button className={showMovies ? styles.active : ""} onClick={() => dispatch(setShowMovies(true))}>Movies</button>
+                    <button className={!showMovies ? styles.active : ""} onClick={() => dispatch(setShowMovies(false))}>Series</button>
                 </div>
-                {currentMovieTVShow && <Details TVShow={currentMovieTVShow} movieCast={movieCast}/>}
-                {moviesTVShow && <TVShowList title="Movies" TVShowList={moviesTVShow} setCurrentTVShow={setCurrentMovieTVShow} />}
-                {moviesVideosTVShow.length > 0 && <VideoMovie videos={moviesVideosTVShow} title="Videos" />}
-                {recommendationsMovies && <TVShowList title="Recommendations" TVShowList={recommendationsMovies} setCurrentTVShow={setCurrentMovieTVShow} />}
+                {(currentMovie || currentSeries) && <Details TVShow={showMovies ? currentMovie : currentSeries} credits={showMovies ? currentMovieCredits : currentSeriesCredits} />}
+                {(movies || series) && <TVShowList title={ showMovies ? "Movies" : "Series"} TVShowList={showMovies ? movies : series} />}
+                <VideoMovie videos={showMovies ? currentMovieVideos : currentSeriesVideos} title="Videos" />
+                {(recommendationsMovies || recommendationsSeries) && <TVShowList title="Recommendations" TVShowList={showMovies ? recommendationsMovies : recommendationsSeries} />}
             </div>
         )
-    } else {
-        return (
-            <div className={styles.main_container} style={{
-                background: currentSeriesTVShow && `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${BACKDROP_BASE_URL + (currentSeriesTVShow.backdrop_path || currentSeriesTVShow.poster_path)}") no-repeat center / cover`
-            }}>
-                <div className={styles.header}>
-                    <div className="row">
-                        <div className="col-4">
-                            <Logo image={logo} description={description} title={siteName} subtitle={subtitle} />
-                        </div>
-                        <SearchBar onSubmit={searchTitleSeries} searchResults={searchResults} onResultClick={handleResultClickSeries} />
-                    </div>
-                </div>
-                <div className={styles.buttons}>
-                    <button className={styles.active} onClick={() => setShowMovies(false)}>Series</button>
-                    <button onClick={() => setShowMovies(true)}>Movies</button>
-                </div>
-                {currentSeriesTVShow && <Details TVShow={currentSeriesTVShow} seriesCast={seriesCast}/>}
-                {popularsSeriesTVShow && <TVShowList className={styles.popular} title="Populars" TVShowList={popularsSeriesTVShow} setCurrentTVShow={setCurrentSeriesTVShow} />}
-                {seriesVideosTVShow.length > 0 && <VideoMovie videos={seriesVideosTVShow} title="Videos" />}
-                {recommendationsSeriesTVShow && <TVShowList title="Recommendations" TVShowList={recommendationsSeriesTVShow} setCurrentTVShow={setCurrentSeriesTVShow} />}
-            </div>
-        )
-    }
 }

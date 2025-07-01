@@ -13,7 +13,7 @@ import configPassport from "./config/passport.js"
 const app = express()
 
 const httpServer = createServer(app)
-const io = new Server(httpServer)
+const io = new Server(httpServer, { cors: {}})
  
 mongoose.connect("mongodb://127.0.0.1:27017/chat")
  
